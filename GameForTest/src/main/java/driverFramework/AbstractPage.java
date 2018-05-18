@@ -63,4 +63,17 @@ public abstract class AbstractPage {
     }
 
     public abstract String getUrl();
+
+    public AbstractPage wait(int time){
+        pause(time);
+        return this;
+    }
+
+    public static void pause(int time){
+        try {
+            Thread.sleep(time*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
