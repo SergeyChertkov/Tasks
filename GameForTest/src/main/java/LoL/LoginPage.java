@@ -24,8 +24,8 @@ public class LoginPage extends AbstractPage {
     }
 
     public AbstractPage loginAs(String name, String pass) {
-        type("user name", "klym@mobalyticshq.com");
-        type("user name", "Password123");
+        type("user name", name);
+        type("pass", pass);
         clickOn("login button");
         return this;
     }

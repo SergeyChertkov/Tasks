@@ -1,10 +1,12 @@
+import LoL.LoginPage;
 import driverFramework.Propert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import LoL.LoginPage;
+
+import java.util.concurrent.TimeUnit;
 
 public class loginPage {
     private static WebDriver driver;
@@ -16,6 +18,14 @@ public class loginPage {
     public void precondition() {
         System.setProperty("webdriver.chrome.driver", Propert.get("webdriver_path"));
         driver = new ChromeDriver();
+
+//        for FireFox
+//        System.setProperty("webdriver.gecko.driver",Propert.get("firefox_driver_path"));
+//        driver = new FirefoxDriver();
+
+
+        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
     }
 
     @After
@@ -28,5 +38,7 @@ public class loginPage {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open();
         loginPage.loginAs("klym@mobalyticshq.com", "Password123");
+        loginPage.clickOn("login button");
+        loginPage.wait(50);
     }
 }

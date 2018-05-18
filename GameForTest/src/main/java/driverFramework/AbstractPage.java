@@ -3,6 +3,8 @@ package driverFramework;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractPage {
     WebDriver driver;
@@ -24,11 +26,8 @@ public abstract class AbstractPage {
 
     public AbstractPage open() {
         driver.get(getUrl());
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        pause(30);
+        driver.switchTo().frame("moba-auth");
         return this;
     }
 
@@ -45,7 +44,8 @@ public abstract class AbstractPage {
     }
 
     public WebElement getElementByName(String name) {
-        return driver.findElement(By.xpath(getEntryForElementName(name).getXPath()));
+        WebDriverWait webDreiverWait = new WebDriverWait(driver, 100);
+        return webDreiverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(getEntryForElementName(name).getXPath())));
     }
 
     public abstract IHaveAnXPath getEntryForElementName(String fieldNameToFind);
