@@ -1,4 +1,4 @@
-package driverFramework;
+package driver.framework;
 
 public class ElementException extends RuntimeException {
     public ElementException(String message) {

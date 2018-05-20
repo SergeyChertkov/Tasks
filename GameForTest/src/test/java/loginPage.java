@@ -1,5 +1,5 @@
-import LoL.LoginPage;
-import driverFramework.Propert;
+import lol.LoginPage;
+import driver.utils.Propert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

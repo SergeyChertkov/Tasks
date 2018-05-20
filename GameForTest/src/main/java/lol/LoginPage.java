@@ -1,14 +1,15 @@
-package LoL;
+package lol;
 
-import driverFramework.AbstractPage;
-import driverFramework.ElementsUtil;
-import driverFramework.IHaveAnXPath;
+import driver.framework.AbstractPage;
+import driver.framework.ElementsUtil;
+import driver.framework.IHaveAnXPath;
 import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class LoginPage extends AbstractPage {
+    public static final String URL = "https://app.mobalytics.gg/";
 
     private static Map<String, String> ELEMENTS = new HashMap<String, String>() {
         {
@@ -37,12 +38,19 @@ public class LoginPage extends AbstractPage {
     }
 
     @Override
-    public String getPageName(){
-        return "LoginPage";
+    public String getPageName() {
+        return LOLSite.LOGIN_PAGE;
     }
 
     @Override
-    public String getUrl(){
-        return "https://app.mobalytics.gg/";
+    public String getUrl() {
+        return URL;
+    }
+
+    @Override
+    public AbstractPage open() {
+        super.open();
+        super.driver.switchTo().frame("moba-auth");
+        return this;
     }
 }

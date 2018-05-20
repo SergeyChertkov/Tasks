@@ -1,4 +1,4 @@
-package driverFramework;
+package driver.framework;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractPage {
-    WebDriver driver;
+    protected WebDriver driver;
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
@@ -24,10 +24,34 @@ public abstract class AbstractPage {
         return this;
     }
 
+    public boolean isPresent(String name) {
+        boolean result = false;
+        try {
+            if (getElementByName(name) != null) {
+                result = true;
+            }
+        } finally {
+            return result;
+        }
+    }
+
+    public boolean isDisplayed(String name) {
+        boolean result = false;
+        try {
+            if (getElementByName(name).isDisplayed()) {
+                result = true;
+            }
+        } finally {
+            return result;
+        }
+    }
+
+    public String getText(String name) {
+        return getElementByName(name).getText();
+    }
+
     public AbstractPage open() {
         driver.get(getUrl());
-        pause(30);
-        driver.switchTo().frame("moba-auth");
         return this;
     }
 
@@ -50,9 +74,7 @@ public abstract class AbstractPage {
 
     public abstract IHaveAnXPath getEntryForElementName(String fieldNameToFind);
 
-    public String getPageName() {
-        return "UndefinedPage";
-    }
+    public abstract String getPageName();
 
     public AbstractPage isPage(String pageName) {
         if (getPageName().equals(pageName)) {
@@ -64,16 +86,17 @@ public abstract class AbstractPage {
 
     public abstract String getUrl();
 
-    public AbstractPage wait(int time){
+    public AbstractPage wait(int time) {
         pause(time);
         return this;
     }
 
-    public static void pause(int time){
+    public static void pause(int time) {
         try {
-            Thread.sleep(time*1000);
+            Thread.sleep(time * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
+
 }

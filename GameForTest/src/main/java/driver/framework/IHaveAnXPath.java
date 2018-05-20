@@ -1,6 +1,5 @@
-package driverFramework;
+package driver.framework;
 
-@FunctionalInterface
 public interface IHaveAnXPath {
     String getXPath();
 }

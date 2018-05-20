@@ -1,4 +1,4 @@
-package driverFramework;
+package driver.framework;
 
 import java.util.Map;
 

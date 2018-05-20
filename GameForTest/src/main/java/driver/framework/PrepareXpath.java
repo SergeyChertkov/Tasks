@@ -1,4 +1,4 @@
-package driverFramework;
+package driver.framework;
 
 public class PrepareXpath {
     private String name;
