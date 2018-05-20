@@ -4,10 +4,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        tags = {"@serg", "~@api", "~@development", "~@disabled"},
+        tags = {"@smoke", "~@disabled"},
         format = {"pretty", "html:target/cucumber", "json:target/cucumber-report.json"},
         features = {"src/test/features"},
-        glue = "com.amadeus.mmm.web.steps"
+        glue = {"web.steps"}
 )
 public class WebPageRunner {
 }
