@@ -1,5 +1,5 @@
+import driver.utils.Property;
 import lol.LoginPage;
-import driver.utils.Propert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,11 +16,11 @@ public class loginPage {
 
     @Before
     public void precondition() {
-        System.setProperty("webdriver.chrome.driver", Propert.get("webdriver_path"));
+        System.setProperty("webdriver.chrome.driver", Property.get("webdriver_path"));
         driver = new ChromeDriver();
 
 //        for FireFox
-//        System.setProperty("webdriver.gecko.driver",Propert.get("firefox_driver_path"));
+//        System.setProperty("webdriver.gecko.driver",Property.get("firefox_driver_path"));
 //        driver = new FirefoxDriver();
 
 

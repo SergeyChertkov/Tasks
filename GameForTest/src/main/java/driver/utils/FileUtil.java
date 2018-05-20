@@ -1,5 +1,6 @@
-package utils;
+package driver.utils;
 
+import driver.utils.UtilException;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 

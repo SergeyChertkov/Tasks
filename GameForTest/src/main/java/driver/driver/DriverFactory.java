@@ -1,6 +1,6 @@
 package driver.driver;
 
-import driver.utils.Propert;
+import driver.utils.Property;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -38,7 +38,7 @@ public class DriverFactory {
     }
 
     private static String getPathToDriver(String browser) {
-        return Objects.requireNonNull(Propert.get(browser + "_driver_path"));
+        return Objects.requireNonNull(Property.get(browser + "_driver_path"));
     }
 
     private static WebDriver getIEDriver() {

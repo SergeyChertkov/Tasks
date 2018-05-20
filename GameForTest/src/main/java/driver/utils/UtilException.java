@@ -1,4 +1,4 @@
-package utils;
+package driver.utils;
 
 class UtilException extends RuntimeException {
     UtilException(String message) {

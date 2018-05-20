@@ -5,7 +5,7 @@ public class User {
     private String password;
 
     public User(String name) {
-        String[] data = Propert.get(name).split("  ");
+        String[] data = Property.get(name).split("  ");
         login = data[0];
         password = data[1];
     }

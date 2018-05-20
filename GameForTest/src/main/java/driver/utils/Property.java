@@ -1,4 +1,6 @@
-package utils;
+package driver.utils;
+
+import driver.utils.UtilException;
 
 import java.io.FileInputStream;
 import java.io.IOException;

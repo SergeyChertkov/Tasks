@@ -12,7 +12,7 @@ public class Checks {
     public void theFollowingElementsShouldBe(DataTable dataTable)  {
     }
 
-    @Then("^the following attributes of elemetns should be$")
+    @Then("^the following attributes of elements should be$")
     public void theFollowingAttributesOfElemetnsShouldBe(DataTable dataTable) {
     }
 
