@@ -13,6 +13,7 @@ Feature: User management
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
     Then the url of current page is "https://app.mobalytics.gg/login"
+    When wait 2 sec
     Then the following elements should be
       | NAME OF ELEMENTS         | STATUS    |
       | Login header             | displayed |
@@ -21,7 +22,7 @@ Feature: User management
       | Button Login             | displayed |
       | Link for registration    | displayed |
       | Link for forgot-password | displayed |
-    Then the following attributes of elemetns should be
+    Then the following attributes of elements should be
       | NAME IF ELEMENTS | NAME OF ATTRIBUTES | VALUE            |
       | Email input      | placeholder        | Enter your email |
       | Password input   | placeholder        | Password         |
@@ -39,6 +40,7 @@ Feature: User management
       | browser for test | name of user |
       | Chrome           | test_user_1  |
 
+    @negative_scenario
   Scenario Outline: As user I should not be able to login in portal with a wrong password
 
     Given the "<browser for test>" browser is opened
@@ -52,7 +54,7 @@ Feature: User management
       | Button Login             | displayed |
       | Link for registration    | displayed |
       | Link for forgot-password | displayed |
-    Then the following attributes of elemetns should be
+    Then the following attributes of elements should be
       | NAME IF ELEMENTS | NAME OF ATTRIBUTES | VALUE            |
       | Email input      | placeholder        | Enter your email |
       | Password input   | placeholder        | Password         |
