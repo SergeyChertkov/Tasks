@@ -23,8 +23,10 @@ public class LOLSite extends AbstractSite {
 
     @Override
     public AbstractPage getCurrentPage() {
-        switch (driver.getCurrentUrl()) {
+        switch (driver.getCurrentUrl().split("\\?")[0]) {
             case LoginPage.URL:
+                return page(LOGIN_PAGE);
+            case LoginPage.URL2:
                 return page(LOGIN_PAGE);
             case HomePage.URL:
                 return page(HOME_PAGE);
