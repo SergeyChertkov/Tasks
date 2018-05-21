@@ -9,14 +9,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginPage extends AbstractPage {
-    public static final String URL = "https://app.mobalytics.gg/";
+    public static final String URL = "https://app.mobalytics.gg";
+    public static final String URL2 = "https://accounts.mobalytics.gg/auth";
 
     private static Map<String, String> ELEMENTS = new HashMap<String, String>() {
         {
             put("user name", "//*[@id='email']");
             put("pass", "//*[@id='password']");
             put("forgot password", "//*[@class='login__forgot-password']");
-            put("login button", "//*[@class='login__button-text']");
+            put("login button", "//button[@type='submit']");
         }
     };
 
@@ -50,7 +51,7 @@ public class LoginPage extends AbstractPage {
     @Override
     public AbstractPage open() {
         super.open();
-        super.driver.switchTo().frame("moba-auth");
+//        super.driver.switchTo().frame("moba-auth");
         return this;
     }
 }
