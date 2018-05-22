@@ -7,8 +7,7 @@ Feature: The user management
 
   @smoke
   @positive_scenario
-  Scenario Outline: As user I should be able to login in portal with correct creds
-
+  Scenario Outline: As user I should be able to login in portal with correct cred
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
     When wait 2 sec
@@ -34,9 +33,9 @@ Feature: The user management
       | browser for test | name of user |
       | Chrome           | test_user_1  |
 
+
   @negative_scenario
   Scenario Outline: As a user who forgot his credentials, I should see a corresponding message
-
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
     When I input "<user name>" in "User name input"
@@ -52,10 +51,9 @@ Feature: The user management
       | Chrome           | klym@mobalyticshq.com       | incorrect password |
       | Chrome           | klym121212@mobalyticshq.com | 123QWEqwe          |
 
-  @negative_scenario
-  @active
-  Scenario Outline: As a user who input anything during login, I should see a corresponding error message
 
+  @negative_scenario
+  Scenario Outline: As a user who input anything during login, I should see a corresponding error message
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
     When I input "<user name>" in "User name input"
@@ -73,6 +71,45 @@ Feature: The user management
       | Chrome           |                             | incorrect password | Error message for User name |
       | Chrome           | klym121212@mobalyticshq.com |                    | Error message for Password  |
 
+
+  @negative_scenario
+  Scenario Outline: As a user who have not been sign up, I should be able sign up into portal
+    Given the "<browser for test>" browser is opened
+    When I open the "Login page"
+    When I input "<user name>" in "User name input"
+    When I input "<user password>" in "Pass input"
+    When I click on "Button Login"
+    Then the following elements should be
+      | NAME OF ELEMENTS | VALUE                          |
+      | Error message    | Provided credentials are wrong |
+    Then close browser
+
+    Examples:
+      | browser for test | user name                   | user password      |
+      | Chrome           | klym@mobalyticshq.com       | incorrect password |
+      | Chrome           | klym121212@mobalyticshq.com | 123QWEqwe          |
+
+
+  @active
+  @positive_scenario
+  Scenario Outline: As a user who have not been sign up, I should be able sign up into portal
+    Given the "<browser for test>" browser is opened
+    When I open the "Login page"
+    When I click on "Link for registration"
+    #TODO: Maybe, we should create Registration page as a separate class
+    When I input "<user email>" in "User email registration"
+    When I input "<user name>" in "Username registration"
+    When I input "<user password>" in "User pass registration"
+    When I input "<summoner name>" in "Summoner name registration"
+    #TODO: When I select value "NA" from dropdown "User region registration"
+    When I click on "SignUp button"
+    When wait 60 sec
+    Then the page should be "Welcome Page"
+
+    Examples:
+      | browser for test | user email                        | user name | user password | summoner name |
+      | Chrome           | mobalyticshq_Klym@mailinator.com  | Klym      | 123QWEasd     | geei          |
+      | Chrome           | mobalyticshq_Julia@mailinator.com | Julia     | 123QWEasd     | geei          |
 
   Scenario: As user open login page. Then open login page in another tab again. Then log in on 1 page
   Validate that user can be logged in

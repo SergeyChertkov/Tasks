@@ -23,6 +23,14 @@ public class LoginPage extends AbstractPage {
             put("Error message", "//*[contains(@class, 'authstyles__Error')]");
             put("Error message for Password", "//*[@id='password']/../..//span[2]");
             put("Error message for User name", "//*[@id='email']/../..//span[2]");
+
+            put("User email registration", "//*[@id='email']");
+            put("Username registration", "//*[@id='name']");
+            put("User pass registration", "//*[@id='password']");
+            put("Summoner name registration", "//*[@id='summoner']");
+            put("User region registration", "//*[@id='region']");
+            put("SignUp button", "//button[@type='submit']");
+
         }
     };
 
