@@ -15,9 +15,10 @@ public class SimpleChecks {
 
     @Then("^driver \"([^\"]*)\": the page should be \"([^\"]*)\"$")
     public void thePageShouldBe(String driverName, String pageName) {
-        AbstractPage currentPage = Drivers.getSite(driverName).getCurrentPage();
-        String message = "Expected page is '" + pageName.toLowerCase() + "', but actual is '" + currentPage.getPageName() + "'";
-        assertEquals(message, pageName.toLowerCase(), currentPage.getPageName());
+        String expected = pageName.replaceAll(" ", "").toLowerCase();
+        String actual = Sites.lolSite.getCurrentPage().getPageName().toLowerCase();
+        String message = "Expected page is '" + expected + "', but actual is '" + actual + "'";
+        assertEquals(message, expected, actual);
     }
 
     @Then("^element \"([^\"]*)\" should be \"([^\"]*)\"$")
@@ -27,7 +28,7 @@ public class SimpleChecks {
 
     @Then("^driver \"([^\"]*)\": element \"([^\"]*)\" should be \"([^\"]*)\"$")
     public static void elementShouldBe(String driverName, String elementName, String expectedValue) {
-        AbstractPage currentPage = Drivers.getSite(driverName).getCurrentPage();
+        AbstractPage currentPage = Sites.lolSite.getCurrentPage();
         String message = " ---- \n The element with Xpath " + currentPage.getElementByName(elementName)
                 + "\nElement '" + elementName;
         switch (expectedValue) {

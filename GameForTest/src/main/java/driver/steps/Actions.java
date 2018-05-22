@@ -1,15 +1,11 @@
 package driver.steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import driver.driver.Drivers;
 import driver.utils.User;
 import lol.LOLSite;
-import lol.LoginPage;
-
-import java.sql.Driver;
 
 public class Actions {
 
@@ -30,11 +26,10 @@ public class Actions {
 
     @When("^driver \"([^\"]*)\": I open the \"([^\"]*)\"$")
     public void iOpenThe(String driverName, String pageName) {
-        Drivers.setSite(driverName, new LOLSite(Drivers.get(driverName)));
+        Sites.lolSite = new LOLSite(Drivers.get(driverName));
         switch (pageName.toLowerCase()) {
-            case LOLSite.LOGIN_PAGE:
-                Drivers.getSite(driverName).addPage(pageName, new LoginPage(Drivers.get(driverName)));
-                Drivers.getSite(driverName).page(pageName).open();
+            case "login page":
+                Sites.lolSite.loginPage.open();
                 break;
             default:
                 throw new StepsException("Can not found page with name '" + pageName + "'.");
@@ -49,7 +44,7 @@ public class Actions {
     @When("^driver \"([^\"]*)\": login as \"([^\"]*)\"$")
     public void loginAs(String driverName, String userName) {
         User user = new User(userName);
-        Drivers.getSite(driverName).login(user);
+        Sites.lolSite.login(user);
     }
 
     @Then("^close browser$")
@@ -65,7 +60,11 @@ public class Actions {
 
     @When("^wait (\\d+) sec$")
     public static void waitSec(int time) {
-        Drivers.getSite(Drivers.DEFAULT_DRIVER_NAME).getCurrentPage().wait(time);
+        try {
+            Thread.sleep(time * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @When("^I input \"([^\"]*)\" in \"([^\"]*)\"$")

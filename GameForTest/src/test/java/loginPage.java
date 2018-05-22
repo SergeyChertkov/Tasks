@@ -16,7 +16,7 @@ public class loginPage {
 
     @Before
     public void precondition() {
-        System.setProperty("webdriver.chrome.driver", Property.get("webdriver_path"));
+        System.setProperty("webdriver.chrome.driver", Property.get("chrome_driver_path"));
         driver = new ChromeDriver();
 
 //        for FireFox

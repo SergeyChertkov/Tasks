@@ -40,7 +40,8 @@ public class LoginPage extends AbstractPage {
 
     @Override
     public String getPageName() {
-        return LOLSite.LOGIN_PAGE;
+        String[] splittingClassName = this.getClass().toString().split("\\.");
+        return splittingClassName[splittingClassName.length-1];
     }
 
     @Override

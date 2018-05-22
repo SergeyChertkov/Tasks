@@ -23,6 +23,7 @@ public class HomePage extends AbstractPage {
 
     @Override
     public String getPageName() {
-        return LOLSite.HOME_PAGE;
+        String[] splittingClassName = this.getClass().toString().split("\\.");
+        return splittingClassName[splittingClassName.length-1];
     }
 }
