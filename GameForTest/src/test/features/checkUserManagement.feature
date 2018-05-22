@@ -2,13 +2,11 @@
 # 20.05.2018
 
 @user_management
-
 Feature: The user management
   Customer should be able to login, logout and manage my personal data
 
   @smoke
   @positive_scenario
-
   Scenario Outline: As user I should be able to login in portal with correct creds
 
     Given the "<browser for test>" browser is opened
@@ -22,10 +20,6 @@ Feature: The user management
       | Button Login             | displayed |
       | Link for registration    | displayed |
       | Link for forgot-password | displayed |
-    Then the following attributes of elements should be
-      | NAME IF ELEMENTS | NAME OF ATTRIBUTES | VALUE            |
-      | Email input      | placeholder        | Enter your email |
-      | Password input   | placeholder        | Password         |
     Then the following elements should be
       | NAME OF ELEMENTS         | VALUE          |
       | Login header             | SIGN IN        |
@@ -39,6 +33,25 @@ Feature: The user management
     Examples:
       | browser for test | name of user |
       | Chrome           | test_user_1  |
+
+  @negative_scenario
+  Scenario Outline: As a user who forgot his credentials, I should see a corresponding message
+
+    Given the "<browser for test>" browser is opened
+    When I open the "Login page"
+    When I input "<user name>" in "User name input"
+    When I input "<user password>" in "Pass input"
+    When I click on "Button Login"
+    Then the following elements should be
+      | NAME OF ELEMENTS | VALUE                          |
+      | Error message    | Provided credentials are wrong |
+    Then close browser
+
+    Examples:
+      | browser for test | user name                   | user password      |
+      | Chrome           | klym@mobalyticshq.com       | incorrect password |
+      | Chrome           | klym121212@mobalyticshq.com | 123QWEqwe          |
+
 
   Scenario: As user open login page. Then open login page in another tab again. Then log in on 1 page
   Validate that user can be logged in

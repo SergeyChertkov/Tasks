@@ -20,7 +20,7 @@ public class LoginPage extends AbstractPage {
             put("Login header", "//*[contains(@class, 'authstyles__Header')]");
             put("Link for registration", "//*[contains(@class, 'authstyles__NavigationLink')]");
             put("Link for forgot-password", "//*[contains(@class, 'authstyles__ForgotPassword')]");
-
+            put("Error message", "//*[contains(@class, 'authstyles__Error')]");
         }
     };
 

@@ -68,6 +68,23 @@ public class Actions {
     }
 
     @When("^I input \"([^\"]*)\" in \"([^\"]*)\"$")
-    public void iInputIn(String arg0, String arg1) {
+    public void iInputIn(String value, String element) {
+        iInputIn(Drivers.DEFAULT_DRIVER_NAME, value, element);
+    }
+
+    @When("^^driver \"([^\"]*)\": I input \"([^\"]*)\" in \"([^\"]*)\"$")
+    public void iInputIn(String driverName, String value, String element) {
+        //TODO with using driver
+        Sites.lolSite.getCurrentPage().type(element, value);
+    }
+
+    @When("^I click on \"([^\"]*)\"$")
+    public static void clickOn(String element) {
+        clickOn(Drivers.DEFAULT_DRIVER_NAME, element);
+    }
+    @When("^driver \"([^\"]*)\": I click on \"([^\"]*)\"$")
+    public static void clickOn(String driverName, String element) {
+        //TODO with using driver
+        Sites.lolSite.getCurrentPage().clickOn(element);
     }
 }
