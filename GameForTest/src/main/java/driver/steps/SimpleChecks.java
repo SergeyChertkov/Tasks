@@ -1,13 +1,35 @@
 package driver.steps;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.Then;
 import driver.driver.Drivers;
 import driver.framework.AbstractPage;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class SimpleChecks {
+
+
+    @Then("^the following elements should be$")
+    public void followingElementsShouldBe(DataTable dataTable) {
+        followingElementsShouldBe(Drivers.DEFAULT_DRIVER_NAME, dataTable);
+    }
+    @Then("^driver \"([^\"]*)\": following elements should be$")
+    public void followingElementsShouldBe(String driverName, DataTable dataTable) {
+        List<List<String>> data = dataTable.raw();
+        String elementName;
+        String expected;
+        for (int i = 1; i < data.size(); i++) {
+            List<String> raw = data.get(i);
+            elementName = raw.get(0);
+            expected = raw.get(1);
+            elementShouldBe(driverName, elementName, expected);
+        }
+    }
+
     @Then("^the page should be \"([^\"]*)\"$")
     public void thePageShouldBe(String pageName) {
         thePageShouldBe(Drivers.DEFAULT_DRIVER_NAME, pageName);

@@ -4,7 +4,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        tags = {"~@development", "~@disabled"},
+        tags = {"@smoke", "~@disabled"},
         format = {"pretty", "html:target/cucumber", "json:target/cucumber-report.json"},
         features = {"src/test/features"},
         glue = "driver/steps"

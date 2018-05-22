@@ -14,10 +14,13 @@ public class LoginPage extends AbstractPage {
 
     private static Map<String, String> ELEMENTS = new HashMap<String, String>() {
         {
-            put("user name", "//*[@id='email']");
-            put("pass", "//*[@id='password']");
-            put("forgot password", "//*[@class='login__forgot-password']");
-            put("login button", "//button[@type='submit']");
+            put("User name input", "//*[@id='email']");
+            put("Pass input", "//*[@id='password']");
+            put("Button Login", "//button[@type='submit']");
+            put("Login header", "//*[contains(@class, 'authstyles__Header')]");
+            put("Link for registration", "//*[contains(@class, 'authstyles__NavigationLink')]");
+            put("Link for forgot-password", "//*[contains(@class, 'authstyles__ForgotPassword')]");
+
         }
     };
 
@@ -26,9 +29,9 @@ public class LoginPage extends AbstractPage {
     }
 
     public AbstractPage loginAs(String name, String pass) {
-        type("user name", name);
-        type("pass", pass);
-        clickOn("login button");
+        type("User name input", name);
+        type("Pass input", pass);
+        clickOn("Button Login");
         return this;
     }
 
