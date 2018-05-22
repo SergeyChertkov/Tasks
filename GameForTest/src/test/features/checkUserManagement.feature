@@ -52,6 +52,27 @@ Feature: The user management
       | Chrome           | klym@mobalyticshq.com       | incorrect password |
       | Chrome           | klym121212@mobalyticshq.com | 123QWEqwe          |
 
+  @negative_scenario
+  @active
+  Scenario Outline: As a user who input anything during login, I should see a corresponding error message
+
+    Given the "<browser for test>" browser is opened
+    When I open the "Login page"
+    When I input "<user name>" in "User name input"
+    When I input "<user password>" in "Pass input"
+    When I click on "Button Login"
+    When I input "any_test_data" in "User name input"
+    When I input "any_test_data" in "Pass input"
+    Then the following elements should be
+      | NAME OF ELEMENTS | VALUE                          |
+      | <marked field>   | This field should not be empty |
+    Then close browser
+
+    Examples:
+      | browser for test | user name                   | user password      | marked field                |
+      | Chrome           |                             | incorrect password | Error message for User name |
+      | Chrome           | klym121212@mobalyticshq.com |                    | Error message for Password  |
+
 
   Scenario: As user open login page. Then open login page in another tab again. Then log in on 1 page
   Validate that user can be logged in

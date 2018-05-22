@@ -21,6 +21,8 @@ public class LoginPage extends AbstractPage {
             put("Link for registration", "//*[contains(@class, 'authstyles__NavigationLink')]");
             put("Link for forgot-password", "//*[contains(@class, 'authstyles__ForgotPassword')]");
             put("Error message", "//*[contains(@class, 'authstyles__Error')]");
+            put("Error message for Password", "//*[@id='password']/../..//span[2]");
+            put("Error message for User name", "//*[@id='email']/../..//span[2]");
         }
     };
 
