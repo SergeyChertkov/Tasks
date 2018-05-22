@@ -13,6 +13,11 @@ public abstract class AbstractPage {
         this.driver = driver;
     }
 
+    public AbstractPage setDriver(WebDriver driver) {
+        this.driver = driver;
+        return this;
+    }
+
     public AbstractPage type(String name, String text) {
         getElementByName(name).clear();
         getElementByName(name).sendKeys(text);
@@ -77,11 +82,10 @@ public abstract class AbstractPage {
     public abstract String getPageName();
 
     public AbstractPage isPage(String pageName) {
-        if (getPageName().equals(pageName)) {
+        if (pageName.equalsIgnoreCase(getPageName())) {
             return this;
         }
-        //TODO: Exception
-        return null;
+        throw new PageException("Current page '" + getPageName() + "' is not equals to expected page '" + pageName + "'");
     }
 
     public abstract String getUrl();

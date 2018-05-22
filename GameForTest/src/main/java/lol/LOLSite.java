@@ -8,11 +8,16 @@ import org.openqa.selenium.WebDriver;
 public class LOLSite extends AbstractSite {
     public LoginPage loginPage;
     public HomePage homePage;
+    public WelcomePage welcomePage;
 
     public LOLSite(WebDriver driver) {
         super(driver);
         loginPage = new LoginPage(driver);
+        putPage(loginPage);
         homePage = new HomePage(driver);
+        putPage(homePage);
+        welcomePage = new WelcomePage(driver);
+        putPage(welcomePage);
     }
 
     public LOLSite login(User user) {

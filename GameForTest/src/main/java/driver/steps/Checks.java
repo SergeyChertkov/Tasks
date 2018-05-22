@@ -6,12 +6,11 @@ import driver.driver.Drivers;
 
 public class Checks {
 
-
     @Then("^the following attributes of elements should be$")
-    public void theFollowingAttributesOfElemetnsShouldBe(DataTable dataTable) {
+    public static void theFollowingAttributesOfElemetnsShouldBe(DataTable dataTable) {
     }
 
     @Then("^the following elements should contains$")
-    public void theFollowingElementsShouldContains(DataTable dataTable) {
+    public static void theFollowingElementsShouldContains(DataTable dataTable) {
     }
 }

@@ -12,13 +12,12 @@ import static org.junit.Assert.assertTrue;
 
 public class SimpleChecks {
 
-
     @Then("^the following elements should be$")
-    public void followingElementsShouldBe(DataTable dataTable) {
+    public static void followingElementsShouldBe(DataTable dataTable) {
         followingElementsShouldBe(Drivers.DEFAULT_DRIVER_NAME, dataTable);
     }
     @Then("^driver \"([^\"]*)\": following elements should be$")
-    public void followingElementsShouldBe(String driverName, DataTable dataTable) {
+    public static void followingElementsShouldBe(String driverName, DataTable dataTable) {
         List<List<String>> data = dataTable.raw();
         String elementName;
         String expected;
@@ -31,14 +30,14 @@ public class SimpleChecks {
     }
 
     @Then("^the page should be \"([^\"]*)\"$")
-    public void thePageShouldBe(String pageName) {
+    public static void thePageShouldBe(String pageName) {
         thePageShouldBe(Drivers.DEFAULT_DRIVER_NAME, pageName);
     }
 
     @Then("^driver \"([^\"]*)\": the page should be \"([^\"]*)\"$")
-    public void thePageShouldBe(String driverName, String pageName) {
+    public static void thePageShouldBe(String driverName, String pageName) {
         String expected = pageName.replaceAll(" ", "").toLowerCase();
-        String actual = Sites.lolSite.getCurrentPage().getPageName().toLowerCase();
+        String actual = Sites.lolSite.getCurrentPage().getPageName();
         String message = "Expected page is '" + expected + "', but actual is '" + actual + "'";
         assertEquals(message, expected, actual);
     }

@@ -27,6 +27,7 @@ Feature: The user management
       | Link for forgot-password | Forgot?        |
     When login as "<name of user>"
     Then the page should be "Home Page"
+    And element "character name" should be "Geei"
     Then close browser
 
     Examples:
@@ -92,7 +93,7 @@ Feature: The user management
 
   @active
   @positive_scenario
-  Scenario Outline: As a user who have not been sign up, I should be able sign up into portal
+  Scenario Outline: As a user who have not been sign up, I should be able sign up into portal 2
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
     When I click on "Link for registration"

@@ -24,6 +24,6 @@ public class WelcomePage extends AbstractPage {
     @Override
     public String getPageName() {
         String[] splittingClassName = this.getClass().toString().split("\\.");
-        return splittingClassName[splittingClassName.length-1];
+        return splittingClassName[splittingClassName.length-1].toLowerCase();
     }
 }
