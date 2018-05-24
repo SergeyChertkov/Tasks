@@ -2,10 +2,9 @@ package driver.steps;
 
 import lol.LOLSite;
 
-public class Sites {
+class Sites {
     private Sites() {
     }
 
-    public static LOLSite lolSite;
-
+    static LOLSite lolSite;
 }

@@ -1,7 +1,7 @@
 package driver.framework;
 
-public class ElementException extends RuntimeException {
-    public ElementException(String message) {
+class ElementException extends RuntimeException {
+    ElementException(String message) {
         super(message);
     }
 }

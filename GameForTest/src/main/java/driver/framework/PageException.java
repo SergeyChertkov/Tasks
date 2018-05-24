@@ -1,7 +1,7 @@
 package driver.framework;
 
-public class PageException extends RuntimeException {
-    public PageException(String message) {
+class PageException extends RuntimeException {
+    PageException(String message) {
         super(message);
     }
 }

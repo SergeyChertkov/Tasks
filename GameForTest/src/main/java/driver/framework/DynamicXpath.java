@@ -3,7 +3,7 @@ package driver.framework;
 public class DynamicXpath implements IHaveAnXPath {
     private String xpath;
 
-    public DynamicXpath(String xpath) {
+    DynamicXpath(String xpath) {
         this.xpath = xpath;
     }
 
@@ -11,5 +11,4 @@ public class DynamicXpath implements IHaveAnXPath {
     public String getXPath() {
         return this.xpath;
     }
-
 }

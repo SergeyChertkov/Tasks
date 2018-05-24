@@ -1,7 +1,5 @@
 package driver.utils;
 
-import driver.utils.UtilException;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -16,6 +14,7 @@ public class Property {
         return get(PATH_TO_PROPERTIES, propertyName);
     }
 
+    @SuppressWarnings("unused")
     public static String getFromRes(String path, String propertyName) {
         return get(PATH_TO_RESOURCES + path, propertyName);
     }
@@ -23,7 +22,7 @@ public class Property {
     public static String get(String path, String propertyName) {
         FileInputStream fileInputStream;
         java.util.Properties prop = new java.util.Properties();
-        String name = propertyName.replaceAll(" ","_");
+        String name = propertyName.replaceAll(" ", "_");
         try {
             fileInputStream = new FileInputStream(path);
             prop.load(fileInputStream);

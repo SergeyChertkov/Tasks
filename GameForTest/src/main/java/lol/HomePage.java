@@ -16,7 +16,7 @@ public class HomePage extends AbstractPage {
         }
     };
 
-    public HomePage(WebDriver driver) {
+    HomePage(WebDriver driver) {
         super(driver);
     }
 

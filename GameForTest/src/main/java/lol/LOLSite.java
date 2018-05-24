@@ -6,9 +6,9 @@ import driver.utils.User;
 import org.openqa.selenium.WebDriver;
 
 public class LOLSite extends AbstractSite {
-    public LoginPage loginPage;
-    public HomePage homePage;
-    public WelcomePage welcomePage;
+    private LoginPage loginPage;
+    private HomePage homePage;
+    private WelcomePage welcomePage;
 
     public LOLSite(WebDriver driver) {
         super(driver);
@@ -33,9 +33,10 @@ public class LOLSite extends AbstractSite {
                 return loginPage;
             case HomePage.URL:
                 return homePage;
+            case WelcomePage.URL:
+                return welcomePage;
             default:
                 return null;
         }
     }
-
 }

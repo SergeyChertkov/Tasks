@@ -8,7 +8,7 @@ import java.util.Map;
 
 public abstract class AbstractSite {
     protected WebDriver driver;
-    Map<String, AbstractPage> pages;
+    private Map<String, AbstractPage> pages;
 
     public AbstractSite(WebDriver driver) {
         pages = new HashMap<>();
@@ -20,16 +20,20 @@ public abstract class AbstractSite {
         return this;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public abstract AbstractSite login(User user);
 
     public abstract AbstractPage getCurrentPage();
 
     public AbstractPage getPage(String pageName) {
-        return pages.get(pageName);
+        AbstractPage page = pages.get(pageName.toLowerCase().replaceAll(" ", ""));
+        if (page == null) {
+            throw new PageException("Can not found page with name '" + pageName + "'.");
+        }
+        return page;
     }
 
     protected void putPage(AbstractPage page) {
         pages.put(page.getPageName(), page);
     }
-
 }

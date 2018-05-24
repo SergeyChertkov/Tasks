@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 public class WelcomePage extends AbstractPage {
     public static final String URL = "https://app.mobalytics.gg/welcome";
 
-    public WelcomePage(WebDriver driver) {
+    WelcomePage(WebDriver driver) {
         super(driver);
     }
 

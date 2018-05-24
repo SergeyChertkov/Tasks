@@ -29,19 +29,7 @@ public class Actions {
     @When("^driver \"([^\"]*)\": I open the \"([^\"]*)\"$")
     public static void iOpenThe(String driverName, String pageName) {
         lolSite = new LOLSite(Drivers.get(driverName));
-        switch (pageName.toLowerCase()) {
-            case "login page":
-                lolSite.loginPage.open();
-                break;
-            case "home page":
-                lolSite.homePage.open();
-                break;
-            case "wellcome page":
-                lolSite.welcomePage.open();
-                break;
-            default:
-                throw new StepsException("Can not found page with name '" + pageName + "'.");
-        }
+        lolSite.getPage(pageName).open();
     }
 
     @When("^login as \"([^\"]*)\"$")

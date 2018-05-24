@@ -65,7 +65,6 @@ public class LoginPage extends AbstractPage {
     @Override
     public AbstractPage open() {
         super.open();
-//        super.driver.switchTo().frame("moba-auth");
         return this;
     }
 }
