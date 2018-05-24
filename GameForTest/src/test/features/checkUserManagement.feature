@@ -26,7 +26,7 @@ Feature: The user management
       | Link for registration    | Create account |
       | Link for forgot-password | Forgot?        |
     When login as "<name of user>"
-    Then the page should be "Home Page"
+    Then the page should be "GPI Page"
     And element "character name" should be "Geei"
     Then close browser
 

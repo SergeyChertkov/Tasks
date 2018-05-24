@@ -54,7 +54,7 @@ public class LoginPage extends AbstractPage {
     @Override
     public String getPageName() {
         String[] splittingClassName = this.getClass().toString().split("\\.");
-        return splittingClassName[splittingClassName.length-1].toLowerCase();
+        return splittingClassName[splittingClassName.length - 1].toLowerCase();
     }
 
     @Override
@@ -65,6 +65,7 @@ public class LoginPage extends AbstractPage {
     @Override
     public AbstractPage open() {
         super.open();
+//        super.driver.switchTo().frame("moba-auth");
         return this;
     }
 }

@@ -8,15 +8,15 @@ import org.openqa.selenium.WebDriver;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WelcomePage extends AbstractPage {
-    public static final String URL = "https://app.mobalytics.gg/welcome";
+public class DashboardPage extends AbstractPage {
+    public static final String URL = "https://app.mobalytics.gg/dashboard";
     private static Map<String, String> ELEMENTS = new HashMap<String, String>() {
         {
             putAll(LOLSite.ELEMENTS);
         }
     };
 
-    WelcomePage(WebDriver driver) {
+    DashboardPage(WebDriver driver) {
         super(driver);
     }
 
@@ -26,13 +26,12 @@ public class WelcomePage extends AbstractPage {
     }
 
     @Override
-    public String getUrl() {
+    public String getPageName() {
         return URL;
     }
 
     @Override
-    public String getPageName() {
-        String[] splittingClassName = this.getClass().toString().split("\\.");
-        return splittingClassName[splittingClassName.length - 1].toLowerCase();
+    public String getUrl() {
+        return null;
     }
 }
