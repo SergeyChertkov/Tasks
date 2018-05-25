@@ -29,6 +29,11 @@ public abstract class AbstractPage {
         return this;
     }
 
+    public AbstractPage relaodPage() {
+        this.driver.navigate().refresh();
+        return this;
+    }
+
     public boolean isPresent(String name) {
         boolean result = false;
         try {
@@ -73,7 +78,7 @@ public abstract class AbstractPage {
     }
 
     public WebElement getElementByName(String name) {
-        WebDriverWait webDreiverWait = new WebDriverWait(driver, 100);
+        WebDriverWait webDreiverWait = new WebDriverWait(driver, 30);
         return webDreiverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(getEntryForElementName(name).getXPath())));
     }
 

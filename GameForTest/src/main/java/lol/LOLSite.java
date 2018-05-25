@@ -19,6 +19,7 @@ public class LOLSite extends AbstractSite {
     private DashboardPage dashboardPage;
     private ReferralPage referralPage;
     private AccountSettingsPage accountSettingsPage;
+    private MailinatorPage mailinatorPage;
 
     static Map<String, String> ELEMENTS = new HashMap<String, String>() {
         {
@@ -55,6 +56,8 @@ public class LOLSite extends AbstractSite {
         putPage(referralPage);
         accountSettingsPage = new AccountSettingsPage(driver);
         putPage(accountSettingsPage);
+        mailinatorPage = new MailinatorPage(driver);
+        putPage(mailinatorPage);
     }
 
     public LOLSite login(User user) {
@@ -82,6 +85,9 @@ public class LOLSite extends AbstractSite {
                 return dashboardPage;
             case ReferralPage.URL:
                 return referralPage;
+            case MailinatorPage.URL:
+            case MailinatorPage.URL2:
+                return  mailinatorPage;
             default:
                 return null;
         }

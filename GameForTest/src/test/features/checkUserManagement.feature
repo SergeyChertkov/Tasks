@@ -91,7 +91,6 @@ Feature: The user management
       | Chrome           | klym121212@mobalyticshq.com | 123QWEqwe          |
 
 
-  @active
   @positive_scenario
   Scenario Outline: As a user who have not been sign up, I should be able sign up into portal 2
     Given the "<browser for test>" browser is opened
@@ -104,13 +103,43 @@ Feature: The user management
     When I input "<summoner name>" in "Summoner name registration"
     #TODO: When I select value "NA" from dropdown "User region registration"
     When I click on "SignUp button"
-    When wait 60 sec
+    When wait 10 sec
     Then the page should be "Welcome Page"
+    Then close browser
+    #<timestamp> - says us that this will be a current time instead
+    Examples:
+      | browser for test | user email                             | user name | user password | summoner name |
+      | Chrome           | mobalyticshq_Klym_1234@mailinator.com  | Klym      | 123QWEasd     | geei          |
+      | Firefox          | mobalyticshq_Julia_1234@mailinator.com | Julia     | 123QWEasd     | geei          |
+
+  @active
+  @positive_scenario
+  Scenario Outline: As a user who has been sign uped, I should be able see email
+    Given the "<browser for test>" browser is opened
+    When I open the "Mailinator Page"
+    When I input "<user email>" in "input for email"
+    When I click on "go button"
+    When wait 3 sec
+    When I click on "link on inbox"
+    And the following elements should be
+      | NAME OF ELEMENTS           | VALUE     |
+      | email - Email Confirmation | displayed |
+    When I click on "email - Email Confirmation"
+
+    When wait 20 sec
+    Then the following elements should be
+      | NAME OF ELEMENTS                | VALUE     |
+      | email body: message             | displayed |
+      | email body: verification button | displayed |
+    #Welcome to Mobalytics! Thanks for registering an account with us. To get started, please verify your email. |
+    #When execute javascript "javascript: document.getElementsByClassName('all_message-min_autor ng-binding')[1].click();"
+    And wait 500 sec
+
+    Then close browser
 
     Examples:
-      | browser for test | user email                        | user name | user password | summoner name |
-      | Chrome           | mobalyticshq_Klym@mailinator.com  | Klym      | 123QWEasd     | geei          |
-      | Chrome           | mobalyticshq_Julia@mailinator.com | Julia     | 123QWEasd     | geei          |
+      | browser for test | user email             | user name | user password | summoner name |
+      | Chrome           | mobalyticshq_Klym_1234 | Klym      | 123QWEasd     | geei          |
 
   Scenario: As user open login page. Then open login page in another tab again. Then log in on 1 page
   Validate that user can be logged in

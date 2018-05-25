@@ -6,6 +6,10 @@ import cucumber.api.java.en.When;
 import driver.driver.Drivers;
 import driver.utils.User;
 import lol.LOLSite;
+import org.openqa.selenium.JavascriptExecutor;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static driver.steps.Sites.lolSite;
 
@@ -60,6 +64,12 @@ public class Actions {
         Thread.sleep(time * 1000L);
     }
 
+    @When("^I reload the page$")
+    public static void reloadThePage() throws InterruptedException {
+        lolSite.getCurrentPage().relaodPage();
+    }
+
+
     @When("^I input \"([^\"]*)\" in \"([^\"]*)\"$")
     public static void iInputIn(String value, String element) {
         iInputIn(Drivers.DEFAULT_DRIVER_NAME, value, element);
@@ -68,6 +78,9 @@ public class Actions {
     @When("^^driver \"([^\"]*)\": I input \"([^\"]*)\" in \"([^\"]*)\"$")
     public static void iInputIn(String driverName, String value, String elementName) {
         setDriver(driverName);
+        //add timestamp for case in test set <timestamp>
+        value = value.replaceAll("<timestamp>",
+                new SimpleDateFormat("YYMMddHHmmss").format(new Date()));
         lolSite.getCurrentPage().type(elementName, value);
     }
 
@@ -85,4 +98,23 @@ public class Actions {
     private static void setDriver(String driverName) {
         lolSite.setDriver(Drivers.get(driverName));
     }
+
+    @When("^execute javascript \"([^\"]*)\"$")
+    public static void executeJavascript(String command) {
+        executeJavascriptWithDriver(Drivers.DEFAULT_DRIVER_NAME, command);
+    }
+
+    @When("^driver \"([^\"]*)\": execute javascript \"([^\"]*)\"$")
+    public static void executeJavascriptWithDriver(String driverName, String command) {
+        jsExecute(command);
+
+    }
+
+    public static void jsExecute(String command) {
+        JavascriptExecutor js = (org.openqa.selenium.JavascriptExecutor) lolSite.getCurrentPage() ;
+        js.executeScript(command);
+    }
+
+
+
 }
