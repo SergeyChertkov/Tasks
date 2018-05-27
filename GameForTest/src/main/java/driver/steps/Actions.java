@@ -74,7 +74,7 @@ public class Actions {
     }
 
     @When("^I reload the page$")
-    public static void reloadThePage() throws InterruptedException {
+    public static void reloadThePage() {
         lolSite.getCurrentPage().relaodPage();
     }
 
@@ -89,7 +89,7 @@ public class Actions {
         setDriver(driverName);
         //add timestamp for case in test set <timestamp>
         value = value.replaceAll("<timestamp>",
-                new SimpleDateFormat("YYMMddHHmmss").format(new Date()));
+                new SimpleDateFormat("yyMMddHHmmss").format(new Date()));
         lolSite.getCurrentPage().type(elementName, value);
     }
 
@@ -110,16 +110,17 @@ public class Actions {
 
     @When("^execute javascript \"([^\"]*)\"$")
     public static void executeJavascript(String command) {
-        executeJavascriptWithDriver(Drivers.DEFAULT_DRIVER_NAME, command);
+        executeJavascript(Drivers.DEFAULT_DRIVER_NAME, command);
     }
 
     @When("^driver \"([^\"]*)\": execute javascript \"([^\"]*)\"$")
-    public static void executeJavascriptWithDriver(String driverName, String command) {
+    public static void executeJavascript(String driverName, String command) {
+        lolSite.getCurrentPage().setDriver(Drivers.get(driverName));
         jsExecute(command);
 
     }
 
-    public static void jsExecute(String command) {
+    private static void jsExecute(String command) {
         JavascriptExecutor js = (org.openqa.selenium.JavascriptExecutor) lolSite.getCurrentPage();
         js.executeScript(command);
     }
@@ -171,7 +172,7 @@ public class Actions {
 
     @Then("^driver \"([^\"]*)\": login as new user \"([^\"]*)\"$")
     public void loginAsNewUser(String driverName, String userName) {
-        User user = new User(userName+"@mailinator.com", userName);
+        User user = new User(userName + "@mailinator.com", userName);
         lolSite.setDriver(Drivers.get(driverName));
         lolSite.login(user);
     }
