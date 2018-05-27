@@ -126,12 +126,12 @@ public class Actions {
     }
 
     @When("^I register the user \"([^\"]*)\"$")
-    public void iRegisterTheUser(String userEmail) throws InterruptedException {
+    public static void iRegisterTheUser(String userEmail) throws InterruptedException {
         iRegisterTheUser(Drivers.DEFAULT_DRIVER_NAME, userEmail);
     }
 
     @When("^driver \"([^\"]*)\": I register the user \"([^\"]*)\"$")
-    public void iRegisterTheUser(String driverName, String userEmail) throws InterruptedException {
+    public static void iRegisterTheUser(String driverName, String userEmail) throws InterruptedException {
         iOpenThe(driverName, "Login Page");
         clickOn(driverName, "Link for registration");
         iInputIn(driverName, userEmail + "@mailinator.com", "User email registration");
