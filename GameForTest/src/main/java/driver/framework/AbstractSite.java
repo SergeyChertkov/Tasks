@@ -30,6 +30,7 @@ public abstract class AbstractSite {
         if (page == null) {
             throw new PageException("Can not found page with name '" + pageName + "'.");
         }
+        page.setDriver(driver);
         return page;
     }
 
