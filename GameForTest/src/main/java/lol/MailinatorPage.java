@@ -21,15 +21,17 @@ public class MailinatorPage extends AbstractPage {
 
             put("link on inbox", "//*[@class='lb_all_item ng-scope'][1]//*[@class='lb_all_sub-item_text ng-binding']");
 
+            put("email row", "//*[@class='single_mail-body']//li[%s]");
             put("first email line", "//*[@class='all_message-min_autor ng-binding'][2]");
-            put("first email - name", getXpathForEmails() + "//div[@class='all_message-min_text all_message-min_text-3']");
+            // f.e.: row<1> email - name
+            put("row email - name", get("email row") + "//div[@class='all_message-min_text all_message-min_text-3']");
 
             put("email details header", "//*[@class='center']");
 
             put("email body: message", "//*[@class='module'][1]//div/div[2]");
-            put("email body: verification button","//*[contains(@class, 'button-')]//a");
+            put("email body: verification button", "//*[contains(@class, 'button-')]//a");
 
-            put("email - Email Confirmation", "//*[contains(text(), 'Email Confirmation')]");
+            put("email - ", "//*[contains(text(), '%s')]");
 
         }
     };
@@ -54,7 +56,13 @@ public class MailinatorPage extends AbstractPage {
         return splittingClassName[splittingClassName.length - 1].toLowerCase();
     }
 
-    private static String getXpathForEmails() {
-        return "//*[@class='single_mail-body']//li[1]";
+    public MailinatorPage openInboxMailByTitle(String title) {
+        clickOn("link on inbox").and().clickOn("email - <" + title + ">").than().wait(5);
+        return this;
+    }
+
+    public MailinatorPage loginAs(String mail) {
+        when().type("input for email", mail.split("@")[0]).and().clickOn("go button").than().wait(3);
+        return this;
     }
 }

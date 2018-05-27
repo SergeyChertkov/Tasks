@@ -4,7 +4,9 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import driver.driver.Drivers;
 import driver.utils.User;
+import lol.MailinatorPage;
 
+import static driver.steps.BrowserAction.setDriver;
 import static driver.steps.BrowserAction.waitSec;
 import static driver.steps.SimpleAction.*;
 import static driver.steps.SimpleChecks.thePageShouldBe;
@@ -52,5 +54,30 @@ public class Actions {
         User user = new User(userName + "@mailinator.com", userName);
         lolSite.setDriver(Drivers.get(driverName));
         lolSite.login(user);
+    }
+
+
+    @When("^I login on mailinator as \"([^\"]*)\"$")
+    public void iLoginOnMailinatorAs(String mailinatorName) {
+        iLoginOnMailinatorAs(Drivers.DEFAULT_DRIVER_NAME, mailinatorName);
+    }
+
+    @When("^driver \"([^\"]*)\": I login on mailinator as \"([^\"]*)\"$")
+    public void iLoginOnMailinatorAs(String driverName, String mailinatorName) {
+        setDriver(driverName);
+        MailinatorPage mailinator = (MailinatorPage) lolSite.getPage("mailinatorPage");
+        mailinator.loginAs(mailinatorName);
+    }
+
+    @When("^I open mail by title \"([^\"]*)\"$")
+    public void iOpenMailByTitle(String mailTitle) {
+        iOpenMailByTitle(Drivers.DEFAULT_DRIVER_NAME, mailTitle);
+    }
+
+    @When("^driver \"([^\"]*)\": I open mail by title \"([^\"]*)\"$")
+    public void iOpenMailByTitle(String driverName, String mailTitle) {
+        setDriver(driverName);
+        MailinatorPage mailinator = (MailinatorPage) lolSite.getPage("mailinatorPage");
+        mailinator.openInboxMailByTitle(mailTitle);
     }
 }

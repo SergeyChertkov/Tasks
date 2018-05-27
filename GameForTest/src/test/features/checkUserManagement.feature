@@ -118,16 +118,9 @@ Feature: The user management
     Given the "<browser for test>" browser is opened
 #    When I register the user "<user email>"
     When I open the "Mailinator Page"
-    When I input "<user email>" in "input for email"
-    When I click on "go button"
-    When wait 3 sec
-    When I click on "link on inbox"
-    And the following elements should be
-      | NAME OF ELEMENTS           | VALUE     |
-      | email - Email Confirmation | displayed |
-    When I click on "email - Email Confirmation"
+    When I login on mailinator as "<user email>"
+    And I open mail by title "Email Confirmation"
 
-    When wait 5 sec
     When I switch to frame "msg_body"
     Then the following elements should be
       | NAME OF ELEMENTS                | VALUE                                                                                                       |
