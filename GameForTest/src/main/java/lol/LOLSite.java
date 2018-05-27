@@ -61,6 +61,7 @@ public class LOLSite extends AbstractSite {
     }
 
     public LOLSite login(User user) {
+        loginPage.setDriver(driver);
         loginPage.loginAs(user.getLogin(), user.getPassword()).and().wait(10);
         return this;
     }
@@ -70,23 +71,32 @@ public class LOLSite extends AbstractSite {
         switch (driver.getCurrentUrl().split("\\?")[0]) {
             case LoginPage.URL:
             case LoginPage.URL2:
+                loginPage.setDriver(driver);
                 return loginPage;
             case WelcomePage.URL:
+                welcomePage.setDriver(driver);
                 return welcomePage;
             case GPIPage.URL:
+                gpiPage.setDriver(driver);
                 return gpiPage;
             case SearchPage.URL:
+                searchPage.setDriver(driver);
                 return searchPage;
             case PreGamePage.URL:
+                preGamePage.setDriver(driver);
                 return preGamePage;
             case PostGamePage.URL:
+                postGamePage.setDriver(driver);
                 return postGamePage;
             case DashboardPage.URL:
+                dashboardPage.setDriver(driver);
                 return dashboardPage;
             case ReferralPage.URL:
+                referralPage.setDriver(driver);
                 return referralPage;
             case MailinatorPage.URL:
             case MailinatorPage.URL2:
+                mailinatorPage.setDriver(driver);
                 return  mailinatorPage;
             default:
                 return null;
