@@ -116,6 +116,7 @@ Feature: The user management
   @positive_scenario
   Scenario Outline: As a user who has been sign uped, I should be able see email
     Given the "<browser for test>" browser is opened
+#    When I register the user "<user email>"
     When I open the "Mailinator Page"
     When I input "<user email>" in "input for email"
     When I click on "go button"
@@ -126,20 +127,24 @@ Feature: The user management
       | email - Email Confirmation | displayed |
     When I click on "email - Email Confirmation"
 
-    When wait 20 sec
+    When wait 5 sec
+    When I switch to frame "msg_body"
     Then the following elements should be
-      | NAME OF ELEMENTS                | VALUE     |
-      | email body: message             | displayed |
-      | email body: verification button | displayed |
-    #Welcome to Mobalytics! Thanks for registering an account with us. To get started, please verify your email. |
-    #When execute javascript "javascript: document.getElementsByClassName('all_message-min_autor ng-binding')[1].click();"
-    And wait 500 sec
+      | NAME OF ELEMENTS                | VALUE                                                                                                       |
+      | email body: message             | Welcome to Mobalytics! Thanks for registering an account with us. To get started, please verify your email. |
+      | email body: verification button | displayed                                                                                                   |
+    When I click on "email body: verification button"
 
+    When wait 5 sec
+    When I switch to tab "1"
+    Then the page should be "Login Page"
+    When login as new user "<user email>"
+    Then the page should be "GPI Page"
     Then close browser
 
     Examples:
-      | browser for test | user email             | user name | user password | summoner name |
-      | Chrome           | mobalyticshq_Klym_1234 | Klym      | 123QWEasd     | geei          |
+      | browser for test | user email                 | user name | user password | summoner name |
+      | Chrome           | mobalyticshq_Klym_05270919 | Klym      | 123QWEasd     | geei          |
 
   Scenario: As user open login page. Then open login page in another tab again. Then log in on 1 page
   Validate that user can be logged in

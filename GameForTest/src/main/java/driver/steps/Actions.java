@@ -7,10 +7,14 @@ import driver.driver.Drivers;
 import driver.utils.User;
 import lol.LOLSite;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import static driver.steps.SimpleChecks.thePageShouldBe;
 import static driver.steps.Sites.lolSite;
 
 public class Actions {
@@ -55,7 +59,12 @@ public class Actions {
 
     @Then("^driver \"([^\"]*)\": close browser$")
     public static void closeBrowser(String driverName) {
-        Drivers.get(driverName).close();
+        WebDriver driver = Drivers.get(driverName);
+        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        for (String tab :
+                tabs) {
+            driver.switchTo().window(tab).close();
+        }
         Drivers.put(driverName, null);
     }
 
@@ -111,10 +120,59 @@ public class Actions {
     }
 
     public static void jsExecute(String command) {
-        JavascriptExecutor js = (org.openqa.selenium.JavascriptExecutor) lolSite.getCurrentPage() ;
+        JavascriptExecutor js = (org.openqa.selenium.JavascriptExecutor) lolSite.getCurrentPage();
         js.executeScript(command);
     }
 
+    @When("^I register the user \"([^\"]*)\"$")
+    public void iRegisterTheUser(String userEmail) throws InterruptedException {
+        iRegisterTheUser(Drivers.DEFAULT_DRIVER_NAME, userEmail);
+    }
 
+    @When("^driver \"([^\"]*)\": I register the user \"([^\"]*)\"$")
+    public void iRegisterTheUser(String driverName, String userEmail) throws InterruptedException {
+        iOpenThe(driverName, "Login Page");
+        clickOn(driverName, "Link for registration");
+        iInputIn(driverName, userEmail + "@mailinator.com", "User email registration");
+        iInputIn(driverName, userEmail, "Username registration");
+        iInputIn(driverName, userEmail, "User pass registration");
+        iInputIn(driverName, "geii", "Summoner name registration");
+        clickOn(driverName, "SignUp button");
+        waitSec(10);
+        thePageShouldBe(driverName, "Welcome Page");
+    }
 
+    @When("^I switch to frame \"([^\"]*)\"$")
+    public void iSwitchToFrame(String frameId) {
+        iSwitchToFrame(Drivers.DEFAULT_DRIVER_NAME, frameId);
+    }
+
+    @When("^driver \"([^\"]*)\": I switch to frame \"([^\"]*)\"$")
+    private void iSwitchToFrame(String driverName, String frameId) {
+        lolSite.setDriver(Drivers.get(driverName));
+        lolSite.getCurrentPage().switchToFrame(frameId);
+    }
+
+    @When("^I switch to tab \"(\\d+)\"$")
+    public void iSwitchToFrame(int tabIndex) {
+        iSwitchToFrame(Drivers.DEFAULT_DRIVER_NAME, tabIndex);
+    }
+
+    @When("^driver \"([^\"]*)\": I switch to tab \"([^\"]*)\"$")
+    private void iSwitchToFrame(String driverName, int tabIndex) {
+        lolSite.setDriver(Drivers.get(driverName));
+        lolSite.getCurrentPage().switchToTab(tabIndex);
+    }
+
+    @Then("^login as new user \"([^\"]*)\"$")
+    public void loginAsNewUser(String userName) {
+        loginAsNewUser(Drivers.DEFAULT_DRIVER_NAME, userName);
+    }
+
+    @Then("^driver \"([^\"]*)\": login as new user \"([^\"]*)\"$")
+    public void loginAsNewUser(String driverName, String userName) {
+        User user = new User(userName+"@mailinator.com", userName);
+        lolSite.setDriver(Drivers.get(driverName));
+        lolSite.login(user);
+    }
 }
