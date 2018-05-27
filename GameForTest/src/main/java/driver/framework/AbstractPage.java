@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class AbstractPage {
     protected WebDriver driver;
 
@@ -80,6 +83,21 @@ public abstract class AbstractPage {
     public WebElement getElementByName(String name) {
         WebDriverWait webDreiverWait = new WebDriverWait(driver, 30);
         return webDreiverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(getEntryForElementName(name).getXPath())));
+    }
+
+    public AbstractPage switchToFrame(String frameId) {
+        if ("default".equalsIgnoreCase(frameId)) {
+            driver.switchTo().defaultContent();
+        } else {
+            driver.switchTo().frame(frameId);
+        }
+        return this;
+    }
+
+    public AbstractPage switchToTab(int index) {
+        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(index));
+        return this;
     }
 
     public abstract IHaveAnXPath getEntryForElementName(String fieldNameToFind);
