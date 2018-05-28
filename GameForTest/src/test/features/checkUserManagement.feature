@@ -90,33 +90,43 @@ Feature: The user management
       | Chrome           | klym@mobalyticshq.com       | incorrect password |
       | Chrome           | klym121212@mobalyticshq.com | 123QWEqwe          |
 
+  #
+  # -----------------------------------------------------------------------------------------------------------------
+  #
 
+  #@active
   @positive_scenario
   Scenario Outline: As a user who have not been sign up, I should be able sign up into portal 2
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
     When I click on "Link for registration"
-    #TODO: Maybe, we should create Registration page as a separate class
+     #TODO: Maybe, we should create Registration page as a separate class
     When I input "<user email>" in "User email registration"
     When I input "<user name>" in "Username registration"
     When I input "<user password>" in "User pass registration"
     When I input "<summoner name>" in "Summoner name registration"
-    #TODO: When I select value "NA" from dropdown "User region registration"
+     #TODO: When I select value "NA" from dropdown "User region registration"
     When I click on "SignUp button"
     When wait 10 sec
     Then the page should be "Welcome Page"
     Then close browser
-    #<timestamp> - says us that this will be a current time instead
+     #<timestamp> - says us that this will be a current time instead
     Examples:
       | browser for test | user email                             | user name | user password | summoner name |
-      | Chrome           | mobalyticshq_Klym_1234@mailinator.com  | Klym      | 123QWEasd     | geei          |
-      | Firefox          | mobalyticshq_Julia_1234@mailinator.com | Julia     | 123QWEasd     | geei          |
+      | Chrome           | mobalyticshq_Klym_23477@mailinator.com | Klym      | Password123   | geei          |
+      #| Firefox          | mobalyticshq_Julia_1234@mailinator.com | Julia     | Password123     | geei          |
+
+  #
+  # -----------------------------------------------------------------------------------------------------------------
+  #
 
   @active
   @positive_scenario
   Scenario Outline: As a user who has been sign uped, I should be able see email
     Given the "<browser for test>" browser is opened
-#    When I register the user "<user email>"
+    When I register the user "<user email>"
+    Then close browser
+    Given the "<browser for test>" browser is opened
     When I open the "Mailinator Page"
     When I login on mailinator as "<user email>"
     And I open mail by title "Email Confirmation"
@@ -136,8 +146,8 @@ Feature: The user management
     Then close browser
 
     Examples:
-      | browser for test | user email                 | user name | user password | summoner name |
-      | Chrome           | mobalyticshq_Klym_05270919 | Klym      | 123QWEasd     | geei          |
+      | browser for test | user email             | user name                               | user password |
+      | Chrome           | mobalyticshq_Klym_2355 | mobalyticshq_Klym_23411@@mailinator.com | Password123   |
 
   Scenario: As user open login page. Then open login page in another tab again. Then log in on 1 page
   Validate that user can be logged in
