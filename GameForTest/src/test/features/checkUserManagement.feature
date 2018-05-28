@@ -120,7 +120,6 @@ Feature: The user management
   # -----------------------------------------------------------------------------------------------------------------
   #
 
-  @active
   @positive_scenario
   Scenario Outline: As a user who has been sign uped, I should be able see email
     Given the "<browser for test>" browser is opened
