@@ -122,7 +122,10 @@ Feature: The user management
 
   @active
   @positive_scenario
-  Scenario Outline: As a user who has been sign uped, I should be able see email
+  Scenario Outline: As a user who has been sign uped,
+              I should be able see email
+              I should be able to make verification
+              I should be able to delete my account from the portal
     #register the user
     Given the "<browser for test>" browser is opened
     When I register the user "<user email>"
@@ -161,6 +164,11 @@ Feature: The user management
     Examples:
       | browser for test | user email            |
       | Chrome           | mobalyticshq_Klym_251 |
+
+  #
+  # -----------------------------------------------------------------------------------------------------------------
+  #
+
 
   Scenario: As user open login page. Then open login page in another tab again. Then log in on 1 page
   Validate that user can be logged in
