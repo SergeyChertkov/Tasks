@@ -1,11 +1,14 @@
 package driver.steps;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.When;
 import driver.driver.Drivers;
+import driver.framework.Variables;
 import lol.LOLSite;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import static driver.steps.BrowserAction.setDriver;
 import static driver.steps.Sites.lolSite;
@@ -45,5 +48,22 @@ public class SimpleAction {
     public static void clickOn(String driverName, String element) {
         setDriver(driverName);
         lolSite.getCurrentPage().clickOn(element);
+    }
+
+    @When("^I save value \"([^\"]*)\" to variable \"([^\"]*)\"$")
+    public static void iSaveValueToVariable(String value, String variableName) {
+        Variables.put(variableName, value);
+    }
+
+    @When("^I save values \"([^\"]*)\" to variables \"([^\"]*)\"$")
+    public void iSaveValuesToVariables(DataTable dataTable) {
+        List<List<String>> data = dataTable.raw();
+        String value;
+        String variableName;
+        for (int i = 1; i < data.size(); i++) {
+            variableName = data.get(i).get(0);
+            value = data.get(i).get(1);
+            Variables.put(variableName, value);
+        }
     }
 }

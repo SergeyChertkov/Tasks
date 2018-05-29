@@ -1,7 +1,7 @@
 package lol;
 
 import driver.framework.AbstractPage;
-import driver.framework.IHaveAnXPath;
+import driver.framework.elements.IHaveAnXPath;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage extends AbstractPage {
