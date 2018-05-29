@@ -46,7 +46,7 @@ public class Actions {
         iInputIn(driverName, userEmail + "@mailinator.com", "User email registration");
         iInputIn(driverName, userEmail, "Username registration");
         iInputIn(driverName, userEmail, "User pass registration");
-        iInputIn(driverName, "geii", "Summoner name registration");
+        iInputIn(driverName, "geei", "Summoner name registration");
         clickOn(driverName, "SignUp button");
         waitSec(10);
         thePageShouldBe(driverName, "Welcome Page");

@@ -114,42 +114,57 @@ Feature: The user management
     Examples:
       | browser for test | user email                             | user name | user password | summoner name |
       | Chrome           | mobalyticshq_Klym_23477@mailinator.com | Klym      | Password123   | geei          |
-      #| Firefox          | mobalyticshq_Julia_1234@mailinator.com | Julia     | Password123     | geei          |
+      | Firefox          | mobalyticshq_Julia_1234@mailinator.com | Julia     | Password123   | geei          |
 
   #
   # -----------------------------------------------------------------------------------------------------------------
   #
 
+  @active
   @positive_scenario
   Scenario Outline: As a user who has been sign uped, I should be able see email
+    #register the user
     Given the "<browser for test>" browser is opened
     When I register the user "<user email>"
     Then close browser
+    #validate the email
     Given the "<browser for test>" browser is opened
     When I open the "Mailinator Page"
     When I login on mailinator as "<user email>"
     And I open mail by title "Email Confirmation"
-
     When I switch to frame "msg_body"
     Then the following elements should be
       | NAME OF ELEMENTS                | VALUE                                                                                                       |
       | email body: message             | Welcome to Mobalytics! Thanks for registering an account with us. To get started, please verify your email. |
       | email body: verification button | displayed                                                                                                   |
     When I click on "email body: verification button"
-
     When wait 5 sec
     When I switch to tab "1"
     Then the page should be "Login Page"
     When login as new user "<user email>"
     Then the page should be "GPI Page"
-    Then close browser
+    When I click on "Link Skip tutorial"
+    #delete the account
+    When I click on "account settings link"
+    Then wait 2 sec
+    When I click on "Link Delete my account"
+    When I input "This's an automated test" in "TextArea Leave comment"
+    When I click on "Button Delete"
+    When wait 2 sec
+    Then the following elements should be
+      | NAME OF ELEMENTS                            | VALUE     |
+      | Message: Your Mobalytics Account is closed! | displayed |
+      | Message: Thank you for giving us a try      | displayed |
+      | Message: Go back to Mobalytics.gg           | displayed |
 
+    Then close browser
     Examples:
-      | browser for test | user email             | user name                               | user password |
-      | Chrome           | mobalyticshq_Klym_2355 | mobalyticshq_Klym_23411@@mailinator.com | Password123   |
+      | browser for test | user email            |
+      | Chrome           | mobalyticshq_Klym_251 |
 
   Scenario: As user open login page. Then open login page in another tab again. Then log in on 1 page
   Validate that user can be logged in
+
 
   Scenario: As user Press "Forgot" link from Log in screen
   Validate that: the reset password screen displays

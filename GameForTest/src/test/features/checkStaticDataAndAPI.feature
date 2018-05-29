@@ -5,7 +5,7 @@
 Feature: The data from API should be displayed in appropriate way
 
 
-  @active
+
   Scenario Outline: As user I should see the data which corresponding from the RAIN static
 
     When I save values from the RAIN API
