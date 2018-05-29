@@ -16,4 +16,18 @@ public class Variables {
     public static void put(String name, String value) {
         vars.put(name, value);
     }
+
+    public static String replace(String text){
+        String result = text;
+        while (result.contains("${")) {
+            int start = result.indexOf("${");
+            int end = result.indexOf('}');
+            if (start >= 0 && end > start) {
+                result = result.substring(0, start)
+                        + Variables.get(result.substring(start + 2, end))
+                        + result.substring(end + 1);
+            }
+        }
+        return result;
+    }
 }
