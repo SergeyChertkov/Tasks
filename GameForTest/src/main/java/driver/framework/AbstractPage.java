@@ -1,5 +1,6 @@
 package driver.framework;
 
+import driver.framework.elements.IHaveAnXPath;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

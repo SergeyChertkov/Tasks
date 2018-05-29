@@ -1,16 +1,10 @@
 package driver.steps;
 
-import cucumber.api.DataTable;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import driver.api.steps.ApiSteps;
 import driver.driver.Drivers;
 import driver.utils.User;
 import lol.MailinatorPage;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static driver.steps.BrowserAction.setDriver;
 import static driver.steps.BrowserAction.waitSec;
@@ -20,7 +14,6 @@ import static driver.steps.Sites.lolSite;
 
 public class Actions {
 
-    static Map<String, String> variables = new HashMap<>();
 
     @When("^login as \"([^\"]*)\"$")
     public static void loginAs(String userName) {
@@ -87,57 +80,5 @@ public class Actions {
         setDriver(driverName);
         MailinatorPage mailinator = (MailinatorPage) lolSite.getPage("mailinatorPage");
         mailinator.openInboxMailByTitle(mailTitle);
-    }
-
-    @When("^I save values from the RAIN API$")
-    public void iSaveValuesFromTheRAINapi(DataTable dataTable) {
-        List<List<String>> data = dataTable.raw();
-        String user = data.get(0).get(0);
-        String endpoint = data.get(0).get(1);
-        ApiSteps api = getApiData(user, endpoint);
-        String value;
-        String variableName;
-        for (int i = 1; i < data.size(); i++) {
-            variableName = data.get(i).get(0);
-            value = replaceElementsNamesOnApiValues(api, data.get(i).get(1));
-            variables.put(variableName, value);
-        }
-    }
-
-    public static ApiSteps getApiData(String userName, String endpoint) {
-        ApiSteps api = new ApiSteps();
-        api.disablePrint();
-        User user = new User(userName);
-        api.saveToken(user.getRiotToken());
-        api.sentEndpointWithToken("get", replaceElementsNamesOnSavedValues(endpoint));
-        return api;
-    }
-
-    static String replaceElementsNamesOnSavedValues(String text) {
-        String result = text;
-        while (result.contains("<")) {
-            int start = result.indexOf('<');
-            int end = result.indexOf('>');
-            if (start >= 0 && end > start) {
-                result = result.substring(0, start)
-                        + variables.get(result.substring(start + 1, end))
-                        + result.substring(end + 1);
-            }
-        }
-        return result;
-    }
-
-    static String replaceElementsNamesOnApiValues(ApiSteps api, String text) {
-        String result = text;
-        while (result.contains("{")) {
-            int start = result.indexOf('{');
-            int end = result.indexOf('}');
-            if (start >= 0 && end > start) {
-                result = result.substring(0, start)
-                        + api.getElementValueFromResponse(result.substring(start + 1, end))
-                        + result.substring(end + 1);
-            }
-        }
-        return result;
     }
 }

@@ -1,4 +1,4 @@
-package driver.framework;
+package driver.framework.elements;
 
 public class DynamicXpath implements IHaveAnXPath {
     private String xpath;
