@@ -1,9 +1,7 @@
 package driver.framework;
 
 import driver.framework.elements.IHaveAnXPath;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -62,6 +60,12 @@ public abstract class AbstractPage {
 
     public String getText(String name) {
         return getElementByName(name).getText();
+    }
+
+    public AbstractPage openNewTab (){
+        ((JavascriptExecutor)driver).executeScript("window.open('about:blank', '-blank')");
+        //driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
+        return this;
     }
 
     public AbstractPage open() {

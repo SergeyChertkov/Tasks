@@ -33,7 +33,7 @@ public class LOLSite extends AbstractSite {
             put("info menu link","//*[@data-reactid='144']");
             put("referral link", "//*[@data-reactid='147']");
             put("account settings link", "//*[@data-reactid='152']");
-            put("logout link", "//*[@data-reactid='157']");
+            put("logout link", "//*[@data-reactid='140']");//
         }
     };
 

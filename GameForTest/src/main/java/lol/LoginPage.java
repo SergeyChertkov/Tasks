@@ -31,6 +31,9 @@ public class LoginPage extends AbstractPage {
             put("User region registration", "//*[@id='region']");
             put("SignUp button", "//button[@type='submit']");
 
+            put("User email forgot password", "//*[@id='email']");
+            put("Button Get new password","//*[contains(@class, 'authstyles__Button')]" );
+
         }
     };
 

@@ -14,8 +14,9 @@ public class GPIPage extends AbstractPage {
         {
             putAll(LOLSite.ELEMENTS);
 
-            put("character name", "//*[@data-reactid='177']");
+            put("character name", "//*[@data-reactid='159']");
             put("Link Skip tutorial","//p[contains(.,'Skip tutorial')]");
+            put("Close the popup","//*[@class='_3huRp']");
         }
     };
 

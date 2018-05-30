@@ -30,6 +30,7 @@ public class MailinatorPage extends AbstractPage {
 
             put("email body: message", "//*[@class='module'][1]//div/div[2]");
             put("email body: verification button", "//*[contains(@class, 'button-')]//a");
+            put("email body: reset password button", "//*[contains(@class, 'button')]");
 
             put("email - ", "//*[contains(text(), '%s')]");
 

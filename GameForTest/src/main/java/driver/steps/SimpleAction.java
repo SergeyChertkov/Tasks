@@ -19,6 +19,18 @@ public class SimpleAction {
         iOpenThe(Drivers.DEFAULT_DRIVER_NAME, pageName);
     }
 
+    @When("^I open new tab$")
+    public static void iOpenNewTab() {
+        iOpenNewTab(Drivers.DEFAULT_DRIVER_NAME);
+    }
+
+    @When("^driver \"([^\"]*)\":I open new tab$")
+    public static void iOpenNewTab(String driverName) {
+        lolSite = new LOLSite(Drivers.get(driverName));
+        lolSite.getCurrentPage().openNewTab();
+    }
+
+
     @When("^driver \"([^\"]*)\": I open the \"([^\"]*)\"$")
     public static void iOpenThe(String driverName, String pageName) {
         lolSite = new LOLSite(Drivers.get(driverName));

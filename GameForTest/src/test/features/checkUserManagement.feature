@@ -34,6 +34,10 @@ Feature: The user management
       | browser for test | name of user |
       | Chrome           | test_user_1  |
 
+  #
+  # -----------------------------------------------------------------------------------------------------------------
+  #
+
 
   @negative_scenario
   Scenario Outline: As a user who forgot his credentials, I should see a corresponding message
@@ -51,6 +55,10 @@ Feature: The user management
       | browser for test | user name                   | user password      |
       | Chrome           | klym@mobalyticshq.com       | incorrect password |
       | Chrome           | klym121212@mobalyticshq.com | 123QWEqwe          |
+
+  #
+  # -----------------------------------------------------------------------------------------------------------------
+  #
 
 
   @negative_scenario
@@ -72,6 +80,9 @@ Feature: The user management
       | Chrome           |                             | incorrect password | Error message for User name |
       | Chrome           | klym121212@mobalyticshq.com |                    | Error message for Password  |
 
+  #
+  # -----------------------------------------------------------------------------------------------------------------
+  #
 
   @negative_scenario
   Scenario Outline: As a user who have not been sign up, I should be able sign up into portal
@@ -94,38 +105,36 @@ Feature: The user management
   # -----------------------------------------------------------------------------------------------------------------
   #
 
-  #@active
+  @active
   @positive_scenario
   Scenario Outline: As a user who have not been sign up, I should be able sign up into portal 2
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
     When I click on "Link for registration"
-     #TODO: Maybe, we should create Registration page as a separate class
     When I input "<user email>" in "User email registration"
     When I input "<user name>" in "Username registration"
     When I input "<user password>" in "User pass registration"
     When I input "<summoner name>" in "Summoner name registration"
-     #TODO: When I select value "NA" from dropdown "User region registration"
     When I click on "SignUp button"
     When wait 10 sec
     Then the page should be "Welcome Page"
     Then close browser
      #<timestamp> - says us that this will be a current time instead
     Examples:
-      | browser for test | user email                             | user name | user password | summoner name |
-      | Chrome           | mobalyticshq_Klym_23477@mailinator.com | Klym      | Password123   | geei          |
-      | Firefox          | mobalyticshq_Julia_1234@mailinator.com | Julia     | Password123   | geei          |
+      | browser for test | user email                              | user name | user password | summoner name |
+      | Chrome           | mobalyticshq_Klym_112233@mailinator.com | Klym      | Password123   | geei          |
+   #   | Firefox          | mobalyticshq_Julia_1234@mailinator.com | Julia     | Password123   | geei          |
 
   #
   # -----------------------------------------------------------------------------------------------------------------
   #
 
-  @active
+
   @positive_scenario
   Scenario Outline: As a user who has been sign uped,
-              I should be able see email
-              I should be able to make verification
-              I should be able to delete my account from the portal
+  I should be able see email
+  I should be able to make verification
+  I should be able to delete my account from the portal
     #register the user
     Given the "<browser for test>" browser is opened
     When I register the user "<user email>"
@@ -169,13 +178,88 @@ Feature: The user management
   # -----------------------------------------------------------------------------------------------------------------
   #
 
+  Scenario Outline: As user open login page.
+  Next open login page in another tab again. Then log out on 1 tab
+  Validate that: user was logouted
 
-  Scenario: As user open login page. Then open login page in another tab again. Then log in on 1 page
-  Validate that user can be logged in
+    Given the "<browser for test>" browser is opened
+    When I open the "Login page"
+    When login as "<name of user>"
 
+    #open second tab and open our Portal on it
+    When I open new tab
+    When I switch to tab "1"
+    When I open the "Login page"
+    Then wait 2 sec
 
-  Scenario: As user Press "Forgot" link from Log in screen
-  Validate that: the reset password screen displays
+    #Open first tab and logout from portal
+    When I switch to tab "0"
+    When I click on "logout link"
+    Then wait 2 sec
+    Then the page should be "Login page"
+
+    #Open second tab and click on any element -> you should be redirected to Login Page
+    When I switch to tab "1"
+    Then wait 2 sec
+    Then the page should be "GPI Page"
+    When I click on "character name"
+    Then wait 2 sec
+    Then the page should be "Login page"
+
+    Then close browser
+
+    Examples:
+      | browser for test | name of user |
+      | Chrome           | test_user_1  |
+
+  #
+  #-----------------------------------------------------------------------------------------------------------
+  #
+
+  @acitve
+  @positive_scenario
+  Scenario Outline: As user I should be able to use the "Forgot" link from Log in form
+  Validate that: The reset password functionality is working
+  I should be able see email with new password
+  I should be able to change the password
+  I should be able to SingIn into portal with new password
+    #register the user
+    Given the "<browser for test>" browser is opened
+    When I register the user "<user email>"
+    #logout -> open and use the Forgot password form
+    When I click on "Link Skip tutorial"
+    When I click on "logout link"
+    Then wait 2 sec
+    Then the page should be "Login page"
+    Then I click on "Link for forgot-password"
+    Then the page should be "Login page"
+    When I input "<User email forgot password>" in "User email forgot password"
+    When I click on "Button Get new password"
+    Then close browser
+    #validate the email on the message about changing password
+    Given the "<browser for test>" browser is opened
+    When I open the "Mailinator Page"
+    When I login on mailinator as "<user email>"
+    And I open mail by title "Forgot your Mobalytics password?"
+    When I switch to frame "msg_body"
+    Then the following elements should be
+      | NAME OF ELEMENTS                  | VALUE                                                                                                                                     |
+      | email body: message               | We heard you need a password reset. Click the link below and you'll be redirected to a secure site from which you can set a new password. |
+      | email body: reset password button | displayed                                                                                                                                 |
+    When I click on "email body: reset password button"
+    When wait 5 sec
+    When I switch to tab "1"
+    Then the page should be "Login Page"
+
+    Then close browser
+
+    Examples:
+      | browser for test | user email            | User email forgot password           |
+      | Chrome           | mobalyticshq_Klym_254 | mobalyticshq_Klym_254@mailinator.com |
+
+  #
+  #------------------------------------------------------------------------------------------------
+  #
 
   Scenario: User can enter his email. press "Get new password" button
   Validate that: notification message displays:
@@ -184,8 +268,6 @@ Feature: The user management
   If you don't receive an email, please make sure you've entered the address you registered with, and check your spam folder.
   You can close this window"
 
-  Scenario: As user verify that email received
-  Validate that: an email received
 
   Scenario: As user I enter correct value to both fields. Then press "Change password" button
   Validate that: a message is ""SUCCESS Password has been changed. Go to login page."""
@@ -201,8 +283,3 @@ Feature: The user management
   Validate that: "pop-up displays with ask user to mark the cause of deletion of account
   clarify texts"
 
-  Scenario: user doesn't mark the cause and press "Delete account"
-  Validate that: "blank page displays with text:
-  Your Mobalytics Account is closed!
-  Thank you for giving us a try.
-  Go back to Mobalytics.gg"

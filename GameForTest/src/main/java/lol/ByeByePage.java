@@ -1,8 +1,8 @@
 package lol;
 
-import driver.framework.AbstractPage;
-import driver.framework.ElementsUtil;
-import driver.framework.IHaveAnXPath;
+import driver.framework.AbstractPage;;
+import driver.framework.elements.ElementsUtil;
+import driver.framework.elements.IHaveAnXPath;
 import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
