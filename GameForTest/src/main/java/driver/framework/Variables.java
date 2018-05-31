@@ -1,5 +1,7 @@
 package driver.framework;
 
+import driver.utils.Property;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +27,20 @@ public class Variables {
             if (start >= 0 && end > start) {
                 result = result.substring(0, start)
                         + Variables.get(result.substring(start + 2, end))
+                        + result.substring(end + 1);
+            }
+        }
+        return result;
+    }
+
+    private static String replaceFromConfig(String text){
+        String result = text;
+        while (result.contains("@{")) {
+            int start = result.indexOf("@{");
+            int end = result.indexOf('}');
+            if (start >= 0 && end > start) {
+                result = result.substring(0, start)
+                        + Property.get(result.substring(start + 2, end))
                         + result.substring(end + 1);
             }
         }

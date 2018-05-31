@@ -3,6 +3,7 @@ package driver.steps;
 import cucumber.api.java.en.Then;
 import driver.driver.Drivers;
 import driver.framework.AbstractPage;
+import driver.framework.Variables;
 
 import static driver.steps.BrowserAction.setDriver;
 import static driver.steps.Sites.lolSite;
@@ -34,6 +35,7 @@ public class SimpleChecks {
     public static void elementShouldBe(String driverName, String elementName, String expectedValue) {
         setDriver(driverName);
         AbstractPage currentPage = lolSite.getCurrentPage();
+        expectedValue = Variables.replace(expectedValue);
         String message = " ---- \n The element with Xpath " + currentPage.getElementByName(elementName)
                 + "\nElement '" + elementName;
         switch (expectedValue) {
