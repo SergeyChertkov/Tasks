@@ -43,7 +43,7 @@ Feature: The data from API should be displayed in appropriate way
     And the following elements should be
       | NAME OF ELEMENTS | VALUE                      |
       | character name   | ${league.playerOrTeamName} |
-      | number of wins   | ${league.wins}             |
+      | number of wins   | ${league.wins}W            |
 
     Then close browser
 

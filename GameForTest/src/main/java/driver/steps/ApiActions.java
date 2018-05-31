@@ -40,10 +40,11 @@ public class ApiActions {
             int end = result.indexOf('}');
             if (start >= 0 && end > start) {
                 result = result.substring(0, start)
-                        + api.getElementValueFromResponse(result.substring(start + 2, end))
+                        + api.getElementValueFromResponse(result.substring(start + 3, end))
                         + result.substring(end + 1);
             }
         }
+        result = result.substring(1, result.length() - 1);
         return result;
     }
 }
