@@ -9,8 +9,8 @@ import driver.utils.User;
 import java.util.List;
 
 public class ApiActions {
-    @When("^I save values from the RAIN API$")
-    public void iSaveValuesFromTheRAINapi(DataTable dataTable) {
+    @When("^I save values from the RAIT API$")
+    public void iSaveValuesFromTheRAITapi(DataTable dataTable) {
         List<List<String>> data = dataTable.raw();
         String user = Variables.replace(data.get(0).get(0));
         String endpoint = Variables.replace(data.get(0).get(1));

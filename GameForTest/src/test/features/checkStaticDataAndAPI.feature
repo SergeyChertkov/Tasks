@@ -2,18 +2,22 @@
 # 28.05.2018
 
 @api
+@active
 Feature: The data from API should be displayed in appropriate way
 
 
+  Scenario Outline: As user I should see the data which corresponding from the RAIT static
 
-  Scenario Outline: As user I should see the data which corresponding from the RAIN static
+    #When I run JS file "LOL.js" and save response into "response.json"
 
-    When I save values from the RAIN API
+
+    When I save values from the RAIT API
       | <name of user>     | riot_api_host_na1/lol/summoner/v3/summoners/by-name/Geei |
       | summoner.id        | #{id}                                                    |
       | summoner.name      | #{name}                                                  |
       | summoner.accountId | #{accountId}                                             |
-    When I save values from the RAIN API
+
+    When I save values from the RAIT API
       | <name of user>          | riot_api_host_na1/lol/league/v3/positions/by-summoner/${summoner.id} |
       | league.leagueId         | #{[0].leagueId}                                                      |
       | league.leagueName       | #{[0].leagueName}                                                    |
@@ -33,34 +37,15 @@ Feature: The data from API should be displayed in appropriate way
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
     When wait 2 sec
-    Then the following elements should be
-      | NAME OF ELEMENTS         | STATUS    |
-      | Login header             | displayed |
-      | User name input          | displayed |
-      | Pass input               | displayed |
-      | Button Login             | displayed |
-      | Link for registration    | displayed |
-      | Link for forgot-password | displayed |
-    Then the following elements should be
-      | NAME OF ELEMENTS         | VALUE          |
-      | Login header             | SIGN IN        |
-      | Button Login             | SIGN IN        |
-      | Link for registration    | Create account |
-      | Link for forgot-password | Forgot?        |
     When login as "<name of user>"
     Then the page should be "GPI Page"
+
     And the following elements should be
-      | character name | ${league.playerOrTeamName} |
+      | NAME OF ELEMENTS | VALUE                      |
+      | character name   | ${league.playerOrTeamName} |
+      | number of wins   | ${league.wins}             |
 
     Then close browser
-
-
-    #Given the "<browser for test>" browser is opened
-    #When I open the "Login page"
-    #When login as "<name of user>"
-    #Then the page should be "GPI Page"
-    #And element "character name" should be "Geei"
-    #Then close browser
 
     Examples:
       | browser for test | name of user |

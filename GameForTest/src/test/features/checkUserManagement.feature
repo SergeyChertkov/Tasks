@@ -105,7 +105,7 @@ Feature: The user management
   # -----------------------------------------------------------------------------------------------------------------
   #
 
-  @active
+  #@active
   @positive_scenario
   Scenario Outline: As a user who have not been sign up, I should be able sign up into portal 2
     Given the "<browser for test>" browser is opened
@@ -216,7 +216,7 @@ Feature: The user management
   #-----------------------------------------------------------------------------------------------------------
   #
 
-  @acitve
+  #@acitve
   @positive_scenario
   Scenario Outline: As user I should be able to use the "Forgot" link from Log in form
   Validate that: The reset password functionality is working
