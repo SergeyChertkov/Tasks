@@ -2,7 +2,6 @@
 # 28.05.2018
 
 @api
-@active
 Feature: The data from API should be displayed in appropriate way
 
 

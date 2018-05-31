@@ -13,6 +13,19 @@ import java.util.List;
 import static driver.steps.Sites.lolSite;
 
 public class BrowserAction {
+
+
+    @Given("^I maximize the window size$")
+    public static void theMaximizeTheWindow() {
+        theMaximizeTheWindow(Drivers.DEFAULT_DRIVER_NAME);
+    }
+
+    @Given("^driver \"([^\"]*)\": I maximize the window size$")
+    public static void theMaximizeTheWindow(String driverName) {
+        setDriver(driverName);
+        lolSite.getCurrentPage().maximizeTheWindow();
+    }
+
     @Given("^the \"([^\"]*)\" browser is opened$")
     public static void theBrowserIsOpened(String browser) {
         theBrowserIsOpened(Drivers.DEFAULT_DRIVER_NAME, browser);

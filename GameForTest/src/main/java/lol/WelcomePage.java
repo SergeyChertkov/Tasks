@@ -13,6 +13,8 @@ public class WelcomePage extends AbstractPage {
     private static Map<String, String> ELEMENTS = new HashMap<String, String>() {
         {
             putAll(LOLSite.ELEMENTS);
+
+            put("Link Skip tutorial","//p[contains(.,'Skip tutorial')]");
         }
     };
 

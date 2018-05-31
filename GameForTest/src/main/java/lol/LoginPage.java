@@ -34,6 +34,11 @@ public class LoginPage extends AbstractPage {
             put("User email forgot password", "//*[@id='email']");
             put("Button Get new password","//*[contains(@class, 'authstyles__Button')]" );
 
+            put("Input New password", "//*[@id='password']");
+            put("Input Repeat password","//*[@id='newPassword']");
+            put("Button Change password", "//*[contains(@class, 'authstyles__Button')]");
+            put("Message Success changing password", "//*[contains(@class, 'authstyles__SuccessTitle')]");
+
         }
     };
 

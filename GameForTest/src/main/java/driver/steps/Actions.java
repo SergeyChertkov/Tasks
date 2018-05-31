@@ -27,6 +27,24 @@ public class Actions {
         lolSite.login(user);
     }
 
+
+    @When("^I delete user who have been sign in$")
+    public static void iDeleteUserWhoSignIn() throws InterruptedException {
+        iDeleteUserWhoSignIn(Drivers.DEFAULT_DRIVER_NAME);
+    }
+
+    @When("^driver \"([^\"]*)\": I delete user who have been sign in$")
+    public static void iDeleteUserWhoSignIn(String driverName) throws InterruptedException {
+        BrowserAction.theMaximizeTheWindow(driverName);
+        waitSec(2);
+        clickOn(driverName,"account settings link");
+        waitSec(2);
+        clickOn(driverName,"Link Delete my account");
+        iInputIn(driverName,"This's an automated test", "TextArea Leave comment");
+        clickOn(driverName,"Button Delete");
+        waitSec(2);
+    }
+
     @When("^I register the user \"([^\"]*)\"$")
     public static void iRegisterTheUser(String userEmail) throws InterruptedException {
         iRegisterTheUser(Drivers.DEFAULT_DRIVER_NAME, userEmail);

@@ -34,6 +34,8 @@ public class MailinatorPage extends AbstractPage {
 
             put("email - ", "//*[contains(text(), '%s')]");
 
+            put("change password email body: message","//*[@class='module'][1]//div[3]/span");
+
         }
     };
 

@@ -36,6 +36,11 @@ public abstract class AbstractPage {
         return this;
     }
 
+    public AbstractPage maximizeTheWindow() {
+        this.driver.manage().window().maximize();
+        return this;
+    }
+
     public boolean isPresent(String name) {
         boolean result = false;
         try {

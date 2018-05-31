@@ -216,7 +216,7 @@ Feature: The user management
   #-----------------------------------------------------------------------------------------------------------
   #
 
-  #@acitve
+  @active
   @positive_scenario
   Scenario Outline: As user I should be able to use the "Forgot" link from Log in form
   Validate that: The reset password functionality is working
@@ -227,6 +227,7 @@ Feature: The user management
     Given the "<browser for test>" browser is opened
     When I register the user "<user email>"
     #logout -> open and use the Forgot password form
+    When I maximize the window size
     When I click on "Link Skip tutorial"
     When I click on "logout link"
     Then wait 2 sec
@@ -243,19 +244,37 @@ Feature: The user management
     And I open mail by title "Forgot your Mobalytics password?"
     When I switch to frame "msg_body"
     Then the following elements should be
-      | NAME OF ELEMENTS                  | VALUE                                                                                                                                     |
-      | email body: message               | We heard you need a password reset. Click the link below and you'll be redirected to a secure site from which you can set a new password. |
-      | email body: reset password button | displayed                                                                                                                                 |
+      | NAME OF ELEMENTS                    | VALUE                                                                                                                                     |
+      | change password email body: message | We heard you need a password reset. Click the link below and you'll be redirected to a secure site from which you can set a new password. |
+      | email body: reset password button   | displayed                                                                                                                                 |
     When I click on "email body: reset password button"
     When wait 5 sec
+    #change and confirm changing password
     When I switch to tab "1"
     Then the page should be "Login Page"
+    When I input "<new password>" in "Input New password"
+    When I input "<new password>" in "Input Repeat password"
+    When I click on "Button Change password"
+    Then the following elements should be
+      | NAME OF ELEMENTS                  | VALUE   |
+      | Message Success changing password | SUCCESS |
+    #try to login with password
+    When I open the "Login page"
+    When I input "<User email forgot password>" in "User name input"
+    When I input "<new password>" in "Pass input"
+    When I click on "Button Login"
+    Then wait 5 sec
+    When I maximize the window size
+    Then the page should be "GPI Page"
+    And element "character name" should be "Geei"
+    #delet current user
+    Then I delete user who have been sign in
 
     Then close browser
 
     Examples:
-      | browser for test | user email            | User email forgot password           |
-      | Chrome           | mobalyticshq_Klym_254 | mobalyticshq_Klym_254@mailinator.com |
+      | browser for test | user email            | User email forgot password           | new password |
+      | Chrome           | mobalyticshq_Klym_270 | mobalyticshq_Klym_270@mailinator.com | newPassword  |
 
   #
   #------------------------------------------------------------------------------------------------
