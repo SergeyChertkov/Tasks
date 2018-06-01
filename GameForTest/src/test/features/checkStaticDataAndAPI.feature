@@ -42,9 +42,9 @@ Feature: The data from API should be displayed in appropriate way
     And the following elements should be
       | NAME OF ELEMENTS | VALUE                      |
       | character name   | ${league.playerOrTeamName} |
-      | number of wins   | ${league.wins}W            |
+#      | number of wins   | ${league.wins}W            |
 
-    Then close browser
+#    Then close browser
 
     Examples:
       | browser for test | name of user |
