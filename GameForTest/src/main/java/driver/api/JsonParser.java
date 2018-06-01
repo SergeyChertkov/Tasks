@@ -64,7 +64,7 @@ public class JsonParser {
     private static ObjectMapper mapper = new ObjectMapper();
 
 
-    public JsonParser(String str) {
+    JsonParser(String str) {
         name = "body";
         try {
             json = mapper.readTree(str);
@@ -81,6 +81,7 @@ public class JsonParser {
         getChilds();
     }
 
+    @SuppressWarnings("unused")
     boolean isElementPresent(String name) {
         return !json.findValues(name).isEmpty();
     }
@@ -153,7 +154,11 @@ public class JsonParser {
 
     @SuppressWarnings("unused")
     public JsonParser getElementWithChild(String name, String value) {
-        return getChilds(name).stream().filter(p -> Objects.equals(p.getValue(), value)).findFirst().orElse(null).getParent();
+        return Objects.requireNonNull(
+                getChilds(name).stream()
+                        .filter(p -> Objects.equals(p.getValue(), value))
+                        .findFirst().orElse(null))
+                .getParent();
     }
 
     private JsonParser getParent() {

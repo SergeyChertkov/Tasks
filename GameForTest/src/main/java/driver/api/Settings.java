@@ -22,7 +22,7 @@ public class Settings {
         params = new ArrayList<>();
     }
 
-    public Settings(List<List<String>> data) {
+    Settings(List<List<String>> data) {
         this.setUrl(getValue(data, "url"));
         this.contentType = getValue(data, "content-type");
         this.body = getValue(data, "body");
@@ -56,10 +56,12 @@ public class Settings {
         } else this.url = url;
     }
 
+    @SuppressWarnings("unused")
     public void setContentType(String contentType) {
         this.contentType = contentType;
     }
 
+    @SuppressWarnings("unused")
     public void setBody(String body) {
         this.body = body;
     }
@@ -80,6 +82,7 @@ public class Settings {
         return headers;
     }
 
+    @SuppressWarnings("unused")
     public void addHeader(String header) {
         this.headers.add(header);
     }
@@ -92,6 +95,7 @@ public class Settings {
         return cookie;
     }
 
+    @SuppressWarnings("unused")
     public void setCookie(String cookie) {
         this.cookie = cookie;
     }
