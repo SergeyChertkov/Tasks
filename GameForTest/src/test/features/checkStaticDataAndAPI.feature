@@ -35,6 +35,7 @@ Feature: The data from API should be displayed in appropriate way
 
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
+    When I maximize the window size
     When wait 2 sec
     When login as "<name of user>"
     Then the page should be "GPI Page"

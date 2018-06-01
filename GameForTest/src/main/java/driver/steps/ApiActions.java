@@ -2,7 +2,8 @@ package driver.steps;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.en.When;
-import driver.api.steps.ApiSteps;
+import driver.api.ApiSteps;
+import driver.api.Settings;
 import driver.framework.Variables;
 import driver.utils.User;
 
@@ -28,8 +29,9 @@ public class ApiActions {
         ApiSteps api = new ApiSteps();
         api.disablePrint();
         User user = new User(userName);
-        api.saveToken(user.getRiotToken());
-        api.sentEndpointWithToken("get", Variables.replace(endpoint));
+        Settings settings = new Settings();
+        settings.setUrl(Variables.replace(endpoint)+"?api_key="+user.getRiotToken());
+        api.sentRequest("get",settings);
         return api;
     }
 

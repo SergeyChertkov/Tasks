@@ -1,4 +1,4 @@
-package driver.api.steps;
+package driver.api;
 
 
 import com.jayway.restassured.response.Response;
@@ -7,16 +7,12 @@ import cucumber.api.Scenario;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import driver.api.JsonParser;
-import driver.api.Settings;
 import driver.utils.FileUtil;
-import driver.api.Utils;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
-
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -24,20 +20,17 @@ import static org.junit.Assert.assertTrue;
 @SuppressWarnings("unused")
 public class ApiSteps {
     private static final Logger log = Logger.getLogger(ApiSteps.class);
-    public static final String GET = "get";
-    public static final String POST = "post";
-    public static final String PUT = "put";
-    public static final String DELETE = "delete";
+    private static final String GET = "get";
+    private static final String POST = "post";
+    private static final String PUT = "put";
+    private static final String DELETE = "delete";
     public static final String APPLICATION_JSON = "application/json";
     private static final String PRESENT = "present";
     private static final String NOT_PRESENT = "not present";
     public static final String AUTHORIZATION_BEARER = "Authorization:bearer ";
 
-//    private static String custom_attribute;
-//    private static String temporal_variable;
 
     private boolean printEnabled = true;
-    private String authenticationToken;
     private Response response;
     private Map<String, Response> responses = new HashMap<>();
     private Scenario scenario;
@@ -65,50 +58,6 @@ public class ApiSteps {
         SimpleDateFormat format = new SimpleDateFormat("_yyyy.MM.dd_HH:mm:ss");
         FileUtil.createFile(fileName + format.format(new Date()));
         FileUtil.saveInputStreamToFile(fileName, response.asInputStream());
-    }
-
-    @When("^I sent ([^\"]*) request with token$")
-    public void sentRequestWithToken(String method, DataTable dataTable) {
-        Settings settings = new Settings(dataTable.raw());
-        settings.addHeader(AUTHORIZATION_BEARER + authenticationToken);
-        print("request (token " + authenticationToken + "): " + settings.getUrl());
-        sentRequest(method, settings);
-    }
-
-    @When("^I sent ([^\"]*) endpoint \"([^\"]*)\" with token$")
-    public void sentEndpointWithToken(String method, String url) {
-        Settings settings = new Settings();
-        //settings.addHeader(AUTHORIZATION_BEARER + authenticationToken);
-        settings.setUrl(url+"?api_key="+authenticationToken);
-        print("request (token " + authenticationToken + "): " + settings.getUrl());
-        sentRequest(method, settings);
-    }
-
-    @When("^I sent ([^\"]*) endpoint \"([^\"]*)\" with body \"([^\"]*)\" and token$")
-    public void sentEndpointWithToken(String method, String url, String body) {
-        Settings settings = new Settings();
-        settings.addHeader(AUTHORIZATION_BEARER + authenticationToken);
-        settings.setUrl(url);
-        settings.setBody(body);
-        settings.setContentType("application/json");
-        print("request (token " + authenticationToken + "): " + settings.getUrl());
-        sentRequest(method, settings);
-    }
-
-    @When("^I sent ([^\"]*) requests with token$")
-    public void sentRequestsWithToken(String method, DataTable dataTable) {
-        List<List<String>> data = dataTable.raw();
-        Settings settings = new Settings();
-        String name;
-        settings.addHeader(AUTHORIZATION_BEARER + authenticationToken);
-        for (List<String> url :
-                data) {
-            name = url.get(0);
-            settings.setUrl(url.get(1));
-            print("request '" + name + "': " + settings.getUrl());
-            sentRequest(method, settings);
-            responses.put(name, response);
-        }
     }
 
     @Then("^save response as \"([^\"]*)\"$")
@@ -189,28 +138,6 @@ public class ApiSteps {
     public void responseShouldHaveStatus(String status) {
         response.then().statusCode(Integer.parseInt(status));
     }
-
-    @Then("^save token from response$")
-    public void saveTokenFromResponse() {
-        this.saveToken(response.asString().replaceAll("\"", ""));
-    }
-
-    @SuppressWarnings("WeakerAccess")
-    @Then("^save token \"([^\"]*)\"$")
-    public void saveToken(String token) {
-        authenticationToken = token;
-        log.info("authentication token have saved as '" + authenticationToken + "'");
-    }
-
-//    @When("^I save attribute \"([^\"]*)\" from path \"([^\"]*)\" to temporal variable \"([^\"]*)\"$")
-//    public void saveAttributeValueToVariable(String attrName, String path, String tempVariable){
-//        custom_attribute = attrName;
-//        temporal_variable = getElementValueFromResponse(path);
-//        System.out.println("Temporal variable = " + temporal_variable);
-//        tempVariable = temporal_variable;
-//    }
-
-
 
     public void sentRequest(String method, Settings settings) {
         switch (method) {
