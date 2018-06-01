@@ -1,10 +1,15 @@
 package driver.steps;
 
+import driver.framework.AbstractSite;
 import lol.LOLSite;
 
-class Sites {
+public class Sites {
     private Sites() {
     }
 
-    static LOLSite lolSite;
+    static LOLSite lolSite = new LOLSite(null);
+
+    public static AbstractSite getCurrentSite(){
+        return lolSite;
+    }
 }

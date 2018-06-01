@@ -1,4 +1,4 @@
-package driver.steps;
+package driver.steps.general;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -10,10 +10,9 @@ import org.openqa.selenium.WebDriver;
 import java.util.ArrayList;
 import java.util.List;
 
-import static driver.steps.Sites.lolSite;
+import static driver.steps.Sites.getCurrentSite;
 
 public class BrowserAction {
-
 
     @Given("^I maximize the window size$")
     public static void theMaximizeTheWindow() {
@@ -23,7 +22,7 @@ public class BrowserAction {
     @Given("^driver \"([^\"]*)\": I maximize the window size$")
     public static void theMaximizeTheWindow(String driverName) {
         setDriver(driverName);
-        lolSite.getCurrentPage().maximizeTheWindow();
+        getCurrentSite().getCurrentPage().maximizeTheWindow();
     }
 
     @Given("^the \"([^\"]*)\" browser is opened$")
@@ -65,11 +64,11 @@ public class BrowserAction {
     @When("^driver \"([^\"]*)\": I reload the page$")
     public static void reloadThePage(String driverName) {
         setDriver(driverName);
-        lolSite.getCurrentPage().relaodPage();
+        getCurrentSite().getCurrentPage().relaodPage();
     }
 
-    static void setDriver(String driverName) {
-        lolSite.setDriver(Drivers.get(driverName));
+    public static void setDriver(String driverName) {
+        getCurrentSite().setDriver(Drivers.get(driverName));
     }
 
     @When("^execute javascript \"([^\"]*)\"$")
@@ -79,35 +78,35 @@ public class BrowserAction {
 
     @When("^driver \"([^\"]*)\": execute javascript \"([^\"]*)\"$")
     public static void executeJavascript(String driverName, String command) {
-        lolSite.getCurrentPage().setDriver(Drivers.get(driverName));
+        getCurrentSite().getCurrentPage().setDriver(Drivers.get(driverName));
         jsExecute(command);
 
     }
 
     private static void jsExecute(String command) {
-        JavascriptExecutor js = (org.openqa.selenium.JavascriptExecutor) lolSite.getCurrentPage();
+        JavascriptExecutor js = (org.openqa.selenium.JavascriptExecutor) getCurrentSite().getCurrentPage();
         js.executeScript(command);
     }
 
     @When("^I switch to frame \"([^\"]*)\"$")
-    public void iSwitchToFrame(String frameId) {
+    public static void iSwitchToFrame(String frameId) {
         iSwitchToFrame(Drivers.DEFAULT_DRIVER_NAME, frameId);
     }
 
     @When("^driver \"([^\"]*)\": I switch to frame \"([^\"]*)\"$")
-    private void iSwitchToFrame(String driverName, String frameId) {
-        lolSite.setDriver(Drivers.get(driverName));
-        lolSite.getCurrentPage().switchToFrame(frameId);
+    private static void iSwitchToFrame(String driverName, String frameId) {
+        getCurrentSite().setDriver(Drivers.get(driverName));
+        getCurrentSite().getCurrentPage().switchToFrame(frameId);
     }
 
     @When("^I switch to tab \"(\\d+)\"$")
-    public void iSwitchToFrame(int tabIndex) {
+    public static void iSwitchToFrame(int tabIndex) {
         iSwitchToFrame(Drivers.DEFAULT_DRIVER_NAME, tabIndex);
     }
 
     @When("^driver \"([^\"]*)\": I switch to tab \"([^\"]*)\"$")
-    private void iSwitchToFrame(String driverName, int tabIndex) {
-        lolSite.setDriver(Drivers.get(driverName));
-        lolSite.getCurrentPage().switchToTab(tabIndex);
+    private static void iSwitchToFrame(String driverName, int tabIndex) {
+        getCurrentSite().setDriver(Drivers.get(driverName));
+        getCurrentSite().getCurrentPage().switchToTab(tabIndex);
     }
 }
