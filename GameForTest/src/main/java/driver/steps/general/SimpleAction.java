@@ -1,6 +1,8 @@
 package driver.steps.general;
 
 import cucumber.api.DataTable;
+import cucumber.api.Scenario;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.When;
 import driver.driver.Drivers;
 import driver.framework.Variables;
@@ -13,6 +15,31 @@ import static driver.steps.Sites.getCurrentSite;
 import static driver.steps.general.BrowserAction.setDriver;
 
 public class SimpleAction {
+    private static Scenario scenario;
+
+    @Before
+    public static void before(Scenario scenario) {
+        SimpleAction.scenario = scenario;
+    }
+
+    public static void printToReport(String text) {
+        scenario.write(text);
+    }
+
+    @When("^print value of variable \"([^\"]*)\"$")
+    public static void printValueOfVariable(String variableName) {
+        scenario.write(variableName + " = " + Variables.get(variableName));
+        System.out.println(variableName + " = " + Variables.get(variableName));
+    }
+
+    @When("^generate variable \"([^\"]*)\" with value \"([^\"]*)\"$")
+    public static void generateVariableWithValue(String variableName, String value) {
+        if(value.contains("TIMESTAMP")){
+            value = value.replaceAll("TIMESTAMP",
+                    new SimpleDateFormat("yyMMddHHmmss").format(new Date()));
+        }
+        Variables.put(variableName,value);
+    }
 
     @When("^I open the \"([^\"]*)\"$")
     public static void iOpenThe(String pageName) {
