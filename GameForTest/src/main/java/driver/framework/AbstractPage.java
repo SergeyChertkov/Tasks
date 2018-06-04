@@ -22,6 +22,7 @@ public abstract class AbstractPage {
 
     public AbstractPage type(String name, String text) {
         getElementByName(name).clear();
+        text = Variables.replace(text);
         getElementByName(name).sendKeys(text);
         return this;
     }

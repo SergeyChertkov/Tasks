@@ -39,6 +39,7 @@ public class SimpleAction {
                     new SimpleDateFormat("yyMMddHHmmss").format(new Date()));
         }
         Variables.put(variableName,value);
+        printValueOfVariable(variableName);
     }
 
     @When("^I open the \"([^\"]*)\"$")
@@ -72,9 +73,6 @@ public class SimpleAction {
     @When("^^driver \"([^\"]*)\": I input \"([^\"]*)\" in \"([^\"]*)\"$")
     public static void iInputIn(String driverName, String value, String elementName) {
         setDriver(driverName);
-        //add timestamp for case in test set <timestamp>
-        value = value.replaceAll("<timestamp>",
-                new SimpleDateFormat("yyMMddHHmmss").format(new Date()));
         getCurrentSite().getCurrentPage().type(elementName, value);
     }
 

@@ -7,11 +7,11 @@ import driver.steps.general.BrowserAction;
 import driver.utils.User;
 import lol.MailinatorPage;
 
+import static driver.steps.Sites.lolSite;
 import static driver.steps.general.BrowserAction.setDriver;
 import static driver.steps.general.BrowserAction.waitSec;
 import static driver.steps.general.SimpleAction.*;
 import static driver.steps.general.SimpleChecks.thePageShouldBe;
-import static driver.steps.Sites.lolSite;
 
 public class Actions {
 
