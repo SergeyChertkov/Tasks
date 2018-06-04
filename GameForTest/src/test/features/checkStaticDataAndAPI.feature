@@ -7,9 +7,6 @@ Feature: The data from API should be displayed in appropriate way
 
   Scenario Outline: As user I should see the data which corresponding from the RAIT static
 
-    #When I run JS file "LOL.js" and save response into "response.json"
-
-
     When I save values from the RAIT API
       | <name of user>     | riot_api_host_na1/lol/summoner/v3/summoners/by-name/Geei |
       | summoner.id        | #{id}                                                    |

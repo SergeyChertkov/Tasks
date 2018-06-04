@@ -17,6 +17,11 @@ public class AccountSettingsPage extends AbstractPage {
             put("Link Delete my account","//p[contains(.,'Delete my account')]");
             put("TextArea Leave comment","//textarea[@placeholder='Leave comment ...']");
             put("Button Delete", "//button[@type='submit']//p[contains(.,'Delete')]");
+
+            put("Input Old password", "//*[@id='oldPassword']");
+            put("Input New password", "//*[@id='newPassword']");
+            put("Input Repeat password", "//*[@id='repeatPassword']");
+            put("Button change password","//button[contains(@class,'change-password')]");
         }
     };
 
@@ -31,11 +36,12 @@ public class AccountSettingsPage extends AbstractPage {
 
     @Override
     public String getPageName() {
-        return URL;
+        String[] splittingClassName = this.getClass().toString().split("\\.");
+        return splittingClassName[splittingClassName.length - 1].toLowerCase();
     }
 
     @Override
     public String getUrl() {
-        return null;
+        return URL;
     }
 }

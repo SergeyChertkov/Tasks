@@ -27,11 +27,12 @@ public class PostGamePage extends AbstractPage {
 
     @Override
     public String getPageName() {
-        return URL;
+        String[] splittingClassName = this.getClass().toString().split("\\.");
+        return splittingClassName[splittingClassName.length - 1].toLowerCase();
     }
 
     @Override
     public String getUrl() {
-        return null;
+        return URL;
     }
 }

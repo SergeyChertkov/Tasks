@@ -216,16 +216,17 @@ Feature: The user management
   #-----------------------------------------------------------------------------------------------------------
   #
 
-  @active
   @positive_scenario
   Scenario Outline: As user I should be able to use the "Forgot" link from Log in form
   Validate that: The reset password functionality is working
   I should be able see email with new password
   I should be able to change the password
   I should be able to SingIn into portal with new password
+
     #register the user
     Given the "<browser for test>" browser is opened
     When I register the user "<user email>"
+
     #logout -> open and use the Forgot password form
     When I maximize the window size
     When I click on "Link Skip tutorial"
@@ -237,6 +238,7 @@ Feature: The user management
     When I input "<User email forgot password>" in "User email forgot password"
     When I click on "Button Get new password"
     Then close browser
+
     #validate the email on the message about changing password
     Given the "<browser for test>" browser is opened
     When I open the "Mailinator Page"
@@ -249,6 +251,7 @@ Feature: The user management
       | email body: reset password button   | displayed                                                                                                                                 |
     When I click on "email body: reset password button"
     When wait 5 sec
+
     #change and confirm changing password
     When I switch to tab "1"
     Then the page should be "Login Page"
@@ -258,6 +261,7 @@ Feature: The user management
     Then the following elements should be
       | NAME OF ELEMENTS                  | VALUE   |
       | Message Success changing password | SUCCESS |
+
     #try to login with password
     When I open the "Login page"
     When I input "<User email forgot password>" in "User name input"
@@ -267,6 +271,7 @@ Feature: The user management
     When I maximize the window size
     Then the page should be "GPI Page"
     And element "character name" should be "Geei"
+
     #delet current user
     Then I delete user who have been sign in
 
@@ -280,25 +285,50 @@ Feature: The user management
   #------------------------------------------------------------------------------------------------
   #
 
-  Scenario: User can enter his email. press "Get new password" button
-  Validate that: notification message displays:
-  SUCCESS
-  We've emailed you instructions for setting your password, if an account exists with the email you entered. You should receive them shortly.
-  If you don't receive an email, please make sure you've entered the address you registered with, and check your spam folder.
-  You can close this window"
+  @active
+  @positive_scenario
+  Scenario Outline: User can change his password in his profile page
+  Validate that: notification message is displayed
+  User is able to SignIn with new password
 
+    #register the user
+    Given the "<browser for test>" browser is opened
+    When I register the user "<user email>"
+    When I maximize the window size
 
-  Scenario: As user I enter correct value to both fields. Then press "Change password" button
-  Validate that: a message is ""SUCCESS Password has been changed. Go to login page."""
+    #change the password in My account settings
+    When I click on "Link Skip tutorial"
+    When I click on "account settings link"
+    When wait 2 sec
+    Then the page should be "Account settings page"
+    When I input "<user email>" in "Input Old password"
+    When I input "<new password>" in "Input New password"
+    When I input "<new password>" in "Input Repeat password"
+    When I click on "Button change password"
+    When I click on "logout link"
 
-  Scenario: As an user press "login" link from success message about change password
-  Validate that: a sign in screen opens
+    #try to login with password
+    When I open the "Login page"
+    When I input "<User email forgot password>" in "User name input"
+    When I input "<new password>" in "Pass input"
+    When I click on "Button Login"
+    Then wait 5 sec
+    When I maximize the window size
+    Then the page should be "GPI Page"
+    And element "character name" should be "Geei"
 
-  Scenario: As an user user logged in and open 2 or more tabs. user logged out in 1 tab.
-  open another tab and try open another page of app there
-  Validate that: user logged out from all tabs
+    #delete current user
+    Then I delete user who have been sign in
 
-  Scenario: As an user press "Delete your account" from user settings
-  Validate that: "pop-up displays with ask user to mark the cause of deletion of account
-  clarify texts"
+    Then close browser
+
+    Examples:
+      | browser for test | user email            | User email forgot password           | new password |
+      | Chrome           | mobalyticshq_Klym_278 | mobalyticshq_Klym_278@mailinator.com | newPassword  |
+
+  #
+  #-----------------------------------------------------------------------------------------------------
+  #
+
+  
 
