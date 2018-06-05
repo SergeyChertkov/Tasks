@@ -11,11 +11,11 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Objects;
 
-public class DriverFactory {
-    private static final String CHROME_DRIVER = "chrome";
-    private static final String FIREFOX_DRIVER = "firefox";
-    private static final String IE_DRIVER = "ie";
+import static driver.driver.Drivers.CHROME_DRIVER;
+import static driver.driver.Drivers.FIREFOX_DRIVER;
+import static driver.driver.Drivers.IE_DRIVER;
 
+public class DriverFactory {
     private DriverFactory() {
     }
 

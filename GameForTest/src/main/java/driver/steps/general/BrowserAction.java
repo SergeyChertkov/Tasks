@@ -5,10 +5,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import driver.driver.Drivers;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static driver.steps.Sites.getCurrentSite;
 
@@ -42,12 +38,7 @@ public class BrowserAction {
 
     @Then("^driver \"([^\"]*)\": close browser$")
     public static void closeBrowser(String driverName) {
-        WebDriver driver = Drivers.get(driverName);
-        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
-        for (String tab :
-                tabs) {
-            driver.switchTo().window(tab).close();
-        }
+        Drivers.get(driverName).quit();
         Drivers.put(driverName, null);
     }
 

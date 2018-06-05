@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Drivers {
+    static final String CHROME_DRIVER = "chrome";
+    static final String FIREFOX_DRIVER = "firefox";
+    static final String IE_DRIVER = "ie";
+
     public static final String DEFAULT_DRIVER_NAME = "default";
     private static Map<String, WebDriver> driversPool = new HashMap<>();
 
@@ -20,7 +24,7 @@ public class Drivers {
         if (get(name) != null) {
             throw new DriverException("Can not create browser. Browser with name '" + name + "' is already exist.");
         }
-        WebDriver driver = DriverFactory.create(browser);
+        WebDriver driver = BrowserStackDriverFactory.create(browser);
         put(name, driver);
     }
 
