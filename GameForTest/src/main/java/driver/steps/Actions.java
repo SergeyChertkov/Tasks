@@ -3,14 +3,15 @@ package driver.steps;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import driver.driver.Drivers;
+import driver.steps.general.BrowserAction;
 import driver.utils.User;
 import lol.MailinatorPage;
 
-import static driver.steps.BrowserAction.setDriver;
-import static driver.steps.BrowserAction.waitSec;
-import static driver.steps.SimpleAction.*;
-import static driver.steps.SimpleChecks.thePageShouldBe;
 import static driver.steps.Sites.lolSite;
+import static driver.steps.general.BrowserAction.setDriver;
+import static driver.steps.general.BrowserAction.waitSec;
+import static driver.steps.general.SimpleAction.*;
+import static driver.steps.general.SimpleChecks.thePageShouldBe;
 
 public class Actions {
 

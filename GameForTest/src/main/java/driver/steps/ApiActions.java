@@ -2,7 +2,8 @@ package driver.steps;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.en.When;
-import driver.api.steps.ApiSteps;
+import driver.api.ApiSteps;
+import driver.api.Settings;
 import driver.framework.Variables;
 import driver.utils.User;
 
@@ -19,7 +20,7 @@ public class ApiActions {
         String variableName;
         for (int i = 1; i < data.size(); i++) {
             variableName = data.get(i).get(0);
-            value = replaceElementsNamesOnApiValues(api, "#{" + data.get(i).get(1) + "}");
+            value = replaceElementsNamesOnApiValues(api, data.get(i).get(1));
             Variables.put(variableName, value);
         }
     }
@@ -28,23 +29,23 @@ public class ApiActions {
         ApiSteps api = new ApiSteps();
         api.disablePrint();
         User user = new User(userName);
-        api.saveToken(user.getRiotToken());
-        api.sentEndpointWithToken("get", Variables.replace(endpoint));
+        Settings settings = new Settings();
+        settings.setUrl(Variables.replace(endpoint)+"?api_key="+user.getRiotToken());
+        api.sentRequest("get",settings);
         return api;
     }
 
     static String replaceElementsNamesOnApiValues(ApiSteps api, String text) {
         String result = text;
         while (result.contains("#{")) {
-            int start = result.indexOf('{');
+            int start = result.indexOf("#{");
             int end = result.indexOf('}');
             if (start >= 0 && end > start) {
                 result = result.substring(0, start)
-                        + api.getElementValueFromResponse(result.substring(start + 3, end))
+                        + api.getElementValueFromResponse(result.substring(start + 2, end))
                         + result.substring(end + 1);
             }
         }
-        result = result.substring(1, result.length() - 1);
         return result;
     }
 }

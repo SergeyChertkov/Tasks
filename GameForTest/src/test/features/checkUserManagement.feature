@@ -216,6 +216,7 @@ Feature: The user management
   #-----------------------------------------------------------------------------------------------------------
   #
 
+  @active
   @positive_scenario
   Scenario Outline: As user I should be able to use the "Forgot" link from Log in form
   Validate that: The reset password functionality is working
@@ -225,8 +226,8 @@ Feature: The user management
 
     #register the user
     Given the "<browser for test>" browser is opened
-    When I register the user "<user email>"
-
+    When generate variable "registrationUser" with value "mobalytics_TIMESTAMP"
+    When I register the user "${registrationUser}"
     #logout -> open and use the Forgot password form
     When I maximize the window size
     When I click on "Link Skip tutorial"
@@ -235,14 +236,14 @@ Feature: The user management
     Then the page should be "Login page"
     Then I click on "Link for forgot-password"
     Then the page should be "Login page"
-    When I input "<User email forgot password>" in "User email forgot password"
+    When I input "${registrationUser}@mailinator.com" in "User email forgot password"
     When I click on "Button Get new password"
     Then close browser
 
     #validate the email on the message about changing password
     Given the "<browser for test>" browser is opened
     When I open the "Mailinator Page"
-    When I login on mailinator as "<user email>"
+    When I login on mailinator as "${registrationUser}"
     And I open mail by title "Forgot your Mobalytics password?"
     When I switch to frame "msg_body"
     Then the following elements should be
@@ -264,7 +265,7 @@ Feature: The user management
 
     #try to login with password
     When I open the "Login page"
-    When I input "<User email forgot password>" in "User name input"
+    When I input "${registrationUser}@mailinator.com" in "User name input"
     When I input "<new password>" in "Pass input"
     When I click on "Button Login"
     Then wait 5 sec
@@ -278,8 +279,8 @@ Feature: The user management
     Then close browser
 
     Examples:
-      | browser for test | user email            | User email forgot password           | new password |
-      | Chrome           | mobalyticshq_Klym_270 | mobalyticshq_Klym_270@mailinator.com | newPassword  |
+      | browser for test | new password |
+      | Chrome           | newPassword  |
 
   #
   #------------------------------------------------------------------------------------------------
@@ -330,5 +331,5 @@ Feature: The user management
   #-----------------------------------------------------------------------------------------------------
   #
 
-  
+
 

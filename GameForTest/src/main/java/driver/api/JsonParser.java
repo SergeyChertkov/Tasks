@@ -10,6 +10,51 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * element1.element2.element3 - return "value"
+ * this is example how to get value from element
+ *  {
+ *      "element1":{
+ *          "element2":{
+ *              "element3":"value"
+ *          }
+ *      }
+ *  }
+ *
+ * element1.[element2=value1].element3 - return "value4"
+ * this is example to get value from element when json have a few the same elements
+ *  {
+ *      "element1":{
+ *          "element2":"value1",
+ *          "element3":"value2"
+ *      },
+ *      "element1":{
+ *          "element2":"value3",
+ *          "element3":"value4"
+ *      }
+ *  }
+ *
+ * element.[2].child - return "value6"
+ * this is example to get value from element when json have an array of elements
+ *  {
+ *      "element":[
+ *      {
+ *          "element":"value1",
+ *          "child":"value2"
+ *      },
+ *      {
+ *          "element":"value3",
+ *          "child":"value4"
+ *      }
+ *      {
+ *          "element":"value5",
+ *          "child":"value6"
+ *      }
+ *      ]
+ *  }
+ *
+ * child_count() - return count of child elements
+ */
 public class JsonParser {
     private JsonNode json;
 
@@ -19,7 +64,7 @@ public class JsonParser {
     private static ObjectMapper mapper = new ObjectMapper();
 
 
-    public JsonParser(String str) {
+    JsonParser(String str) {
         name = "body";
         try {
             json = mapper.readTree(str);
@@ -36,6 +81,7 @@ public class JsonParser {
         getChilds();
     }
 
+    @SuppressWarnings("unused")
     boolean isElementPresent(String name) {
         return !json.findValues(name).isEmpty();
     }
@@ -108,7 +154,11 @@ public class JsonParser {
 
     @SuppressWarnings("unused")
     public JsonParser getElementWithChild(String name, String value) {
-        return getChilds(name).stream().filter(p -> Objects.equals(p.getValue(), value)).findFirst().orElse(null).getParent();
+        return Objects.requireNonNull(
+                getChilds(name).stream()
+                        .filter(p -> Objects.equals(p.getValue(), value))
+                        .findFirst().orElse(null))
+                .getParent();
     }
 
     private JsonParser getParent() {

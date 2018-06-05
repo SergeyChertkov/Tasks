@@ -1,19 +1,47 @@
-package driver.steps;
+package driver.steps.general;
 
 import cucumber.api.DataTable;
+import cucumber.api.Scenario;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.When;
 import driver.driver.Drivers;
 import driver.framework.Variables;
-import lol.LOLSite;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static driver.steps.BrowserAction.setDriver;
-import static driver.steps.Sites.lolSite;
+import static driver.steps.Sites.getCurrentSite;
+import static driver.steps.general.BrowserAction.setDriver;
 
 public class SimpleAction {
+    private static Scenario scenario;
+
+    @Before
+    public static void before(Scenario scenario) {
+        SimpleAction.scenario = scenario;
+    }
+
+    public static void printToReport(String text) {
+        scenario.write(text);
+    }
+
+    @When("^print value of variable \"([^\"]*)\"$")
+    public static void printValueOfVariable(String variableName) {
+        scenario.write(variableName + " = " + Variables.get(variableName));
+        System.out.println(variableName + " = " + Variables.get(variableName));
+    }
+
+    @When("^generate variable \"([^\"]*)\" with value \"([^\"]*)\"$")
+    public static void generateVariableWithValue(String variableName, String value) {
+        if(value.contains("TIMESTAMP")){
+            value = value.replaceAll("TIMESTAMP",
+                    new SimpleDateFormat("yyMMddHHmmss").format(new Date()));
+        }
+        Variables.put(variableName,value);
+        printValueOfVariable(variableName);
+    }
+
     @When("^I open the \"([^\"]*)\"$")
     public static void iOpenThe(String pageName) {
         iOpenThe(Drivers.DEFAULT_DRIVER_NAME, pageName);
@@ -26,15 +54,15 @@ public class SimpleAction {
 
     @When("^driver \"([^\"]*)\":I open new tab$")
     public static void iOpenNewTab(String driverName) {
-        lolSite = new LOLSite(Drivers.get(driverName));
-        lolSite.getCurrentPage().openNewTab();
+        getCurrentSite().setDriver(Drivers.get(driverName));
+        getCurrentSite().getCurrentPage().openNewTab();
     }
 
 
     @When("^driver \"([^\"]*)\": I open the \"([^\"]*)\"$")
     public static void iOpenThe(String driverName, String pageName) {
-        lolSite = new LOLSite(Drivers.get(driverName));
-        lolSite.getPage(pageName).open();
+        getCurrentSite().setDriver(Drivers.get(driverName));
+        getCurrentSite().getPage(pageName).open();
     }
 
     @When("^I input \"([^\"]*)\" in \"([^\"]*)\"$")
@@ -45,10 +73,7 @@ public class SimpleAction {
     @When("^^driver \"([^\"]*)\": I input \"([^\"]*)\" in \"([^\"]*)\"$")
     public static void iInputIn(String driverName, String value, String elementName) {
         setDriver(driverName);
-        //add timestamp for case in test set <timestamp>
-        value = value.replaceAll("<timestamp>",
-                new SimpleDateFormat("yyMMddHHmmss").format(new Date()));
-        lolSite.getCurrentPage().type(elementName, value);
+        getCurrentSite().getCurrentPage().type(elementName, value);
     }
 
     @When("^I click on \"([^\"]*)\"$")
@@ -59,7 +84,7 @@ public class SimpleAction {
     @When("^driver \"([^\"]*)\": I click on \"([^\"]*)\"$")
     public static void clickOn(String driverName, String element) {
         setDriver(driverName);
-        lolSite.getCurrentPage().clickOn(element);
+        getCurrentSite().getCurrentPage().clickOn(element);
     }
 
     @When("^I save value \"([^\"]*)\" to variable \"([^\"]*)\"$")
@@ -68,7 +93,7 @@ public class SimpleAction {
     }
 
     @When("^I save values \"([^\"]*)\" to variables \"([^\"]*)\"$")
-    public void iSaveValuesToVariables(DataTable dataTable) {
+    public static void iSaveValuesToVariables(DataTable dataTable) {
         List<List<String>> data = dataTable.raw();
         String value;
         String variableName;
