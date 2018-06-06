@@ -216,7 +216,7 @@ Feature: The user management
   #-----------------------------------------------------------------------------------------------------------
   #
 
-  @active
+  #@active
   @positive_scenario
   Scenario Outline: As user I should be able to use the "Forgot" link from Log in form
   Validate that: The reset password functionality is working
@@ -286,7 +286,7 @@ Feature: The user management
   #------------------------------------------------------------------------------------------------
   #
 
-  @active
+  #@active
   @positive_scenario
   Scenario Outline: User can change his password in his profile page
   Validate that: notification message is displayed

@@ -2,16 +2,17 @@
 # 28.05.2018
 
 @api
-Feature: The data from API should be displayed in appropriate way
+Feature: Stats site
 
+  @active
+  Scenario Outline: Testing the data on Stats side which corresponding from the RIOT static
 
-  Scenario Outline: As user I should see the data which corresponding from the RIOT static
-
+    Given generate variable "summoner" with value "<summoner>"
     When I save values from the RIOT API
-      | <name of user>     | riot_api_host_na1/lol/summoner/v3/summoners/by-name/Geei |
-      | summoner.id        | #{id}                                                    |
-      | summoner.name      | #{name}                                                  |
-      | summoner.accountId | #{accountId}                                             |
+      | <name of user>     | riot_api_host_na1/lol/summoner/v3/summoners/by-name/${summoner} |
+      | summoner.id        | #{id}                                                           |
+      | summoner.name      | #{name}                                                         |
+      | summoner.accountId | #{accountId}                                                    |
 
     When I save values from the RIOT API
       | <name of user>          | riot_api_host_na1/lol/league/v3/positions/by-summoner/${summoner.id} |
@@ -30,23 +31,18 @@ Feature: The data from API should be displayed in appropriate way
       | league.freshBlood       | #{[0].freshBlood}                                                    |
       | league.hotStreak        | #{[0].hotStreak}                                                     |
 
+
     Given the "<browser for test>" browser is opened
-    When I open the "Login page"
-    When I maximize the window size
-    When wait 2 sec
-    When login as "<name of user>"
-    Then the page should be "GPI Page"
-
-    And the following elements should be
-      | NAME OF ELEMENTS | VALUE                      |
-      | character name   | ${league.playerOrTeamName} |
-#      | number of wins   | ${league.wins}W            |
-
-#    Then close browser
+    When I open the "Stats Moba page"
+    When I input "${summoner}" in "Input Search"
+    When I click on "Button Go"
+    Then wait 20 sec
+    Then close browser
 
     Examples:
-      | browser for test | name of user |
-      | Chrome           | test_user_1  |
+      | browser for test | summoner                    |
+      | Chrome           | Geei                        |
+      | Chrome           | klym121212@mobalyticshq.com |
 
   #
   # -----------------------------------------------------------------------------------------------------------------

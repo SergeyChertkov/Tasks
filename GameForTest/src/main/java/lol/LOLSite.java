@@ -22,6 +22,8 @@ public class LOLSite extends AbstractSite {
     private MailinatorPage mailinatorPage;
     private ByeByePage byeByePage;
 
+    private StatsMobaPage statsMobaPage;
+
     static Map<String, String> ELEMENTS = new HashMap<String, String>() {
         {
             put("search link", "//*[@data-reactid='110']");
@@ -61,6 +63,8 @@ public class LOLSite extends AbstractSite {
         putPage(byeByePage);
         mailinatorPage = new MailinatorPage(driver);
         putPage(mailinatorPage);
+        statsMobaPage = new StatsMobaPage(driver);
+        putPage(searchPage);
     }
 
     public LOLSite login(User user) {
@@ -107,6 +111,9 @@ public class LOLSite extends AbstractSite {
             case MailinatorPage.URL2:
                 mailinatorPage.setDriver(driver);
                 return  mailinatorPage;
+            case StatsMobaPage.URL:
+                statsMobaPage.setDriver(driver);
+                return statsMobaPage;
             default:
                 return null;
         }
