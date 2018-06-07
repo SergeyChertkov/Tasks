@@ -68,6 +68,11 @@ public abstract class AbstractPage {
         return getElementByName(name).getText();
     }
 
+    public String getCountOfElement(String name) {
+        List<WebElement> allElements = getAllElementByName(name);
+        return String.valueOf(allElements.size());
+    }
+
     public AbstractPage openNewTab (){
         ((JavascriptExecutor)driver).executeScript("window.open('about:blank', '-blank')");
         //driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
@@ -94,6 +99,10 @@ public abstract class AbstractPage {
     public WebElement getElementByName(String name) {
         WebDriverWait webDreiverWait = new WebDriverWait(driver, 30);
         return webDreiverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(getEntryForElementName(name).getXPath())));
+    }
+
+    public List<WebElement> getAllElementByName(String name) {
+        return driver.findElements(By.xpath(getEntryForElementName(name).getXPath()));
     }
 
     public AbstractPage switchToFrame(String frameId) {

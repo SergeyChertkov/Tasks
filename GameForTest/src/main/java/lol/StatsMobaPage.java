@@ -10,13 +10,14 @@ import java.util.Map;
 
 ;
 
-public class StatsMobaPage extends AbstractPage {
-    public static final String URL = "http://stats.moba.live";
+    public class StatsMobaPage extends AbstractPage {
+    public static final String URL = "http://stats.moba.live/";
     private static Map<String, String> ELEMENTS = new HashMap<String, String>() {
         {
             put("Input Search","//input");
             put("Selector for region","//div[contains(@class, 'start-page-searchstyles__Region')]");
             put("Button Go", "//div[contains(@class, 'start-page-searchstyles__Region')]/../..//button");
+            put("All games block", "//div[contains(@class, 'gamestyles__GameBody')]");
         }
     };
 

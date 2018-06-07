@@ -73,7 +73,7 @@ public class SimpleAction {
     @When("^^driver \"([^\"]*)\": I input \"([^\"]*)\" in \"([^\"]*)\"$")
     public static void iInputIn(String driverName, String value, String elementName) {
         setDriver(driverName);
-        getCurrentSite().getCurrentPage().type(elementName, value);
+         getCurrentSite().getCurrentPage().type(elementName, value);
     }
 
     @When("^I click on \"([^\"]*)\"$")

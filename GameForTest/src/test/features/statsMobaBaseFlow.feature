@@ -36,13 +36,13 @@ Feature: Stats site
     When I open the "Stats Moba page"
     When I input "${summoner}" in "Input Search"
     When I click on "Button Go"
-    Then wait 20 sec
+    Then wait 10 sec
+    Then I validate that count of element "All games block" equals "20"
     Then close browser
 
     Examples:
-      | browser for test | summoner                    |
-      | Chrome           | Geei                        |
-      | Chrome           | klym121212@mobalyticshq.com |
+      | browser for test | summoner                    |name of user |
+      | Chrome           | Geei                        |test_user_1  |
 
   #
   # -----------------------------------------------------------------------------------------------------------------

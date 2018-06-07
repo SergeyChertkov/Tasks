@@ -86,4 +86,24 @@ public class SimpleChecks {
             elementShouldBe(driverName, elementName, expected);
         }
     }
+
+    @Then("^I validate that count of element \"([^\"]*)\" equals \"([^\"]*)\"$")
+    public static void validateCountOfElementEquals(String elementName, String expectedCountOfElement) {
+        validateCountOfElementEquals(Drivers.DEFAULT_DRIVER_NAME, elementName, expectedCountOfElement);
+    }
+
+    @Then("^driver \"([^\"]*)\": I validate that count of element \"([^\"]*)\" equals \"([^\"]*)\"$")
+    public static void validateCountOfElementEquals(String driverName, String elementName, String expectedCountOfElement) {
+        setDriver(driverName);
+        AbstractPage currentPage = getCurrentSite().getCurrentPage();
+        expectedCountOfElement = Variables.replace(expectedCountOfElement);
+
+        String actualResult = currentPage.getCountOfElement(elementName);
+
+        String message = " ---- \n The number of elements 'elementName' with Xpath '"
+                + currentPage.getElementByName(elementName) +"'\nExpected: " + expectedCountOfElement
+                + "\nActual: " + actualResult;
+
+        assertEquals(message, expectedCountOfElement, actualResult);
+    }
 }

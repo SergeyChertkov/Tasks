@@ -24,7 +24,7 @@ public class Drivers {
         if (get(name) != null) {
             throw new DriverException("Can not create browser. Browser with name '" + name + "' is already exist.");
         }
-        WebDriver driver = BrowserStackDriverFactory.create(browser);
+        WebDriver driver = DriverFactory.create(browser);
         put(name, driver);
     }
 
