@@ -32,6 +32,15 @@ public class SimpleAction {
         System.out.println(variableName + " = " + Variables.get(variableName));
     }
 
+    @When("^print values of variables$")
+    public static void printValuesOfVariables(DataTable dataTable) {
+        List<List<String>> data = dataTable.raw();
+        for (int i = 1; i < data.size(); i++) {
+            printValueOfVariable(data.get(i).get(0));
+        }
+    }
+
+
     @When("^generate variable \"([^\"]*)\" with value \"([^\"]*)\"$")
     public static void generateVariableWithValue(String variableName, String value) {
         if(value.contains("TIMESTAMP")){
@@ -40,6 +49,19 @@ public class SimpleAction {
         }
         Variables.put(variableName,value);
         printValueOfVariable(variableName);
+    }
+
+    @When("^generate variables with values$")
+    public static void generateVariablesWithValues(DataTable dataTable) {
+        List<List<String>> data = dataTable.raw();
+        String variableName;
+        String value;
+        for (int i = 1; i < data.size(); i++) {
+            List<String> raw = data.get(i);
+            variableName = raw.get(0);
+            value = raw.get(1);
+            generateVariableWithValue(variableName, value);
+        }
     }
 
     @When("^I open the \"([^\"]*)\"$")
