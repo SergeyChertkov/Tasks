@@ -32,7 +32,7 @@ public class LOLSite extends AbstractSite {
             put("post game link", "//*[@data-reactid='126']");
             put("dashboard link", "//*[@data-reactid='134']");
 
-            put("info menu link","//*[@data-reactid='144']");
+            put("info menu link", "//*[@data-reactid='144']");
             put("referral link", "//*[@data-reactid='147']");
             put("account settings link", "//*[@data-reactid='135']");//
             put("logout link", "//*[@data-reactid='140']");//
@@ -75,7 +75,12 @@ public class LOLSite extends AbstractSite {
 
     @Override
     public AbstractPage getCurrentPage() {
-        switch (driver.getCurrentUrl().split("\\?")[0]) {
+        String currentUrl = driver.getCurrentUrl().split("\\?")[0];
+        if (currentUrl.contains(StatsMobaPage.URL)) {
+            statsMobaPage.setDriver(driver);
+            return statsMobaPage;
+        }
+        switch (currentUrl) {
             case LoginPage.URL:
             case LoginPage.URL2:
                 loginPage.setDriver(driver);
@@ -110,10 +115,8 @@ public class LOLSite extends AbstractSite {
             case MailinatorPage.URL:
             case MailinatorPage.URL2:
                 mailinatorPage.setDriver(driver);
-                return  mailinatorPage;
-            case StatsMobaPage.URL:
-                statsMobaPage.setDriver(driver);
-                return statsMobaPage;
+                return mailinatorPage;
+
             default:
                 return null;
         }
