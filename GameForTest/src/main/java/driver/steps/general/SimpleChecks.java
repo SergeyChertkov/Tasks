@@ -98,7 +98,7 @@ public class SimpleChecks {
         AbstractPage currentPage = getCurrentSite().getCurrentPage();
         expectedCountOfElement = Variables.replace(expectedCountOfElement);
 
-        String actualResult = currentPage.getCountOfElement(elementName);
+        String actualResult = currentPage.getCountOfElements(elementName);
 
         String message = " ---- \n The number of elements 'elementName' with Xpath '"
                 + currentPage.getElementByName(elementName) +"'\nExpected: " + expectedCountOfElement

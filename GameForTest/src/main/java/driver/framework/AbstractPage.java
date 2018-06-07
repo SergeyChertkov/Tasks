@@ -68,8 +68,8 @@ public abstract class AbstractPage {
         return getElementByName(name).getText();
     }
 
-    public String getCountOfElement(String name) {
-        List<WebElement> allElements = getAllElementByName(name);
+    public String getCountOfElements(String name) {
+        List<WebElement> allElements = getElementsByName(name);
         return String.valueOf(allElements.size());
     }
 
@@ -101,7 +101,7 @@ public abstract class AbstractPage {
         return webDreiverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(getEntryForElementName(name).getXPath())));
     }
 
-    public List<WebElement> getAllElementByName(String name) {
+    public List<WebElement> getElementsByName(String name) {
         return driver.findElements(By.xpath(getEntryForElementName(name).getXPath()));
     }
 

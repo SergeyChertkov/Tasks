@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Variables {
+    private static final String START_OF_VARIABLE_NAME = "${";
+    private static final String START_OF_CONFIG_NAME = "@{";
+    private static final String END_OF_NAME = "}";
+
     private Variables() {
     }
 
@@ -19,11 +23,17 @@ public class Variables {
         vars.put(name, value);
     }
 
-    public static String replace(String text){
+    public static String replace(String text) {
+        String result = replaceFromVariables(text);
+        result = replaceFromConfig(result);
+        return result;
+    }
+
+    private static String replaceFromVariables(String text) {
         String result = text;
-        while (result.contains("${")) {
-            int start = result.indexOf("${");
-            int end = result.indexOf('}');
+        while (result.contains(START_OF_VARIABLE_NAME)) {
+            int start = result.indexOf(START_OF_VARIABLE_NAME);
+            int end = result.indexOf(END_OF_NAME);
             if (start >= 0 && end > start) {
                 result = result.substring(0, start)
                         + Variables.get(result.substring(start + 2, end))
@@ -33,11 +43,11 @@ public class Variables {
         return result;
     }
 
-    private static String replaceFromConfig(String text){
+    private static String replaceFromConfig(String text) {
         String result = text;
-        while (result.contains("@{")) {
-            int start = result.indexOf("@{");
-            int end = result.indexOf('}');
+        while (result.contains(START_OF_CONFIG_NAME)) {
+            int start = result.indexOf(START_OF_CONFIG_NAME);
+            int end = result.indexOf(END_OF_NAME);
             if (start >= 0 && end > start) {
                 result = result.substring(0, start)
                         + Property.get(result.substring(start + 2, end))
