@@ -64,7 +64,7 @@ public class LOLSite extends AbstractSite {
         mailinatorPage = new MailinatorPage(driver);
         putPage(mailinatorPage);
         statsMobaPage = new StatsMobaPage(driver);
-        putPage(searchPage);
+        putPage(statsMobaPage);
     }
 
     public LOLSite login(User user) {
