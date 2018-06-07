@@ -1,6 +1,5 @@
 package lol;
 
-import cucumber.api.java.en_old.Ac;
 import driver.framework.AbstractPage;
 import driver.framework.AbstractSite;
 import driver.utils.User;
