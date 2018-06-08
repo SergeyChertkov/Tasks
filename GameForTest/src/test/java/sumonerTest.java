@@ -20,6 +20,7 @@ import java.util.Set;
 public class sumonerTest {
 
     String PERSONAL_KEY = "RGAPI-7d903f2e-a342-470b-9887-6f3ae1372ddb";
+    String SUMMONER_NAME = "geei";
 
     public sumonerTest() {
     }
@@ -39,7 +40,7 @@ public class sumonerTest {
         ApiConfig config = new ApiConfig().setKey(PERSONAL_KEY);
         RiotApi api = new RiotApi(config);
 
-        Summoner summoner = api.getSummonerByName(Platform.NA, "geei");
+        Summoner summoner = api.getSummonerByName(Platform.NA, SUMMONER_NAME);
         System.out.println("Name: " + summoner.getName());
         System.out.println("Summoner ID: " + summoner.getId());
         System.out.println("Account ID: " + summoner.getAccountId());
@@ -53,24 +54,26 @@ public class sumonerTest {
         RiotApi api = new RiotApi(config);
 
         // First we need to request the summoner because we will need it's account ID
-        Summoner summoner = api.getSummonerByName(Platform.NA, "tryndamere");
+        Summoner summoner = api.getSummonerByName(Platform.NA, SUMMONER_NAME);
 
         // Then we can use the account ID to request the summoner's match list
         MatchList matchList = api.getMatchListByAccountId(Platform.NA, summoner.getAccountId());
 
         System.out.println("Total Games in requested match list: " + matchList.getTotalGames());
 
-        Map<String,Integer> counterOfQueue = new HashMap<>();
+        Map<Integer,Integer> counterOfQueue = new HashMap<>();
 
         // We can now iterate over the match list to access the data
         if (matchList.getMatches() != null) {
             for (MatchReference match : matchList.getMatches()) {
-                //System.out.println("GameID: " + match.getGameId());
-                if ( counterOfQueue.containsKey(String.valueOf(match.getQueue())) ) {
-                    int currentValue = counterOfQueue.get(String.valueOf(match.getQueue()));
-                    counterOfQueue.replace(String.valueOf(match.getQueue()), currentValue++);
+                System.out.println(" GameID:" + match.getQueue()
+                        //+" Role: " + match.getRole()
+                        );
+                if ( counterOfQueue.containsKey(match.getQueue()) ) {
+                    int currentValue = counterOfQueue.get(match.getQueue());
+                    counterOfQueue.replace(match.getQueue(), ++currentValue);
                 }else {
-                    counterOfQueue.put(String.valueOf(match.getQueue()), 1);
+                    counterOfQueue.put(match.getQueue(), 1);
                 }
 
             }
@@ -85,4 +88,6 @@ public class sumonerTest {
             System.out.println(mentry.getValue());
         }
     }
+
+
 }
