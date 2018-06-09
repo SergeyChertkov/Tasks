@@ -25,7 +25,7 @@ public class ApiActions {
         }
     }
 
-    private static ApiSteps getApiData(String userName, String endpoint) {
+    public static ApiSteps getApiData(String userName, String endpoint) {
         ApiSteps api = new ApiSteps();
         api.disablePrint();
         User user = new User(userName);
@@ -35,7 +35,7 @@ public class ApiActions {
         return api;
     }
 
-    static String replaceElementsNamesOnApiValues(ApiSteps api, String text) {
+    public static String replaceElementsNamesOnApiValues(ApiSteps api, String text) {
         String result = text;
         while (result.contains("#{")) {
             int start = result.indexOf("#{");

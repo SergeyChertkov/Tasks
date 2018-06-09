@@ -4,7 +4,7 @@
 @api
 Feature: Stats site
 
-  @active
+
   Scenario Outline: Testing the data on Stats side which corresponding from the RIOT static
 
     Given generate variable "summoner" with value "<summoner>"
@@ -41,9 +41,36 @@ Feature: Stats site
     Then close browser
 
     Examples:
-      | browser for test | summoner                    |name of user |
-      | Chrome           | Geei                        |test_user_1  |
+      | browser for test | summoner | name of user |
+      | Chrome           | Geei     | test_user_1  |
+
+
 
   #
   # -----------------------------------------------------------------------------------------------------------------
   #
+
+
+  @active
+  Scenario Outline: I validate case SS-PO-240 from the test scenarios
+
+    Given the "<browser for test>" browser is opened
+
+    Given I gathering data about summoner with name "<summoner>" from platform "NA" as "<name of user>" user
+
+    When I open the "Stats Moba page"
+    When I input "<summoner>" in "Input Search"
+    When I click on "Button Go"
+    Then wait 10 sec
+    Then the following elements should be
+      | NAME OF ELEMENTS            | VALUE               |
+      | TIER STATS: number of wins  | ${0.league.wins}W   |
+      | TIER STATS: number of loses | ${0.league.losses}L |
+
+    Then close browser
+
+    Examples:
+      | browser for test | summoner | name of user |
+      | Chrome           | 54B0MB99 | test_user_1  |
+      | Chrome           | Ssenkcys | test_user_1  |
+

@@ -18,6 +18,8 @@ import java.util.Map;
             put("Selector for region","//div[contains(@class, 'start-page-searchstyles__Region')]");
             put("Button Go", "//div[contains(@class, 'start-page-searchstyles__Region')]/../..//button");
             put("All games block", "//div[contains(@class, 'gamestyles__GameBody')]");
+            put("TIER STATS: number of wins","//div[contains(@class, 'game-typestyles')]//p[2]");
+            put("TIER STATS: number of loses", "//div[contains(@class, 'game-typestyles')]//p[3]");
         }
     };
 

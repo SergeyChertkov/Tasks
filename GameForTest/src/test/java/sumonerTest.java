@@ -1,5 +1,7 @@
 
+import net.rithms.riot.api.endpoints.league.dto.LeaguePosition;
 import net.rithms.riot.api.endpoints.match.dto.MatchList;
+import net.rithms.riot.api.endpoints.match.dto.MatchPosition;
 import net.rithms.riot.api.endpoints.match.dto.MatchReference;
 import org.junit.After;
 import org.junit.Before;
@@ -19,8 +21,9 @@ import java.util.Set;
 
 public class sumonerTest {
 
-    String PERSONAL_KEY = "RGAPI-7d903f2e-a342-470b-9887-6f3ae1372ddb";
-    String SUMMONER_NAME = "geei";
+    String PERSONAL_KEY = "RGAPI-c7758423-bd64-40d5-bf2d-1d14c19c903a";
+    String SUMMONER_NAME = "54b0mb99";
+    Platform  PLATFORM = Platform.NA;
 
     public sumonerTest() {
     }
@@ -40,7 +43,7 @@ public class sumonerTest {
         ApiConfig config = new ApiConfig().setKey(PERSONAL_KEY);
         RiotApi api = new RiotApi(config);
 
-        Summoner summoner = api.getSummonerByName(Platform.NA, SUMMONER_NAME);
+        Summoner summoner = api.getSummonerByName(PLATFORM, SUMMONER_NAME);
         System.out.println("Name: " + summoner.getName());
         System.out.println("Summoner ID: " + summoner.getId());
         System.out.println("Account ID: " + summoner.getAccountId());
@@ -54,10 +57,10 @@ public class sumonerTest {
         RiotApi api = new RiotApi(config);
 
         // First we need to request the summoner because we will need it's account ID
-        Summoner summoner = api.getSummonerByName(Platform.NA, SUMMONER_NAME);
+        Summoner summoner = api.getSummonerByName(PLATFORM, SUMMONER_NAME);
 
         // Then we can use the account ID to request the summoner's match list
-        MatchList matchList = api.getMatchListByAccountId(Platform.NA, summoner.getAccountId());
+        MatchList matchList = api.getMatchListByAccountId(PLATFORM, summoner.getAccountId());
 
         System.out.println("Total Games in requested match list: " + matchList.getTotalGames());
 
@@ -66,9 +69,9 @@ public class sumonerTest {
         // We can now iterate over the match list to access the data
         if (matchList.getMatches() != null) {
             for (MatchReference match : matchList.getMatches()) {
-                System.out.println(" GameID:" + match.getQueue()
-                        //+" Role: " + match.getRole()
-                        );
+                //System.out.println(" GameID:" + match.getQueue()
+                //        +" Role: " + match.getRole()
+                //        );
                 if ( counterOfQueue.containsKey(match.getQueue()) ) {
                     int currentValue = counterOfQueue.get(match.getQueue());
                     counterOfQueue.replace(match.getQueue(), ++currentValue);
@@ -87,6 +90,17 @@ public class sumonerTest {
             System.out.print("key is: "+ mentry.getKey() + " & Value is: ");
             System.out.println(mentry.getValue());
         }
+
+        Set<LeaguePosition> matchPositionList =  api.getLeaguePositionsBySummonerId(PLATFORM, summoner.getId());
+        // We can now iterate over the match list to access the data
+        for (LeaguePosition leaguePosition: matchPositionList
+             ) {
+            System.out.println("------");
+            System.out.println("leaguePosition.getLeaguePoints() - " + leaguePosition.getLeaguePoints());
+            System.out.println("leaguePosition.getLosses() - " + leaguePosition.getLosses());
+
+        }
+        System.out.println("matchPosition ---  " + api.getLeaguePositionsBySummonerId(PLATFORM, summoner.getId()).toString());
     }
 
 
