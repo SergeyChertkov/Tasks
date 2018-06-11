@@ -20,6 +20,9 @@ public class LOLSite extends AbstractSite {
     private AccountSettingsPage accountSettingsPage;
     private MailinatorPage mailinatorPage;
     private ByeByePage byeByePage;
+    private BlogPage blogPage;
+    private DownloadPage downloadPage;
+    private ProvingGroundPage provingGroundPage;
 
     private StatsMobaPage statsMobaPage;
 
@@ -64,6 +67,12 @@ public class LOLSite extends AbstractSite {
         putPage(mailinatorPage);
         statsMobaPage = new StatsMobaPage(driver);
         putPage(statsMobaPage);
+        provingGroundPage = new ProvingGroundPage(driver);
+        putPage(provingGroundPage);
+        blogPage = new BlogPage(driver);
+        putPage(blogPage);
+        downloadPage = new DownloadPage(driver);
+        putPage(downloadPage);
     }
 
     public LOLSite login(User user) {
@@ -115,6 +124,15 @@ public class LOLSite extends AbstractSite {
             case MailinatorPage.URL2:
                 mailinatorPage.setDriver(driver);
                 return mailinatorPage;
+            case ProvingGroundPage.URL:
+                provingGroundPage.setDriver(driver);
+                return  provingGroundPage;
+            case DownloadPage.URL:
+                downloadPage.setDriver(driver);
+                return downloadPage;
+            case BlogPage.URL:
+                blogPage.setDriver(driver);
+                return blogPage;
 
             default:
                 return null;

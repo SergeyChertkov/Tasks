@@ -33,6 +33,24 @@ public class StatsMobaElements {
         }
     };
 
+    static Map<String, String> SIGN_IN_POPUP = new HashMap<String, String>() {
+        {
+            put("sign-in popup email", "//input[@id='email']");
+            put("sign-in popup password", "//input[@id='password']");
+            put("sign-in popup title", "//p[contains(@class, 'authstyles__HeaderTitle')]");
+            //самый ужасный xpath!!!
+            put("sign-in close", "//*[@version='1.1']");
+        }
+    };
+
+    static Map<String, String> SEARCH_POPUP = new HashMap<String, String>() {
+        {
+            put("search popup message: What are you trying to find", "//*[text()='What are you trying to find?']");
+        }
+    };
+
+
+
     private StatsMobaElements() {
     }
 }

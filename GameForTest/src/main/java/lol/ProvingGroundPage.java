@@ -8,24 +8,15 @@ import org.openqa.selenium.WebDriver;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StatsMobaPage extends AbstractPage {
-    public static final String URL = "http://stats.moba.live/";
+public class ProvingGroundPage extends AbstractPage {
+    public static final String URL = "https://pg.mobalytics.gg/";
     private static Map<String, String> ELEMENTS = new HashMap<String, String>() {
         {
-            putAll(StatsMobaElements.HOME_PAGE);
-            putAll(StatsMobaElements.NAVBAR);
-            putAll(StatsMobaElements.SIGN_IN_POPUP);
-            putAll(StatsMobaElements.SEARCH_POPUP);
-
-            put("Summoner Name","//p[@class='profilestyles__SummonerNameStyled-s16k19pv-8 Ccbde']");
-
-            put("All games block", "//div[contains(@class, 'gamestyles__GameBody')]");
-            put("TIER STATS: number of wins", "//div[contains(@class, 'game-typestyles')]//p[2]");
-            put("TIER STATS: number of loses", "//div[contains(@class, 'game-typestyles')]//p[3]");
+            putAll(LOLSite.ELEMENTS);
         }
     };
 
-    StatsMobaPage(WebDriver driver) {
+    ProvingGroundPage(WebDriver driver) {
         super(driver);
     }
 
