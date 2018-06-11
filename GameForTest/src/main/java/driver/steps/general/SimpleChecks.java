@@ -39,7 +39,7 @@ public class SimpleChecks {
         setDriver(driverName);
         AbstractPage currentPage = getCurrentSite().getCurrentPage();
         expectedValue = Variables.replace(expectedValue);
-        String message = " ---- \n The element with Xpath " + currentPage.getElementByName(elementName)
+        String message = " ---- \n The element with Xpath " + currentPage.getEntryForElementName(elementName).getXPath()
                 + "\nElement '" + elementName;
         switch (expectedValue) {
             case "present":

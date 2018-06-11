@@ -74,3 +74,75 @@ Feature: Stats site
       | Chrome           | 54B0MB99 | test_user_1  |
       | Chrome           | Ssenkcys | test_user_1  |
 
+
+
+  #
+  # -----------------------------------------------------------------------------------------------------------------
+  #
+
+
+  @active
+  Scenario Outline: I validate cases SS-H-260, SS-H-270, SS-N-120
+
+    Given the "<browser for test>" browser is opened
+
+    Given generate variables with values
+      | NAME OF VARIABLES    | VALUE    |
+      | summoner.name        | 54B0MB99 |
+      | summoner.notFullName | 54B0MB9  |
+
+  #SS-H-260
+    When I open the "Stats Moba page"
+    When I input "${summoner.name}" in "Input Search"
+    Then the following elements should be
+      | NAME OF ELEMENTS | VALUE            |
+      | What we found    | ${summoner.name} |
+      | Recent           | not present      |
+    When I click on "What we found"
+    Then the following elements should be
+      | NAME OF ELEMENTS | VALUE            |
+      | Summoner Name    | ${summoner.name} |
+
+    When I open the "Stats Moba page"
+    When I input "${summoner.name}" in "Input Search"
+    Then the following elements should be
+      | NAME OF ELEMENTS | VALUE            |
+      | What we found    | ${summoner.name} |
+      | Recent           | ${summoner.name} |
+    When I click on "Recent"
+    Then the following elements should be
+      | NAME OF ELEMENTS | VALUE            |
+      | Summoner Name    | ${summoner.name} |
+
+  #SS-N-120
+    Then the following elements should be
+      | NAME OF ELEMENTS          | VALUE          |
+      | navbar homepage link      | displayed      |
+      | navbar Download link      | DOWNLOAD       |
+      | navbar ProvingGround link | PROVING GROUND |
+      | navbar Blog link          | BLOG           |
+
+      | navbar Profile link       | Profile        |
+      | navbar GPI link           | GPI            |
+      | navbar PreGame link       | Pre Game        |
+      | navbar PostGame link      | Post Game       |
+
+      | navbar search link        | displayed      |
+      | navbar login button       | displayed      |
+
+  #SS-H-270 - BUG FOUND
+    When I open the "Stats Moba page"
+    When I input "${summoner.notFullName}" in "Input Search"
+    Then the following elements should be
+      | NAME OF ELEMENTS | VALUE            |
+      | What we found    | ${summoner.name} |
+    When I click on "What we found"
+    Then the following elements should be
+      | NAME OF ELEMENTS | VALUE            |
+      | Summoner Name    | ${summoner.name} |
+
+    Then close browser
+
+    Examples:
+      | browser for test |
+      | Chrome           |

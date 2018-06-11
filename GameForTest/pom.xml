@@ -104,13 +104,18 @@
         </dependency>
 
         <!-- riot-api-java -->
-    <dependency>
-        <groupId>com.merakianalytics.orianna</groupId>
-        <artifactId>orianna</artifactId>
-        <version>3.0.3-SNAPSHOT</version>
-        <!-- or, for Android: -->
-    </dependency>
-</dependencies>
+        <dependency>
+            <groupId>com.merakianalytics.orianna</groupId>
+            <artifactId>orianna</artifactId>
+            <version>3.0.3-SNAPSHOT</version>
+            <!-- or, for Android: -->
+        </dependency>
+        <dependency>
+            <groupId>com.github.taycaldwell</groupId>
+            <artifactId>riot-api-java</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+    </dependencies>
 
     <repositories>
         <repository>

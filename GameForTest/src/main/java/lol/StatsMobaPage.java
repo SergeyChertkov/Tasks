@@ -8,17 +8,17 @@ import org.openqa.selenium.WebDriver;
 import java.util.HashMap;
 import java.util.Map;
 
-;
-
-    public class StatsMobaPage extends AbstractPage {
+public class StatsMobaPage extends AbstractPage {
     public static final String URL = "http://stats.moba.live/";
     private static Map<String, String> ELEMENTS = new HashMap<String, String>() {
         {
-            put("Input Search","//input");
-            put("Selector for region","//div[contains(@class, 'start-page-searchstyles__Region')]");
-            put("Button Go", "//div[contains(@class, 'start-page-searchstyles__Region')]/../..//button");
+            putAll(StatsMobaElements.HOME_PAGE);
+            putAll(StatsMobaElements.NAVBAR);
+
+            put("Summoner Name","//p[@class='profilestyles__SummonerNameStyled-s16k19pv-8 Ccbde']");
+
             put("All games block", "//div[contains(@class, 'gamestyles__GameBody')]");
-            put("TIER STATS: number of wins","//div[contains(@class, 'game-typestyles')]//p[2]");
+            put("TIER STATS: number of wins", "//div[contains(@class, 'game-typestyles')]//p[2]");
             put("TIER STATS: number of loses", "//div[contains(@class, 'game-typestyles')]//p[3]");
         }
     };
