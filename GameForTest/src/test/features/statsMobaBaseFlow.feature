@@ -356,8 +356,27 @@ Feature: Stats site
     When I input "${summoner.name}" in "Input Search"
     When I click on "Button Go"
     Then the following elements should be
-      | NAME OF ELEMENTS    | VALUE     |
-      | champions table[20] | displayed |
+      | NAME OF ELEMENTS            | VALUE     |
+      | champions table[1] win lost | 4/7/3     |
+      | champions table[2] win lost | 1/4/13    |
+      | champions table[3] win lost | 4/7/1     |
+      | champions table[4] win lost | 19/3/2    |
+      | champions table[5] win lost | 15/2/11   |
+      | champions table[6]          | displayed |
+      | champions table[7]          | displayed |
+      | champions table[8]          | displayed |
+      | champions table[9]          | displayed |
+      | champions table[10]         | displayed |
+      | champions table[11]         | displayed |
+      | champions table[12]         | displayed |
+      | champions table[13]         | displayed |
+      | champions table[14]         | displayed |
+      | champions table[15]         | displayed |
+      | champions table[16]         | displayed |
+      | champions table[17]         | displayed |
+      | champions table[18]         | displayed |
+      | champions table[19]         | displayed |
+      | champions table[20]         | displayed |
 
     Examples:
       | browser for test |
