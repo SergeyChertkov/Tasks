@@ -1,5 +1,7 @@
 package lol;
 
+import cucumber.api.java.it.Ma;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,9 +55,26 @@ public class StatsMobaElements {
         {
             put("profile summoner name", "//*[contains(@class, 'profilestyles__SummonerName')]");
             put("profile icon", "//*[contains(@class, 'profilestyles__SummonerIcon')]//img");
+            put("profile button refresh", "//*[contains(@class, 'summoner-data-loaderstyles__RefreshButtonLabel')]");
+            put("profile message data load", "//*[contains(@class, 'summoner-data-loaderstyles__MessageText')]");
         }
     };
 
-        private StatsMobaElements() {
+    static Map<String, String> GPI = new HashMap<String, String>() {
+        {
+            put("gpi radar", "//*[contains(@class, 'gpi-radarstyles__GpiRadar')]");
+            put("gpi link Learn more", "//*[contains(@class, 'gpi-radarstyles__GpiLinkLabel')]");
+            put("gpi role", "//*[contains(@class, 'gpi-radarstyles__GpiRole')]");
         }
+    };
+
+    static Map<String, String> TIER = new HashMap<String, String>() {
+        {
+            put("tier chart", "//*[contains(@class, 'game-types-overview')]//*[@id='chart']");
+            put("tier rank progress banner", "//*[contains(@class, 'game-types-overviewstyles__LadderRankProgressBanner')]");
+        }
+    };
+
+    private StatsMobaElements() {
     }
+}

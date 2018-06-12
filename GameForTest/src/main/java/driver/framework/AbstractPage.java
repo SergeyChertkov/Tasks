@@ -69,7 +69,7 @@ public abstract class AbstractPage {
     }
 
     public String getValueOfTagForElement (String tagName, String elementName){
-        return null;
+        return getElementByName(elementName).getAttribute(tagName);
     }
 
     public String getCountOfElements(String name) {

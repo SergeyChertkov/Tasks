@@ -34,17 +34,17 @@ public class SimpleChecks {
         tagsOfElementShouldBe(Drivers.DEFAULT_DRIVER_NAME, tagName, elementName, expectedValue);
     }
 
-    @Then("^driver \"([^\"]*)\": element \"([^\"]*)\" should be \"([^\"]*)\"$")
+    @Then("^driver \"([^\"]*)\": tag \"([^\"]*)\" of element \"([^\"]*)\" should be \"([^\"]*)\"$")
     public static void tagsOfElementShouldBe(String driverName, String tagName, String elementName, String expectedValue) {
         setDriver(driverName);
         AbstractPage currentPage = getCurrentSite().getCurrentPage();
         expectedValue = Variables.replace(expectedValue);
         String actualResult = currentPage.getValueOfTagForElement(tagName, elementName);
-        String message = " ---- \n The tag '" + tagName + "' of element with Xpath "
-                + currentPage.getEntryForElementName(elementName).getXPath()
-                + "\nElement '" + elementName
-                + "' expected '" + expectedValue + "', but actual is '" + actualResult + "'"
-                + "\nActual: " + actualResult + ";\n" + "Expected: " + expectedValue + ";\n";
+        String message = " ---- \n The tag '" + tagName + "' of element '"+elementName+"' with Xpath "
+                + currentPage.getEntryForElementName(elementName).getXPath() +" expected '" + expectedValue
+                + "', but actual is '" + actualResult + "'"
+                + "\nActual: " + actualResult
+                + ";\n" + "Expected: " + expectedValue + ";\n";
 
 
         if (expectedValue.equalsIgnoreCase("empty")) {

@@ -295,9 +295,11 @@ Feature: Stats site
 
     Given the "<browser for test>" browser is opened
     Given generate variables with values
-      | NAME OF VARIABLES | VALUE                                             |
-      | summoner.name     | 54B0MB99                                          |
-      | summoner.icon     | https://cdn.moba.live/static/profileicon/1590.png |
+      | NAME OF VARIABLES                | VALUE                                             |
+      | summoner.name                    | 54B0MB99                                          |
+      | summoner.icon                    | https://cdn.moba.live/static/profileicon/1590.png |
+      | summoner.tier.is_chart_displayed | displayed                                         |
+      | summoner.tier.is_ranker_banner   | not displayed                                     |
 
     #SS-PO-110
     When I open the "Stats Moba page"
@@ -306,12 +308,33 @@ Feature: Stats site
     Then the following elements should be
       | NAME OF ELEMENTS      | VALUE            |
       | profile summoner name | ${summoner.name} |
+    When I click on "profile button refresh"
+    When wait 5 sec
+    Then the following elements should be
+      | NAME OF ELEMENTS          | VALUE                      |
+      | profile message data load | Updated: a few seconds ago |
+
+    #SS-PO-120
     Then the following tags for next elements should be
       | NAME OF ELEMENTS | TAGS NAMES | VALUE            |
-      | profile icon     | src        | ${summoner.name} |
+      | profile icon     | src        | ${summoner.icon} |
+
+    #SS-PO-240
+    Then the following elements should be
+      | NAME OF ELEMENTS    | VALUE     |
+      | gpi radar           | displayed |
+      | gpi link Learn more | displayed |
+      | gpi role            | mid       |
+
+    #SS-PO-320
+    Then the following elements should be
+      | NAME OF ELEMENTS          | VALUE                               |
+      | tier chart                | ${summoner.tier.is_chart_displayed} |
+      | tier rank progress banner | ${summoner.tier.is_ranker_banner}   |
 
 
-    #SS-PO-110
+
+    
 
     #SS-PO-620, SS-PO-650 should be done by David
 

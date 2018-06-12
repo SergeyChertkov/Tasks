@@ -17,6 +17,8 @@ public class StatsMobaPage extends AbstractPage {
             putAll(StatsMobaElements.SIGN_IN_POPUP);
             putAll(StatsMobaElements.SEARCH_POPUP);
             putAll(StatsMobaElements.PROFILE);
+            putAll(StatsMobaElements.GPI);
+            putAll(StatsMobaElements.TIER);
 
             put("Summoner Name","//p[@class='profilestyles__SummonerNameStyled-s16k19pv-8 Ccbde']");
 
