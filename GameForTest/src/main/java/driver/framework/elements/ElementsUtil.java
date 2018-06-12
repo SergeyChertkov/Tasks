@@ -16,8 +16,12 @@ public class ElementsUtil {
         if (xpath == null) {
             throw new ElementException("Cannot find entry for fieldName: '" + fieldNameToFindWithReplacedVariables + "'");
         }
-        if (prepareXpath.getInserts().length > 0)
-            return new DynamicXpath(String.format(xpath, (Object[]) prepareXpath.getInserts()));
+        if (prepareXpath.getInserts().length > 0) {
+            xpath = String.format(xpath, (Object[]) prepareXpath.getInserts());
+        }
+        for (int i = 0; prepareXpath.getIndexes().length > i; i++) {
+            xpath = xpath.replaceFirst("\\[index]", "[index=" + prepareXpath.getIndexes()[i] + "]");
+        }
         return new DynamicXpath(xpath);
     }
 }

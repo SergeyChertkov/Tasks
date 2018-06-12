@@ -75,6 +75,12 @@ public class StatsMobaElements {
         }
     };
 
+    static Map<String, String> CHAMPIONS = new HashMap<String, String>() {
+        {
+            put("champions table", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')][index]");
+        }
+    };
+
     private StatsMobaElements() {
     }
 }

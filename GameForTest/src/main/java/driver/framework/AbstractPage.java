@@ -68,7 +68,7 @@ public abstract class AbstractPage {
         return getElementByName(name).getText();
     }
 
-    public String getValueOfTagForElement (String tagName, String elementName){
+    public String getValueOfTagForElement(String tagName, String elementName) {
         return getElementByName(elementName).getAttribute(tagName);
     }
 
@@ -77,8 +77,8 @@ public abstract class AbstractPage {
         return String.valueOf(allElements.size());
     }
 
-    public AbstractPage openNewTab (){
-        ((JavascriptExecutor)driver).executeScript("window.open('about:blank', '-blank')");
+    public AbstractPage openNewTab() {
+        ((JavascriptExecutor) driver).executeScript("window.open('about:blank', '-blank')");
         //driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
         return this;
     }
@@ -102,7 +102,28 @@ public abstract class AbstractPage {
 
     public WebElement getElementByName(String name) {
         WebDriverWait webDreiverWait = new WebDriverWait(driver, 30);
-        return webDreiverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(getEntryForElementName(name).getXPath())));
+        String xpath = getEntryForElementName(name).getXPath();
+        WebElement element = null;
+
+        String xpathForSearch;
+        int index;
+        while (xpath.contains("[index=")) {
+            int indexStart = xpath.indexOf("[index=") + 7;
+            int indexEnd = indexStart + xpath.substring(indexStart).indexOf("]");
+            xpathForSearch = xpath.substring(0, indexStart - 7);
+            index = Integer.valueOf(xpath.substring(indexStart, indexEnd));
+            if (element == null) {
+                element = driver.findElements(By.xpath(xpathForSearch)).get(index - 1);
+            } else {
+                element = element.findElements(By.xpath(xpathForSearch)).get(index - 1);
+            }
+            xpath = xpath.substring(indexEnd);
+        }
+        if (element == null) {
+            return webDreiverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(getEntryForElementName(name).getXPath())));
+        } else {
+            return element;
+        }
     }
 
     public List<WebElement> getElementsByName(String name) {

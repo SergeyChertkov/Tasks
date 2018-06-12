@@ -341,3 +341,24 @@ Feature: Stats site
     Examples:
       | browser for test |
       | Chrome           |
+
+  @active
+  Scenario Outline: I validate cases elements on the Summoner Profile Overview2:
+  SS-PO-1110
+
+    Given the "<browser for test>" browser is opened
+    Given generate variables with values
+      | NAME OF VARIABLES | VALUE    |
+      | summoner.name     | 54B0MB99 |
+
+#SS-PO-1110
+    When I open the "Stats Moba page"
+    When I input "${summoner.name}" in "Input Search"
+    When I click on "Button Go"
+    Then the following elements should be
+      | NAME OF ELEMENTS    | VALUE     |
+      | champions table[20] | displayed |
+
+    Examples:
+      | browser for test |
+      | Chrome           |

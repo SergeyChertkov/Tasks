@@ -17,10 +17,11 @@ public class StatsMobaPage extends AbstractPage {
             putAll(StatsMobaElements.SIGN_IN_POPUP);
             putAll(StatsMobaElements.SEARCH_POPUP);
             putAll(StatsMobaElements.PROFILE);
+            putAll(StatsMobaElements.CHAMPIONS);
             putAll(StatsMobaElements.GPI);
             putAll(StatsMobaElements.TIER);
 
-            put("Summoner Name","//p[@class='profilestyles__SummonerNameStyled-s16k19pv-8 Ccbde']");
+            put("Summoner Name", "//p[@class='profilestyles__SummonerNameStyled-s16k19pv-8 Ccbde']");
 
             put("All games block", "//div[contains(@class, 'gamestyles__GameBody')]");
             put("TIER STATS: number of wins", "//div[contains(@class, 'game-typestyles')]//p[2]");
