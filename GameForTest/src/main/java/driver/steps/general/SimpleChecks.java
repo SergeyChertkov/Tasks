@@ -29,6 +29,32 @@ public class SimpleChecks {
         assertEquals(message, expected, actual);
     }
 
+    @Then("^tag \"([^\"]*)\" of element \"([^\"]*)\" should be \"([^\"]*)\"$")
+    public static void tagsOfElementShouldBe(String tagName, String elementName, String expectedValue) {
+        tagsOfElementShouldBe(Drivers.DEFAULT_DRIVER_NAME, tagName, elementName, expectedValue);
+    }
+
+    @Then("^driver \"([^\"]*)\": element \"([^\"]*)\" should be \"([^\"]*)\"$")
+    public static void tagsOfElementShouldBe(String driverName, String tagName, String elementName, String expectedValue) {
+        setDriver(driverName);
+        AbstractPage currentPage = getCurrentSite().getCurrentPage();
+        expectedValue = Variables.replace(expectedValue);
+        String actualResult = currentPage.getValueOfTagForElement(tagName, elementName);
+        String message = " ---- \n The tag '" + tagName + "' of element with Xpath "
+                + currentPage.getEntryForElementName(elementName).getXPath()
+                + "\nElement '" + elementName
+                + "' expected '" + expectedValue + "', but actual is '" + actualResult + "'"
+                + "\nActual: " + actualResult + ";\n" + "Expected: " + expectedValue + ";\n";
+
+
+        if (expectedValue.equalsIgnoreCase("empty")) {
+            expectedValue = "";
+        }
+
+        assertEquals(message, expectedValue, actualResult);
+
+    }
+
     @Then("^element \"([^\"]*)\" should be \"([^\"]*)\"$")
     public static void elementShouldBe(String elementName, String expectedValue) {
         elementShouldBe(Drivers.DEFAULT_DRIVER_NAME, elementName, expectedValue);
@@ -69,6 +95,26 @@ public class SimpleChecks {
         }
     }
 
+    @Then("^the following tags for next elements should be$")
+    public static void followingTagsOfElementsShouldBe(DataTable dataTable) {
+        followingTagsOfElementsShouldBe(Drivers.DEFAULT_DRIVER_NAME, dataTable);
+    }
+
+    @Then("^driver \"([^\"]*)\": the following tags for next elements should be$")
+    public static void followingTagsOfElementsShouldBe(String driverName, DataTable dataTable) {
+        List<List<String>> data = dataTable.raw();
+        String elementName;
+        String expected;
+        String tagsName;
+        for (int i = 1; i < data.size(); i++) {
+            List<String> raw = data.get(i);
+            elementName = raw.get(0);
+            tagsName = raw.get(1);
+            expected = raw.get(2);
+            tagsOfElementShouldBe(driverName, tagsName, elementName, expected);
+        }
+    }
+
     @Then("^the following elements should be$")
     public static void followingElementsShouldBe(DataTable dataTable) {
         followingElementsShouldBe(Drivers.DEFAULT_DRIVER_NAME, dataTable);
@@ -101,7 +147,7 @@ public class SimpleChecks {
         String actualResult = currentPage.getCountOfElements(elementName);
 
         String message = " ---- \n The number of elements 'elementName' with Xpath '"
-                + currentPage.getElementByName(elementName) +"'\nExpected: " + expectedCountOfElement
+                + currentPage.getElementByName(elementName) + "'\nExpected: " + expectedCountOfElement
                 + "\nActual: " + actualResult;
 
         assertEquals(message, expectedCountOfElement, actualResult);

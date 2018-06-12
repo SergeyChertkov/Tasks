@@ -68,6 +68,10 @@ public abstract class AbstractPage {
         return getElementByName(name).getText();
     }
 
+    public String getValueOfTagForElement (String tagName, String elementName){
+        return null;
+    }
+
     public String getCountOfElements(String name) {
         List<WebElement> allElements = getElementsByName(name);
         return String.valueOf(allElements.size());

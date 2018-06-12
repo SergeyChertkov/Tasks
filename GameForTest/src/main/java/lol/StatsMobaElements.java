@@ -49,8 +49,13 @@ public class StatsMobaElements {
         }
     };
 
+    static Map<String, String> PROFILE = new HashMap<String, String>() {
+        {
+            put("profile summoner name", "//*[contains(@class, 'profilestyles__SummonerName')]");
+            put("profile icon", "//*[contains(@class, 'profilestyles__SummonerIcon')]//img");
+        }
+    };
 
-
-    private StatsMobaElements() {
+        private StatsMobaElements() {
+        }
     }
-}

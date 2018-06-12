@@ -136,7 +136,6 @@ Feature: Stats site
   #
 
 
-  @active
   Scenario Outline: I validate cases elements on the Navbar:
   SS-N-120, SS-N-130, SS-N-140, SS-N-150, SS-N-160, SS-N-170
   SS-N-180, SS-N-190, SS-N-200, SS-N-210, SS-N-220
@@ -253,7 +252,7 @@ Feature: Stats site
     Given wait 2 sec
     When I open the "Stats Moba page"
     Then the following elements should be
-      | NAME OF ELEMENTS    | VALUE     |
+      | NAME OF ELEMENTS     | VALUE     |
       | navbar Download link | displayed |
     When I click on "navbar Download link"
     Then the page should be "Download page"
@@ -262,7 +261,7 @@ Feature: Stats site
     Given wait 2 sec
     When I open the "Stats Moba page"
     Then the following elements should be
-      | NAME OF ELEMENTS    | VALUE     |
+      | NAME OF ELEMENTS          | VALUE     |
       | navbar ProvingGround link | displayed |
     When I click on "navbar ProvingGround link"
     Then the page should be "Proving Ground page"
@@ -271,12 +270,50 @@ Feature: Stats site
     Given wait 2 sec
     When I open the "Stats Moba page"
     Then the following elements should be
-      | NAME OF ELEMENTS    | VALUE     |
+      | NAME OF ELEMENTS | VALUE     |
       | navbar Blog link | displayed |
     When I click on "navbar Blog link"
     Then the page should be "Blog page"
 
     Then close browser
+
+    Examples:
+      | browser for test |
+      | Chrome           |
+
+
+  #
+  # -----------------------------------------------------------------------------------------------------------------
+  #
+
+
+  @active
+  Scenario Outline: I validate cases elements on the Summoner Profile Overview:
+  SS-PO-110, SS-PO-120, SS-PO-240, SS-PO-320, SS-PO-410, SS-PO-460, SS-PO-500,
+  SS-PO-620, SS-PO-650, SS-PO-720, SS-PO-730, SS-PO-790, SS-PO-820, SS-PO-860,
+  SS-PO-930, SS-PO-980, SS-PO-1020, SS-PO-1040, SS-PO-1050, SS-PO-1070, SS-PO-1080, SS-PO-1110
+
+    Given the "<browser for test>" browser is opened
+    Given generate variables with values
+      | NAME OF VARIABLES | VALUE                                             |
+      | summoner.name     | 54B0MB99                                          |
+      | summoner.icon     | https://cdn.moba.live/static/profileicon/1590.png |
+
+    #SS-PO-110
+    When I open the "Stats Moba page"
+    When I input "${summoner.name}" in "Input Search"
+    When I click on "Button Go"
+    Then the following elements should be
+      | NAME OF ELEMENTS      | VALUE            |
+      | profile summoner name | ${summoner.name} |
+    Then the following tags for next elements should be
+      | NAME OF ELEMENTS | TAGS NAMES | VALUE            |
+      | profile icon     | src        | ${summoner.name} |
+
+
+    #SS-PO-110
+
+    #SS-PO-620, SS-PO-650 should be done by David
 
     Examples:
       | browser for test |
