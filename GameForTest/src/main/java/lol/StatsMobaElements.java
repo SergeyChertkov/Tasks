@@ -78,6 +78,8 @@ public class StatsMobaElements {
     static Map<String, String> CHAMPIONS = new HashMap<String, String>() {
         {
             put("champions table", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')][index]");
+            put("champions table queue type", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__GameTypeStyled-s8vmmnq-3 gQDtwr'][index]");
+            put("champions table role", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//span[@class='gamestyles__ChampionRoleNameStyled-s8vmmnq-10 BLaHC'][index]");
             put("champions table win lost", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='kdastyles__FullKdaValueStyled-cu2d9x-2 jjDlFf'][index]");
             put("champions table KDA", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='kdastyles__ShortKdaValueStyled-cu2d9x-3 bDPTqj'][index]");
             put("champions table CS", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__CreepScoreStyled-s8vmmnq-23 eMfAMg'][index]");

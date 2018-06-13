@@ -357,126 +357,166 @@ Feature: Stats site
     When I click on "Button Go"
     And wait 5 sec
     Then the following elements should be
-      | NAME OF ELEMENTS             | VALUE     |
-      | champions table[1]           | displayed |
-      | champions table[1] win lost  | 4/7/3     |
-      | champions table[1] KDA       | 1.00      |
-      | champions table[1] CS        | 95 CS     |
-      | champions table[1] KP        | 20% KP    |
+      | NAME OF ELEMENTS               | VALUE           |
+      | champions table[1]             | displayed       |
+      | champions table[1] queue type  | RANKED SOLO/DUO |
+      | champions table[1] role        | JUNGLE          |
+      | champions table[1] win lost    | 4/7/3           |
+      | champions table[1] KDA         | 1.00            |
+      | champions table[1] CS          | 95 CS           |
+      | champions table[1] KP          | 20% KP          |
 
-      | champions table[2]           | displayed |
-      | champions table[2] win lost  | 1/4/13    |
-      | champions table[2] KDA       | 3.50      |
-      | champions table[2] CS        | 33 CS     |
-      | champions table[2] KP        | 5% KP     |
+      | champions table[2]             | displayed       |
+      | champions table[2] queue type  | RANKED SOLO/DUO |
+      | champions table[2] role        | SUPPORT         |
+      | champions table[2] win lost    | 1/4/13          |
+      | champions table[2] KDA         | 3.50            |
+      | champions table[2] CS          | 33 CS           |
+      | champions table[2] KP          | 5% KP           |
 
-      | champions table[3]           | displayed |
-      | champions table[3] win lost  | 4/7/1     |
-      | champions table[3] KDA       | 0.71      |
-      | champions table[3] CS        | 300 CS    |
-      | champions table[3] KP        | 50% KP    |
+      | champions table[3]             | displayed       |
+      | champions table[3] queue type  | CLASH           |
+      | champions table[3] role        | MID             |
+      | champions table[3] win lost    | 4/7/1           |
+      | champions table[3] KDA         | 0.71            |
+      | champions table[3] CS          | 300 CS          |
+      | champions table[3] KP          | 50% KP          |
 
-      | champions table[4]           | displayed |
-      | champions table[4] win lost  | 19/3/2    |
-      | champions table[4] KDA       | 7.00      |
-      | champions table[4] CS        | 259 CS    |
-      | champions table[4] KP        | 58% KP    |
+      | champions table[4]             | displayed       |
+      | champions table[4] queue type  | RANKED FLEX     |
+      | champions table[4] role        | MID             |
+      | champions table[4] win lost    | 19/3/2          |
+      | champions table[4] KDA         | 7.00            |
+      | champions table[4] CS          | 259 CS          |
+      | champions table[4] KP          | 58% KP          |
 
-      | champions table[5]           | displayed |
-      | champions table[5] win lost  | 15/2/11   |
-      | champions table[5] KDA       | 13.00     |
-      | champions table[5] CS        | 202 CS    |
-      | champions table[5] KP        | 48% KP    |
+      | champions table[5]             | displayed       |
+      | champions table[5] queue type  | CLASH           |
+      | champions table[5] role        | MID             |
+      | champions table[5] win lost    | 15/2/11         |
+      | champions table[5] KDA         | 13.00           |
+      | champions table[5] CS          | 202 CS          |
+      | champions table[5] KP          | 48% KP          |
 
-      | champions table[6]           | displayed |
-      | champions table[6] win lost  | 10/0/8    |
-      | champions table[6] KDA       | PERFECT   |
-      | champions table[6] CS        | 250 CS    |
-      | champions table[6] KP        | 40% KP    |
+      | champions table[6]             | displayed       |
+      | champions table[6] queue type  | CLASH           |
+      | champions table[6] role        | MID             |
+      | champions table[6] win lost    | 10/0/8          |
+      | champions table[6] KDA         | PERFECT         |
+      | champions table[6] CS          | 250 CS          |
+      | champions table[6] KP          | 40% KP          |
 
-      | champions table[7]           | displayed |
-      | champions table[7] win lost  | 14/2/8    |
-      | champions table[7] KDA       | 11.00     |
-      | champions table[7] CS        | 267 CS    |
-      | champions table[7] KP        | 45% KP    |
+      | champions table[7]             | displayed       |
+      | champions table[7] queue type  | RANKED FLEX     |
+      | champions table[7] role        | MID             |
+      | champions table[7] win lost    | 14/2/8          |
+      | champions table[7] KDA         | 11.00           |
+      | champions table[7] CS          | 267 CS          |
+      | champions table[7] KP          | 45% KP          |
 
-      | champions table[8]           | displayed |
-      | champions table[8] win lost  | 11/4/9    |
-      | champions table[8] KDA       | 5.00      |
-      | champions table[8] CS        | 188 CS    |
-      | champions table[8] KP        | 34% KP    |
+      | champions table[8]             | displayed       |
+      | champions table[8] queue type  | RANKED FLEX     |
+      | champions table[8] role        | TOP             |
+      | champions table[8] win lost    | 11/4/9          |
+      | champions table[8] KDA         | 5.00            |
+      | champions table[8] CS          | 188 CS          |
+      | champions table[8] KP          | 34% KP          |
 
-      | champions table[9]           | displayed |
-      | champions table[9] win lost  | 14/4/13   |
-      | champions table[9] KDA       | 6.75      |
-      | champions table[9] CS        | 197 CS    |
-      | champions table[9] KP        | 30% KP    |
+      | champions table[9]             | displayed       |
+      | champions table[9] queue type  | RANKED FLEX     |
+      | champions table[9] role        | TOP             |
+      | champions table[9] win lost    | 14/4/13         |
+      | champions table[9] KDA         | 6.75            |
+      | champions table[9] CS          | 197 CS          |
+      | champions table[9] KP          | 30% KP          |
 
-      | champions table[10]          | displayed |
-      | champions table[10] win lost | 7/1/6     |
-      | champions table[10] KDA      | 13.00     |
-      | champions table[10] CS       | 187 CS    |
-      | champions table[10] KP       | 33% KP    |
+      | champions table[10]            | displayed       |
+      | champions table[10] queue type | RANKED SOLO/DUO |
+      | champions table[10] role       | JUNGLE          |
+      | champions table[10] win lost   | 7/1/6           |
+      | champions table[10] KDA        | 13.00           |
+      | champions table[10] CS         | 187 CS          |
+      | champions table[10] KP         | 33% KP          |
 
-      | champions table[11]          | displayed |
-      | champions table[11] win lost | 4/3/2     |
-      | champions table[11] KDA      | 2.00      |
-      | champions table[11] CS       | 123 CS    |
-      | champions table[11] KP       | 24% KP    |
+      | champions table[11]            | displayed       |
+      | champions table[11] queue type | RANKED SOLO/DUO |
+      | champions table[11] role       | JUNGLE          |
+      | champions table[11] win lost   | 4/3/2           |
+      | champions table[11] KDA        | 2.00            |
+      | champions table[11] CS         | 123 CS          |
+      | champions table[11] KP         | 24% KP          |
 
-      | champions table[12]          | displayed |
-      | champions table[12] win lost | 4/5/27    |
-      | champions table[12] KDA      | 6.20      |
-      | champions table[12] CS       | 33 CS     |
-      | champions table[12] KP       | 10% KP    |
+      | champions table[12]            | displayed       |
+      | champions table[12] queue type | RANKED SOLO/DUO |
+      | champions table[12] role       | SUPPORT         |
+      | champions table[12] win lost   | 4/5/27          |
+      | champions table[12] KDA        | 6.20            |
+      | champions table[12] CS         | 33 CS           |
+      | champions table[12] KP         | 10% KP          |
 
-      | champions table[13]          | displayed |
-      | champions table[13] win lost | 2/5/5     |
-      | champions table[13] KDA      | 1.40      |
-      | champions table[13] CS       | 48 CS     |
-      | champions table[13] KP       | 14% KP    |
+      | champions table[13]            | displayed       |
+      | champions table[13] queue type | RANKED SOLO/DUO |
+      | champions table[13] role       | SUPPORT         |
+      | champions table[13] win lost   | 2/5/5           |
+      | champions table[13] KDA        | 1.40            |
+      | champions table[13] CS         | 48 CS           |
+      | champions table[13] KP         | 14% KP          |
 
-      | champions table[14]          | displayed |
-      | champions table[14] win lost | 4/8/10    |
-      | champions table[14] KDA      | 1.75      |
-      | champions table[14] CS       | 231 CS    |
-      | champions table[14] KP       | 13% KP    |
+      | champions table[14]            | displayed       |
+      | champions table[14] queue type | RANKED SOLO/DUO |
+      | champions table[14] role       | JUNGLE          |
+      | champions table[14] win lost   | 4/8/10          |
+      | champions table[14] KDA        | 1.75            |
+      | champions table[14] CS         | 231 CS          |
+      | champions table[14] KP         | 13% KP          |
 
-      | champions table[15]          | displayed |
-      | champions table[15] win lost | 5/2/6     |
-      | champions table[15] KDA      | 5.50      |
-      | champions table[15] CS       | 163 CS    |
-      | champions table[15] KP       | 19% KP    |
+      | champions table[15]            | displayed       |
+      | champions table[15] queue type | RANKED SOLO/DUO |
+      | champions table[15] role       | JUNGLE          |
+      | champions table[15] win lost   | 5/2/6           |
+      | champions table[15] KDA        | 5.50            |
+      | champions table[15] CS         | 163 CS          |
+      | champions table[15] KP         | 19% KP          |
 
-      | champions table[16]          | displayed |
-      | champions table[16] win lost | 14/6/5    |
-      | champions table[16] KDA      | 3.17      |
-      | champions table[16] CS       | 267 CS    |
-      | champions table[16] KP       | 45% KP    |
+      | champions table[16]            | displayed       |
+      | champions table[16] queue type | RANKED FLEX     |
+      | champions table[16] role       | JUNGLE          |
+      | champions table[16] win lost   | 14/6/5          |
+      | champions table[16] KDA        | 3.17            |
+      | champions table[16] CS         | 267 CS          |
+      | champions table[16] KP         | 45% KP          |
 
-      | champions table[17]          | displayed |
-      | champions table[17] win lost | 8/1/19    |
-      | champions table[17] KDA      | 27.00     |
-      | champions table[17] CS       | 33 CS     |
-      | champions table[17] KP       | 23% KP    |
+      | champions table[17]            | displayed       |
+      | champions table[17] queue type | RANKED FLEX     |
+      | champions table[17] role       | SUPPORT         |
+      | champions table[17] win lost   | 8/1/19          |
+      | champions table[17] KDA        | 27.00           |
+      | champions table[17] CS         | 33 CS           |
+      | champions table[17] KP         | 23% KP          |
 
-      | champions table[18]          | displayed |
-      | champions table[18] win lost | 3/0/5     |
-      | champions table[18] KDA      | PERFECT   |
-      | champions table[18] CS       | 113 CS    |
-      | champions table[18] KP       | 23% KP    |
+      | champions table[18]            | displayed       |
+      | champions table[18] queue type | RANKED FLEX     |
+      | champions table[18] role       | JUNGLE          |
+      | champions table[18] win lost   | 3/0/5           |
+      | champions table[18] KDA        | PERFECT         |
+      | champions table[18] CS         | 113 CS          |
+      | champions table[18] KP         | 23% KP          |
 
-      | champions table[19]          | displayed |
-      | champions table[19] win lost | 11/1/9    |
-      | champions table[19] KDA      | 20.00     |
-      | champions table[19] CS       | 254 CS    |
-      | champions table[19] KP       | 28% KP    |
+      | champions table[19]            | displayed       |
+      | champions table[19] queue type | RANKED FLEX     |
+      | champions table[19] role       | ADC             |
+      | champions table[19] win lost   | 11/1/9          |
+      | champions table[19] KDA        | 20.00           |
+      | champions table[19] CS         | 254 CS          |
+      | champions table[19] KP         | 28% KP          |
 
-      | champions table[20]          | displayed |
-      | champions table[20] win lost | 2/9/14    |
-      | champions table[20] KDA      | 1.78      |
-      | champions table[20] CS       | 109 CS    |
-      | champions table[20] KP       | 9% KP     |
+      | champions table[20]            | displayed       |
+      | champions table[20] queue type | RANKED SOLO/DUO |
+      | champions table[20] role       | JUNGLE          |
+      | champions table[20] win lost   | 2/9/14          |
+      | champions table[20] KDA        | 1.78            |
+      | champions table[20] CS         | 109 CS          |
+      | champions table[20] KP         | 9% KP           |
 
     Then close browser
 
