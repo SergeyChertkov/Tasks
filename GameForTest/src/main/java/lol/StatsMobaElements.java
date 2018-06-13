@@ -75,7 +75,7 @@ public class StatsMobaElements {
         }
     };
 
-    static Map<String, String> CHAMPIONS = new HashMap<String, String>() {
+    static Map<String, String> MATCH_HISTORY = new HashMap<String, String>() {
         {
             put("champions table", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')][index]");
             put("champions table queue type", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__GameTypeStyled-s8vmmnq-3 gQDtwr'][index]");
@@ -84,6 +84,16 @@ public class StatsMobaElements {
             put("champions table KDA", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='kdastyles__ShortKdaValueStyled-cu2d9x-3 bDPTqj'][index]");
             put("champions table CS", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__CreepScoreStyled-s8vmmnq-23 eMfAMg'][index]");
             put("champions table KP", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__KillParticipationStyled-s8vmmnq-24 ebjDcd'][index]");
+        }
+    };
+
+    static Map<String, String> RECENT_BLOCK = new HashMap<String, String>() {
+        {
+            put("recent top", "//div[@class='stats-linestyles__StatsLineWrapperStyled-s1xf1032-0 edyqtO']");
+            put("recent top role wins","//div[@class='stats-linestyles__TopChampionsCellStyled-s1xf1032-19 cXbKkY']/div[%s]//span[@class='stats-linestyles__WinsStyled-s1xf1032-6 kmiDmv']");
+            put("recent top role lost","//div[@class='stats-linestyles__TopChampionsCellStyled-s1xf1032-19 cXbKkY']/div[%s]//span[@class='stats-linestyles__LossesStyled-s1xf1032-8 gIZAhX']");
+            put("recent top role win to lost","//div[@class='stats-linestyles__TopChampionsCellStyled-s1xf1032-19 cXbKkY']/div[%s]//span[@class='stats-linestyles__WhiteTextStyled-s1xf1032-9 wWvos']");
+            put("recent top role KDA KP","//div[@class='stats-linestyles__TopChampionsCellStyled-s1xf1032-19 cXbKkY']/div[%s]//span[@class='stats-linestyles__KdaKpStyled-s1xf1032-18 iDaqfs']");
         }
     };
 
