@@ -117,7 +117,10 @@ public abstract class AbstractPage {
             } else {
                 element = element.findElements(By.xpath(xpathForSearch)).get(index - 1);
             }
-            xpath = xpath.substring(indexEnd);
+            xpath = xpath.substring(indexEnd+1);
+            if(xpath.length()>0 && !xpath.contains("[index=")){
+                element = element.findElements(By.xpath(xpath)).get(index - 1);
+            }
         }
         if (element == null) {
             return webDreiverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(getEntryForElementName(name).getXPath())));

@@ -27,7 +27,7 @@ public class PrepareXpath {
         indexes = new String[countOfInserts];
         for (int i = 0; i < countOfInserts; i++) {
             indexes[i] = splittingName[2*i+1].substring(0,splittingName[2*i+1].indexOf(insertEnd));
-            name = splittingName[2*i];
+            name = splittingName[2*i]+splittingName[2*i+1].substring(splittingName[2*i+1].indexOf(insertEnd)+1);
         }
     }
 
