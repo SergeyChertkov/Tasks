@@ -75,25 +75,34 @@ public class StatsMobaElements {
         }
     };
 
+    static Map<String, String> CHAMPION_STATISTICS = new HashMap<String, String>() {
+        {
+            put("champion stat Name", "//p[@class='s1negosu-0 gcfbKS'][index]");
+            put("champion stat Games", "//p[@class='s1negosu-0 ldRMgo'][index]");
+            put("champion stat Win Rate", "//p[contains(@class,'champions-statisticstyles__WinRateStyled-vz9d5e-5')][index]");
+            put("champion stat KDA", "//p[@class='s1negosu-0 fxSMYG'][index]");
+        }
+    };
+
     static Map<String, String> MATCH_HISTORY = new HashMap<String, String>() {
         {
             put("champions table", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')][index]");
             put("champions table queue type", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__GameTypeStyled-s8vmmnq-3 gQDtwr'][index]");
-            put("champions table role", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//span[@class='gamestyles__ChampionRoleNameStyled-s8vmmnq-10 BLaHC'][index]");
-            put("champions table win lost", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='kdastyles__FullKdaValueStyled-cu2d9x-2 jjDlFf'][index]");
-            put("champions table KDA", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='kdastyles__ShortKdaValueStyled-cu2d9x-3 bDPTqj'][index]");
-            put("champions table CS", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__CreepScoreStyled-s8vmmnq-23 eMfAMg'][index]");
-            put("champions table KP", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__KillParticipationStyled-s8vmmnq-24 ebjDcd'][index]");
+            put("champions table role", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//span[@class='gamestyles__ChampionRoleNameStyled-s8vmmnq-11 kcfJzl'][index]");
+            put("champions table win lost", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='kdastyles__FullKdaValueStyled-cu2d9x-2 cfYbcV'][index]");
+            put("champions table KDA", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='kdastyles__ShortKdaValueStyled-cu2d9x-3 EaMnl'][index]");
+            put("champions table CS", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__CreepScoreStyled-s8vmmnq-24 bUDwGK'][index]");
+            put("champions table KP", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__KillParticipationStyled-s8vmmnq-25 cPUsui'][index]");
         }
     };
 
     static Map<String, String> RECENT_BLOCK = new HashMap<String, String>() {
         {
             put("recent top", "//div[@class='stats-linestyles__StatsLineWrapperStyled-s1xf1032-0 edyqtO']");
-            put("recent top role wins","//div[@class='stats-linestyles__TopChampionsCellStyled-s1xf1032-19 cXbKkY']/div[%s]//span[@class='stats-linestyles__WinsStyled-s1xf1032-6 kmiDmv']");
-            put("recent top role lost","//div[@class='stats-linestyles__TopChampionsCellStyled-s1xf1032-19 cXbKkY']/div[%s]//span[@class='stats-linestyles__LossesStyled-s1xf1032-8 gIZAhX']");
-            put("recent top role win to lost","//div[@class='stats-linestyles__TopChampionsCellStyled-s1xf1032-19 cXbKkY']/div[%s]//span[@class='stats-linestyles__WhiteTextStyled-s1xf1032-9 wWvos']");
-            put("recent top role KDA KP","//div[@class='stats-linestyles__TopChampionsCellStyled-s1xf1032-19 cXbKkY']/div[%s]//span[@class='stats-linestyles__KdaKpStyled-s1xf1032-18 iDaqfs']");
+            put("recent top role wins","//div[@class='stats-linestyles__ChampionStatsWrapperStyled-s1xf1032-3 gdkWrX'][%s]//span[@class='stats-linestyles__WinsStyled-s1xf1032-7 jLPUAy']");
+            put("recent top role lost","//div[@class='stats-linestyles__ChampionStatsWrapperStyled-s1xf1032-3 gdkWrX'][%s]//span[@class='stats-linestyles__LossesStyled-s1xf1032-9 hVJyQN']");
+            put("recent top role win to lost","//div[@class='stats-linestyles__ChampionStatsWrapperStyled-s1xf1032-3 gdkWrX'][%s]//span[@class='stats-linestyles__WhiteTextStyled-s1xf1032-10 digHQv']");
+            put("recent top role KDA KP","//div[@class='stats-linestyles__ChampionStatsWrapperStyled-s1xf1032-3 gdkWrX'][%s]//span[@class='stats-linestyles__KdaKpStyled-s1xf1032-19 kfOTTO']");
         }
     };
 

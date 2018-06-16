@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StatsMobaPage extends AbstractPage {
-    public static final String URL = "http://stats.moba.live/";
+    public static final String URL = "https://stats.moba.live/";
     private static Map<String, String> ELEMENTS = new HashMap<String, String>() {
         {
             putAll(StatsMobaElements.HOME_PAGE);
@@ -17,6 +17,7 @@ public class StatsMobaPage extends AbstractPage {
             putAll(StatsMobaElements.SIGN_IN_POPUP);
             putAll(StatsMobaElements.SEARCH_POPUP);
             putAll(StatsMobaElements.PROFILE);
+            putAll(StatsMobaElements.CHAMPION_STATISTICS);
             putAll(StatsMobaElements.MATCH_HISTORY);
             putAll(StatsMobaElements.RECENT_BLOCK);
             putAll(StatsMobaElements.GPI);

@@ -494,18 +494,31 @@ Feature: Stats site
       | firstCampion.lost        | 2               |
       | firstCampion.winsToLost  | 34              |
       | firstCampion.KDA         | 2.89            |
-      | firstCampion.KP          | 0.44%           |
+      | firstCampion.KP          | 44.07%          |
 
-      | secondCampion.wins       | 2               |
-      | secondCampion.lost       | 0               |
-      | secondCampion.winsToLost | 100             |
-      | secondCampion.KDA        | 6.60            |
-      | secondCampion.KP         | 0.62%           |
+      | secondCampion.wins       | 1               |
+      | secondCampion.lost       | 1               |
+      | secondCampion.winsToLost | 50              |
+      | secondCampion.KDA        | 3.80            |
+      | secondCampion.KP         | 69.09%          |
+
+      | statChampion[1].name     | Evelynn         |
+      | statChampion[1].games    | 5               |
+      | statChampion[1].winRate  | 40%             |
+      | statChampion[1].KDA      | 3.53            |
 
     When I open the "Stats Moba page"
     When I input "${summoner.name}" in "Input Search"
     When I click on "Button Go"
     And wait 5 sec
+
+    Then the following elements should be
+      | NAME OF ELEMENTS          | VALUE                      |
+      | champion stat[1] Name     | ${statChampion[1].name}    |
+      | champion stat[1] Games    | ${statChampion[1].games}   |
+      | champion stat[1] Win Rate | ${statChampion[1].winRate} |
+      | champion stat[1] KDA      | ${statChampion[1].KDA}     |
+
 # SS-PO-1070, SS-PO-1080
     Then the following elements should be
       | NAME OF ELEMENTS               | VALUE                                             |
