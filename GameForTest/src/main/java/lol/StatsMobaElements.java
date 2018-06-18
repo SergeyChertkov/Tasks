@@ -86,6 +86,22 @@ public class StatsMobaElements {
 
     static Map<String, String> MATCH_HISTORY = new HashMap<String, String>() {
         {
+            put("overall wins", "//div[@class='stats-linestyles__SummaryStatsStyled-s1xf1032-18 fEfCFn']//span[@class='stats-linestyles__WinsStyled-s1xf1032-7 jLPUAy']");
+            put("overall lost", "//div[@class='stats-linestyles__SummaryStatsStyled-s1xf1032-18 fEfCFn']//span[@class='stats-linestyles__LossesStyled-s1xf1032-9 hVJyQN']");
+            put("overall win to lost", "//div[@class='stats-linestyles__SummaryStatsStyled-s1xf1032-18 fEfCFn']//span[@class='stats-linestyles__WhiteTextStyled-s1xf1032-10 digHQv']");
+            put("overall KDA", "//div[@class='stats-linestyles__StatsLineRow-s1xf1032-1 gFIOZa']/div[3]//span[@class='stats-linestyles__WhiteTextStyled-s1xf1032-10 digHQv']");
+            put("overall KDA KP", "//div[@class='stats-linestyles__StatsLineRow-s1xf1032-1 gFIOZa']/div[3]//span[@class='stats-linestyles__KdaKpStyled-s1xf1032-19 kfOTTO']");
+
+            put("recent top", "//div[@class='stats-linestyles__StatsLineWrapperStyled-s1xf1032-0 edyqtO']");
+            put("recent top role wins", "//div[@class='stats-linestyles__ChampionStatsWrapperStyled-s1xf1032-3 gdkWrX']//span[@class='stats-linestyles__WinsStyled-s1xf1032-7 jLPUAy'][index]");
+            put("recent top role lost", "//div[@class='stats-linestyles__ChampionStatsWrapperStyled-s1xf1032-3 gdkWrX']//span[@class='stats-linestyles__LossesStyled-s1xf1032-9 hVJyQN'][index]");
+            put("recent top role win to lost", "//div[@class='stats-linestyles__ChampionStatsWrapperStyled-s1xf1032-3 gdkWrX']//span[@class='stats-linestyles__WhiteTextStyled-s1xf1032-10 digHQv'][index]");
+            put("recent top role KDA KP", "//div[@class='stats-linestyles__ChampionStatsWrapperStyled-s1xf1032-3 gdkWrX']//span[@class='stats-linestyles__KdaKpStyled-s1xf1032-19 kfOTTO'][index]");
+
+            put("queue button", "//p[@class='games-overview-filtersstyles__ButtonTextStyled-s143pvsp-4 bniVzJ'][index]");
+            put("queue dropdown menu", "//div[@class='header-game-type-selectstyles__HeaderWrapper-ilbmgp-1 fyJpgp']");
+            put("queue button in dropdown menu", "//p[@class='option-game-type-selectstyles__OptionStyled-hu18j-0 bMxajh'][index]");
+
             put("champions table", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')][index]");
             put("champions table queue type", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__GameTypeStyled-s8vmmnq-3 gQDtwr'][index]");
             put("champions table role", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//span[@class='gamestyles__ChampionRoleNameStyled-s8vmmnq-11 kcfJzl'][index]");
@@ -93,22 +109,6 @@ public class StatsMobaElements {
             put("champions table KDA", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='kdastyles__ShortKdaValueStyled-cu2d9x-3 EaMnl'][index]");
             put("champions table CS", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__CreepScoreStyled-s8vmmnq-24 bUDwGK'][index]");
             put("champions table KP", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__KillParticipationStyled-s8vmmnq-25 cPUsui'][index]");
-        }
-    };
-
-    static Map<String, String> RECENT_BLOCK = new HashMap<String, String>() {
-        {
-            put("overall wins","//div[@class='stats-linestyles__SummaryStatsStyled-s1xf1032-18 fEfCFn']//span[@class='stats-linestyles__WinsStyled-s1xf1032-7 jLPUAy']");
-            put("overall lost","//div[@class='stats-linestyles__SummaryStatsStyled-s1xf1032-18 fEfCFn']//span[@class='stats-linestyles__LossesStyled-s1xf1032-9 hVJyQN']");
-            put("overall win to lost","//div[@class='stats-linestyles__SummaryStatsStyled-s1xf1032-18 fEfCFn']//span[@class='stats-linestyles__WhiteTextStyled-s1xf1032-10 digHQv']");
-            put("overall KDA","//div[@class='stats-linestyles__StatsLineRow-s1xf1032-1 gFIOZa']/div[3]//span[@class='stats-linestyles__WhiteTextStyled-s1xf1032-10 digHQv']");
-            put("overall KDA KP","//div[@class='stats-linestyles__StatsLineRow-s1xf1032-1 gFIOZa']/div[3]//span[@class='stats-linestyles__KdaKpStyled-s1xf1032-19 kfOTTO']");
-
-            put("recent top", "//div[@class='stats-linestyles__StatsLineWrapperStyled-s1xf1032-0 edyqtO']");
-            put("recent top role wins","//div[@class='stats-linestyles__ChampionStatsWrapperStyled-s1xf1032-3 gdkWrX']//span[@class='stats-linestyles__WinsStyled-s1xf1032-7 jLPUAy'][index]");
-            put("recent top role lost","//div[@class='stats-linestyles__ChampionStatsWrapperStyled-s1xf1032-3 gdkWrX']//span[@class='stats-linestyles__LossesStyled-s1xf1032-9 hVJyQN'][index]");
-            put("recent top role win to lost","//div[@class='stats-linestyles__ChampionStatsWrapperStyled-s1xf1032-3 gdkWrX']//span[@class='stats-linestyles__WhiteTextStyled-s1xf1032-10 digHQv'][index]");
-            put("recent top role KDA KP","//div[@class='stats-linestyles__ChampionStatsWrapperStyled-s1xf1032-3 gdkWrX']//span[@class='stats-linestyles__KdaKpStyled-s1xf1032-19 kfOTTO'][index]");
         }
     };
 

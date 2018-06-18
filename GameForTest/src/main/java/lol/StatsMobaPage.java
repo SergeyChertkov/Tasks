@@ -19,7 +19,6 @@ public class StatsMobaPage extends AbstractPage {
             putAll(StatsMobaElements.PROFILE);
             putAll(StatsMobaElements.CHAMPION_STATISTICS);
             putAll(StatsMobaElements.MATCH_HISTORY);
-            putAll(StatsMobaElements.RECENT_BLOCK);
             putAll(StatsMobaElements.GPI);
             putAll(StatsMobaElements.TIER);
 

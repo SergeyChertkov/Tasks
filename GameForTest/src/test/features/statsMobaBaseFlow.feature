@@ -337,13 +337,52 @@ Feature: Stats site
 
 
     #SS-PO-620, SS-PO-650 should be done by David
+    Then close browser
 
     Examples:
       | browser for test |
       | Chrome           |
 
+
   @active
-  Scenario Outline: I validate cases elements on the Summoner Profile Overview: SS-PO-1070, SS-PO-1080, SS-PO-1110
+  Scenario Outline: I validate cases elements on the Summoner Profile Overview: SS-PO-980
+
+    Given the "<browser for test>" browser is opened
+    Given generate variables with values
+      | NAME OF VARIABLES | VALUE    |
+      | summoner.name     | 54B0MB99 |
+
+    When I open the "Stats Moba page"
+    When I input "${summoner.name}" in "Input Search"
+    When I click on "Button Go"
+    And wait 5 sec
+
+    When I click on "queue dropdown menu"
+    Then the following elements should be
+      | NAME OF ELEMENTS                 | VALUE        |
+
+#SS-PO-980
+      | queue button[1]                  | ALL GAMES    |
+      | queue button[2]                  | RANKED SOLO  |
+      | queue button[3]                  | RANKED FLEX  |
+      | queue button[4]                  | CLASH        |
+      | queue dropdown menu              | QUEUE TYPE   |
+      | queue button[1] in dropdown menu | RANKED 3V3   |
+      | queue button[2] in dropdown menu | NORMAL BLIND |
+      | queue button[3] in dropdown menu | NORMAL DRAFT |
+      | queue button[4] in dropdown menu | ARAM         |
+      | queue button[5] in dropdown menu | BOT          |
+      | queue button[6] in dropdown menu | OTHER        |
+
+    Then close browser
+
+    Examples:
+      | browser for test |
+      | Chrome           |
+
+
+  @active
+  Scenario Outline: I validate cases elements on the Summoner Profile Overview: SS-PO-1020, SS-PO-1040, SS-PO-1060, SS-PO-1070, SS-PO-1080, SS-PO-1110
 
     Given the "<browser for test>" browser is opened
     Given generate variables with values
