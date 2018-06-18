@@ -324,7 +324,7 @@ Feature: Stats site
       | NAME OF ELEMENTS    | VALUE     |
       | gpi radar           | displayed |
       | gpi link Learn more | displayed |
-      | gpi role            | mid       |
+      | gpi role            | MID       |
 
     #SS-PO-320
     Then the following elements should be
@@ -490,17 +490,29 @@ Feature: Stats site
       | champions[20].CS         | 109             |
       | champions[20].KP         | 9               |
 
+      | overall.wins             | 12              |
+      | overall.lost             | 8               |
+      | overall.winsToLost       | 60              |
+      | overall.KDA              | 4.49            |
+      | overall.KDAKP            | 7.8 / 3.7 / 8.8 |
+
       | firstCampion.wins        | 1               |
       | firstCampion.lost        | 2               |
-      | firstCampion.winsToLost  | 34              |
+      | firstCampion.winsToLost  | 33              |
       | firstCampion.KDA         | 2.89            |
       | firstCampion.KP          | 44.07%          |
 
-      | secondCampion.wins       | 1               |
-      | secondCampion.lost       | 1               |
-      | secondCampion.winsToLost | 50              |
-      | secondCampion.KDA        | 3.80            |
-      | secondCampion.KP         | 69.09%          |
+      | secondCampion.wins       | 2               |
+      | secondCampion.lost       | 0               |
+      | secondCampion.winsToLost | 100             |
+      | secondCampion.KDA        | 6.60            |
+      | secondCampion.KP         | 62.26%          |
+
+      | topRole.wins             | 3               |
+      | topRole.lost             | 5               |
+      | topRole.winsToLost       | 38              |
+      | topRole.KDA              | 2.61            |
+      | topRole.KP               | 52.22%          |
 
       | statChampion[1].name     | Evelynn         |
       | statChampion[1].games    | 5               |
@@ -519,18 +531,32 @@ Feature: Stats site
       | champion stat[1] Win Rate | ${statChampion[1].winRate} |
       | champion stat[1] KDA      | ${statChampion[1].KDA}     |
 
-# SS-PO-1070, SS-PO-1080
     Then the following elements should be
       | NAME OF ELEMENTS               | VALUE                                             |
-      | recent top role<1> wins        | ${firstCampion.wins}W                             |
-      | recent top role<1> lost        | ${firstCampion.lost}L                             |
-      | recent top role<1> win to lost | (${firstCampion.winsToLost}%)                     |
-      | recent top role<1> KDA KP      | ${firstCampion.KDA} KDA / ${firstCampion.KP} KP   |
 
-      | recent top role<2> wins        | ${secondCampion.wins}W                            |
-      | recent top role<2> lost        | ${secondCampion.lost}L                            |
-      | recent top role<2> win to lost | (${secondCampion.winsToLost}%)                    |
-      | recent top role<2> KDA KP      | ${secondCampion.KDA} KDA / ${secondCampion.KP} KP |
+#SS-PO-1020
+      | overall wins                   | ${overall.wins}W                                  |
+      | overall lost                   | ${overall.lost}L                                  |
+      | overall win to lost            | (${overall.winsToLost}%)                          |
+      | overall KDA                    | ${overall.KDA} KDA                                |
+      | overall KDA KP                 | ${overall.KDAKP}                                  |
+
+# SS-PO-1040, SS-PO-1050
+      | recent top role[1] wins        | ${firstCampion.wins}W                             |
+      | recent top role[1] lost        | ${firstCampion.lost}L                             |
+      | recent top role[1] win to lost | (${firstCampion.winsToLost}%)                     |
+      | recent top role[1] KDA KP      | ${firstCampion.KDA} KDA / ${firstCampion.KP} KP   |
+
+      | recent top role[2] wins        | ${secondCampion.wins}W                            |
+      | recent top role[2] lost        | ${secondCampion.lost}L                            |
+      | recent top role[2] win to lost | (${secondCampion.winsToLost}%)                    |
+      | recent top role[2] KDA KP      | ${secondCampion.KDA} KDA / ${secondCampion.KP} KP |
+
+# SS-PO-1070, SS-PO-1080
+      | recent top role[3] wins        | ${topRole.wins}W                                  |
+      | recent top role[3] lost        | ${topRole.lost}L                                  |
+      | recent top role[3] win to lost | (${topRole.winsToLost}%)                          |
+      | recent top role[3] KDA KP      | ${topRole.KDA} KDA / ${topRole.KP} KP             |
 
 # SS-PO-1110
     Then the following elements should be
