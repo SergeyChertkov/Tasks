@@ -7,7 +7,7 @@ Feature: The user management
 
   @smoke
   @positive_scenario
-  Scenario Outline: As user I should be able to login in portal with correct cred
+  Scenario Outline: As user I should be able to login in portal with correct cred (UM-SI-240)
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
     When wait 2 sec
@@ -40,7 +40,7 @@ Feature: The user management
 
 
   @negative_scenario
-  Scenario Outline: As a user who forgot his credentials, I should see a corresponding message
+  Scenario Outline: As a user who forgot his credentials, I should see a corresponding message (UM-SI-150, UM-SI-180)
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
     When I input "<user name>" in "User name input"
@@ -62,7 +62,7 @@ Feature: The user management
 
 
   @negative_scenario
-  Scenario Outline: As a user who input anything during login, I should see a corresponding error message
+  Scenario Outline: As a user who input anything during login, I should see a corresponding error message (UM-SI-120, UM-SI-130)
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
     When I input "<user name>" in "User name input"
@@ -107,7 +107,7 @@ Feature: The user management
 
   #@active
   @positive_scenario
-  Scenario Outline: As a user who have not been sign up, I should be able sign up into portal 2
+  Scenario Outline: As a user who have not been sign up, I should be able sign up into portal (UM-SUE-340)
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
     When I click on "Link for registration"
@@ -132,14 +132,14 @@ Feature: The user management
 
   @positive_scenario
   Scenario Outline: As a user who has been sign uped,
-  I should be able see email
+  I should be able see email (UM-SUE-350)
   I should be able to make verification
-  I should be able to delete my account from the portal
+  I should be able to delete my account from the portal (UM-DA-100, UM-DA-110, UM-DA-130, UM-DA-150, UM-DA-170)
     #register the user
     Given the "<browser for test>" browser is opened
     When I register the user "<user email>"
     Then close browser
-    #validate the email
+    #validate the email (UM-SUE-350)
     Given the "<browser for test>" browser is opened
     When I open the "Mailinator Page"
     When I login on mailinator as "<user email>"
@@ -156,11 +156,19 @@ Feature: The user management
     When login as new user "<user email>"
     Then the page should be "GPI Page"
     When I click on "Link Skip tutorial"
-    #delete the account
+# UM-DA-170
+    When I open new tab
+    When I switch to tab "2"
+    When I open the "GPI page"
+    Then wait 2 sec
+    When I switch to tab "1"
+
+
+    #delete the account (UM-DA-100, UM-DA-110)
     When I click on "account settings link"
     Then wait 2 sec
     When I click on "Link Delete my account"
-    When I input "This's an automated test" in "TextArea Leave comment"
+    When I input "<marks the cause>" in "TextArea Leave comment"
     When I click on "Button Delete"
     When wait 2 sec
     Then the following elements should be
@@ -169,10 +177,29 @@ Feature: The user management
       | Message: Thank you for giving us a try      | displayed |
       | Message: Go back to Mobalytics.gg           | displayed |
 
+# UM-DA-170
+    When I switch to tab "2"
+    When I open the "GPI page"
+    Then the page should be "Login page"
+
+# UM-DA-150
+    When generate variables with values
+      | VARIABLE | VALUE                       |
+      | email    | <user email>@mailinator.com |
+    When I input "${email}" in "User name input"
+    When I input "<user email>" in "Pass input"
+    When I click on "Button Login"
+    Then wait 5 sec
+    Then the following elements should be
+      | NAME OF ELEMENTS | VALUE                          |
+      | Error message    | Provided credentials are wrong |
+
     Then close browser
     Examples:
-      | browser for test | user email            |
-      | Chrome           | mobalyticshq_Klym_251 |
+      | browser for test | user email            | marks the cause |
+      | Chrome           | mobalyticshq_Klym_251 | This's an automated test |
+# UM-DA-130
+      | Chrome           | mobalyticshq_Klym_251 |                 |
 
   #
   # -----------------------------------------------------------------------------------------------------------------
@@ -180,7 +207,7 @@ Feature: The user management
 
   Scenario Outline: As user open login page.
   Next open login page in another tab again. Then log out on 1 tab
-  Validate that: user was logouted
+  Validate that: user was logouted (UM-SO-120)
 
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
@@ -219,10 +246,10 @@ Feature: The user management
   #@active
   @positive_scenario
   Scenario Outline: As user I should be able to use the "Forgot" link from Log in form
-  Validate that: The reset password functionality is working
-  I should be able see email with new password
-  I should be able to change the password
-  I should be able to SingIn into portal with new password
+  Validate that: The reset password functionality is working (UM-RP-100, UM-RP-160)
+  I should be able see email with new password (UM-RP-180, UM-RP-190)
+  I should be able to change the password (UM-RP-210, UM-RP-220, UM-RP-360)
+  I should be able to SingIn into portal with new password (UM-RP-370)
 
     #register the user
     Given the "<browser for test>" browser is opened
@@ -246,23 +273,29 @@ Feature: The user management
     When I login on mailinator as "${registrationUser}"
     And I open mail by title "Forgot your Mobalytics password?"
     When I switch to frame "msg_body"
+# UM-RP-180
     Then the following elements should be
       | NAME OF ELEMENTS                    | VALUE                                                                                                                                     |
       | change password email body: message | We heard you need a password reset. Click the link below and you'll be redirected to a secure site from which you can set a new password. |
       | email body: reset password button   | displayed                                                                                                                                 |
+# UM-RP-190
     When I click on "email body: reset password button"
     When wait 5 sec
 
     #change and confirm changing password
     When I switch to tab "1"
     Then the page should be "Login Page"
+# UM-RP-210
     When I input "<new password>" in "Input New password"
+# UM-RP-220
     When I input "<new password>" in "Input Repeat password"
     When I click on "Button Change password"
+# UM-RP-360
     Then the following elements should be
       | NAME OF ELEMENTS                  | VALUE   |
       | Message Success changing password | SUCCESS |
 
+# UM-RP-370
     #try to login with password
     When I open the "Login page"
     When I input "${registrationUser}@mailinator.com" in "User name input"
