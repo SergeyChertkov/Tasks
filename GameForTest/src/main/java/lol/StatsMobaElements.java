@@ -93,6 +93,12 @@ public class StatsMobaElements {
             put("champion stat Games", "//p[@class='s1negosu-0 ldRMgo'][index]");
             put("champion stat Win Rate", "//p[contains(@class,'champions-statisticstyles__WinRateStyled-vz9d5e-5')][index]");
             put("champion stat KDA", "//p[@class='s1negosu-0 fxSMYG'][index]");
+
+            put("recent records name", "//div[@class='recordsstyles__WrapperStyled-s10636z9-0 geOHFb']//div[@class='recordsstyles__RecordTextStyled-s10636z9-5 dvLTfU'][index]");
+
+            put("most played name", "//div[@class='played-withstyles__WrapperStyled-zkur38-0 iaiQiJ']//p[@class='played-withstyles__ChampionNameStyled-zkur38-5 eQMiKq'][index]");
+            put("most played win to lost", "//div[@class='played-withstyles__WrapperStyled-zkur38-0 iaiQiJ']//p[@class='played-withstyles__WinsLossesStyled-zkur38-6 hJbZf'][index]");
+            put("most played win rate", "//div[@class='played-withstyles__WrapperStyled-zkur38-0 iaiQiJ']//p[contains(@class,'played-withstyles__WinRateStyled-zkur')][index]");
         }
     };
 

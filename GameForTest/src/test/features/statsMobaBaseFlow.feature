@@ -386,177 +386,14 @@ Feature: Stats site
 
     Given the "<browser for test>" browser is opened
     Given generate variables with values
-      | NAME OF VARIABLES        | VALUE           |
-      | summoner.name            | 54B0MB99        |
+      | NAME OF VARIABLES  | VALUE    |
+      | summoner.name      | 54B0MB99 |
 
-      | champions[1].queueType   | RANKED SOLO/DUO |
-      | champions[1].role        | JUNGLE          |
-      | champions[1].winLost     | 4/7/3           |
-      | champions[1].KDA         | 1.00            |
-      | champions[1].CS          | 95              |
-      | champions[1].KP          | 20              |
-
-      | champions[2].queueType   | RANKED SOLO/DUO |
-      | champions[2].role        | SUPPORT         |
-      | champions[2].winLost     | 1/4/13          |
-      | champions[2].KDA         | 3.50            |
-      | champions[2].CS          | 33              |
-      | champions[2].KP          | 5               |
-
-      | champions[3].queueType   | CLASH           |
-      | champions[3].role        | MID             |
-      | champions[3].winLost     | 4/7/1           |
-      | champions[3].KDA         | 0.71            |
-      | champions[3].CS          | 300             |
-      | champions[3].KP          | 50              |
-
-      | champions[4].queueType   | RANKED FLEX     |
-      | champions[4].role        | MID             |
-      | champions[4].winLost     | 19/3/2          |
-      | champions[4].KDA         | 7.00            |
-      | champions[4].CS          | 259             |
-      | champions[4].KP          | 58              |
-
-      | champions[5].queueType   | CLASH           |
-      | champions[5].role        | MID             |
-      | champions[5].winLost     | 15/2/11         |
-      | champions[5].KDA         | 13.00           |
-      | champions[5].CS          | 202             |
-      | champions[5].KP          | 48              |
-
-      | champions[6].queueType   | CLASH           |
-      | champions[6].role        | MID             |
-      | champions[6].winLost     | 10/0/8          |
-      | champions[6].KDA         | PERFECT         |
-      | champions[6].CS          | 250             |
-      | champions[6].KP          | 40              |
-
-      | champions[7].queueType   | RANKED FLEX     |
-      | champions[7].role        | MID             |
-      | champions[7].winLost     | 14/2/8          |
-      | champions[7].KDA         | 11.00           |
-      | champions[7].CS          | 267             |
-      | champions[7].KP          | 45              |
-
-      | champions[8].queueType   | RANKED FLEX     |
-      | champions[8].role        | TOP             |
-      | champions[8].winLost     | 11/4/9          |
-      | champions[8].KDA         | 5.00            |
-      | champions[8].CS          | 188             |
-      | champions[8].KP          | 34              |
-
-      | champions[9].queueType   | RANKED FLEX     |
-      | champions[9].role        | TOP             |
-      | champions[9].winLost     | 14/4/13         |
-      | champions[9].KDA         | 6.75            |
-      | champions[9].CS          | 197             |
-      | champions[9].KP          | 30              |
-
-      | champions[10].queueType  | RANKED SOLO/DUO |
-      | champions[10].role       | JUNGLE          |
-      | champions[10].winLost    | 7/1/6           |
-      | champions[10].KDA        | 13.00           |
-      | champions[10].CS         | 187             |
-      | champions[10].KP         | 33              |
-
-      | champions[11].queueType  | RANKED SOLO/DUO |
-      | champions[11].role       | JUNGLE          |
-      | champions[11].winLost    | 4/3/2           |
-      | champions[11].KDA        | 2.00            |
-      | champions[11].CS         | 123             |
-      | champions[11].KP         | 24              |
-
-      | champions[12].queueType  | RANKED SOLO/DUO |
-      | champions[12].role       | SUPPORT         |
-      | champions[12].winLost    | 4/5/27          |
-      | champions[12].KDA        | 6.20            |
-      | champions[12].CS         | 33              |
-      | champions[12].KP         | 10              |
-
-      | champions[13].queueType  | RANKED SOLO/DUO |
-      | champions[13].role       | SUPPORT         |
-      | champions[13].winLost    | 2/5/5           |
-      | champions[13].KDA        | 1.40            |
-      | champions[13].CS         | 48              |
-      | champions[13].KP         | 14              |
-
-      | champions[14].queueType  | RANKED SOLO/DUO |
-      | champions[14].role       | JUNGLE          |
-      | champions[14].winLost    | 4/8/10          |
-      | champions[14].KDA        | 1.75            |
-      | champions[14].CS         | 231             |
-      | champions[14].KP         | 13              |
-
-      | champions[15].queueType  | RANKED SOLO/DUO |
-      | champions[15].role       | JUNGLE          |
-      | champions[15].winLost    | 5/2/6           |
-      | champions[15].KDA        | 5.50            |
-      | champions[15].CS         | 163             |
-      | champions[15].KP         | 19              |
-
-      | champions[16].queueType  | RANKED FLEX     |
-      | champions[16].role       | JUNGLE          |
-      | champions[16].winLost    | 14/6/5          |
-      | champions[16].KDA        | 3.17            |
-      | champions[16].CS         | 267             |
-      | champions[16].KP         | 45              |
-
-      | champions[17].queueType  | RANKED FLEX     |
-      | champions[17].role       | SUPPORT         |
-      | champions[17].winLost    | 8/1/19          |
-      | champions[17].KDA        | 27.00           |
-      | champions[17].CS         | 33              |
-      | champions[17].KP         | 23              |
-
-      | champions[18].queueType  | RANKED FLEX     |
-      | champions[18].role       | JUNGLE          |
-      | champions[18].winLost    | 3/0/5           |
-      | champions[18].KDA        | PERFECT         |
-      | champions[18].CS         | 113             |
-      | champions[18].KP         | 23              |
-
-      | champions[19].queueType  | RANKED FLEX     |
-      | champions[19].role       | ADC             |
-      | champions[19].winLost    | 11/1/9          |
-      | champions[19].KDA        | 20.00           |
-      | champions[19].CS         | 254             |
-      | champions[19].KP         | 28              |
-
-      | champions[20].queueType  | RANKED SOLO/DUO |
-      | champions[20].role       | JUNGLE          |
-      | champions[20].winLost    | 2/9/14          |
-      | champions[20].KDA        | 1.78            |
-      | champions[20].CS         | 109             |
-      | champions[20].KP         | 9               |
-
-      | overall.wins             | 12              |
-      | overall.lost             | 8               |
-      | overall.winsToLost       | 60              |
-      | overall.KDA              | 4.49            |
-      | overall.KDAKP            | 7.8 / 3.7 / 8.8 |
-
-      | firstCampion.wins        | 1               |
-      | firstCampion.lost        | 2               |
-      | firstCampion.winsToLost  | 33              |
-      | firstCampion.KDA         | 2.89            |
-      | firstCampion.KP          | 44.07%          |
-
-      | secondCampion.wins       | 2               |
-      | secondCampion.lost       | 0               |
-      | secondCampion.winsToLost | 100             |
-      | secondCampion.KDA        | 6.60            |
-      | secondCampion.KP         | 62.26%          |
-
-      | topRole.wins             | 3               |
-      | topRole.lost             | 5               |
-      | topRole.winsToLost       | 38              |
-      | topRole.KDA              | 2.61            |
-      | topRole.KP               | 52.22%          |
-
-      | statChampion[1].name     | Evelynn         |
-      | statChampion[1].games    | 5               |
-      | statChampion[1].winRate  | 40%             |
-      | statChampion[1].KDA      | 3.53            |
+      | topRole.wins       | 3        |
+      | topRole.lost       | 5        |
+      | topRole.winsToLost | 37       |
+      | topRole.KDA        | 2.61     |
+      | topRole.KP         | 52%      |
 
     When I open the "Stats Moba page"
     When I input "${summoner.name}" in "Input Search"
@@ -564,42 +401,174 @@ Feature: Stats site
     And wait 5 sec
 
     Then the following elements should be
-      | NAME OF ELEMENTS          | VALUE                      |
-      | champion stat[1] Name     | ${statChampion[1].name}    |
-      | champion stat[1] Games    | ${statChampion[1].games}   |
-      | champion stat[1] Win Rate | ${statChampion[1].winRate} |
-      | champion stat[1] KDA      | ${statChampion[1].KDA}     |
+      | NAME OF ELEMENTS               | VALUE                                 |
+      | recent top role[3] wins        | ${topRole.wins}W                      |
+      | recent top role[3] lost        | ${topRole.lost}L                      |
+      | recent top role[3] win to lost | (${topRole.winsToLost}%)              |
+      | recent top role[3] KDA KP      | ${topRole.KDA} KDA / ${topRole.KP} KP |
 
-    Then the following elements should be
-      | NAME OF ELEMENTS               | VALUE                                             |
+    Then close browser
 
-#SS-PO-1020
-      | overall wins                   | ${overall.wins}W                                  |
-      | overall lost                   | ${overall.lost}L                                  |
-      | overall win to lost            | (${overall.winsToLost}%)                          |
-      | overall KDA                    | ${overall.KDA} KDA                                |
-      | overall KDA KP                 | ${overall.KDAKP}                                  |
+    Examples:
+      | browser for test |
+      | Chrome           |
 
-# SS-PO-1040, SS-PO-1050
-      | recent top role[1] wins        | ${firstCampion.wins}W                             |
-      | recent top role[1] lost        | ${firstCampion.lost}L                             |
-      | recent top role[1] win to lost | (${firstCampion.winsToLost}%)                     |
-      | recent top role[1] KDA KP      | ${firstCampion.KDA} KDA / ${firstCampion.KP} KP   |
+  @active
+  Scenario Outline: SS-PO-1110
 
-      | recent top role[2] wins        | ${secondCampion.wins}W                            |
-      | recent top role[2] lost        | ${secondCampion.lost}L                            |
-      | recent top role[2] win to lost | (${secondCampion.winsToLost}%)                    |
-      | recent top role[2] KDA KP      | ${secondCampion.KDA} KDA / ${secondCampion.KP} KP |
+    Given the "<browser for test>" browser is opened
+    Given generate variables with values
+      | NAME OF VARIABLES       | VALUE           |
+      | summoner.name           | 54B0MB99        |
 
-# SS-PO-1070, SS-PO-1080
-      | recent top role[3] wins        | ${topRole.wins}W                                  |
-      | recent top role[3] lost        | ${topRole.lost}L                                  |
-      | recent top role[3] win to lost | (${topRole.winsToLost}%)                          |
-      | recent top role[3] KDA KP      | ${topRole.KDA} KDA / ${topRole.KP} KP             |
+      | champions[1].queueType  | RANKED SOLO/DUO |
+      | champions[1].role       | JUNGLE          |
+      | champions[1].winLost    | 4/7/3           |
+      | champions[1].KDA        | 1               |
+      | champions[1].CS         | 95              |
+      | champions[1].KP         | 34              |
 
-# SS-PO-1110
+      | champions[2].queueType  | RANKED SOLO/DUO |
+      | champions[2].role       | SUPPORT         |
+      | champions[2].winLost    | 1/4/13          |
+      | champions[2].KDA        | 3.5             |
+      | champions[2].CS         | 33              |
+      | champions[2].KP         | 63              |
+
+      | champions[3].queueType  | CLASH           |
+      | champions[3].role       | MID             |
+      | champions[3].winLost    | 4/7/1           |
+      | champions[3].KDA        | 0.71            |
+      | champions[3].CS         | 300             |
+      | champions[3].KP         | 62              |
+
+      | champions[4].queueType  | RANKED FLEX     |
+      | champions[4].role       | MID             |
+      | champions[4].winLost    | 19/3/2          |
+      | champions[4].KDA        | 7               |
+      | champions[4].CS         | 259             |
+      | champions[4].KP         | 63              |
+
+      | champions[5].queueType  | CLASH           |
+      | champions[5].role       | MID             |
+      | champions[5].winLost    | 15/2/11         |
+      | champions[5].KDA        | 13              |
+      | champions[5].CS         | 202             |
+      | champions[5].KP         | 83              |
+
+      | champions[6].queueType  | CLASH           |
+      | champions[6].role       | MID             |
+      | champions[6].winLost    | 10/0/8          |
+      | champions[6].KDA        | PERFECT         |
+      | champions[6].CS         | 250             |
+      | champions[6].KP         | 72              |
+
+      | champions[7].queueType  | RANKED FLEX     |
+      | champions[7].role       | MID             |
+      | champions[7].winLost    | 14/2/8          |
+      | champions[7].KDA        | 11              |
+      | champions[7].CS         | 267             |
+      | champions[7].KP         | 70              |
+
+      | champions[8].queueType  | RANKED FLEX     |
+      | champions[8].role       | TOP             |
+      | champions[8].winLost    | 11/4/9          |
+      | champions[8].KDA        | 5               |
+      | champions[8].CS         | 188             |
+      | champions[8].KP         | 62              |
+
+      | champions[9].queueType  | RANKED FLEX     |
+      | champions[9].role       | TOP             |
+      | champions[9].winLost    | 14/4/13         |
+      | champions[9].KDA        | 6.75            |
+      | champions[9].CS         | 197             |
+      | champions[9].KP         | 57              |
+
+      | champions[10].queueType | RANKED SOLO/DUO |
+      | champions[10].role      | JUNGLE          |
+      | champions[10].winLost   | 7/1/6           |
+      | champions[10].KDA       | 13              |
+      | champions[10].CS        | 187             |
+      | champions[10].KP        | 61              |
+
+      | champions[11].queueType | RANKED SOLO/DUO |
+      | champions[11].role      | JUNGLE          |
+      | champions[11].winLost   | 4/3/2           |
+      | champions[11].KDA       | 2               |
+      | champions[11].CS        | 123             |
+      | champions[11].KP        | 35              |
+
+      | champions[12].queueType | RANKED SOLO/DUO |
+      | champions[12].role      | SUPPORT         |
+      | champions[12].winLost   | 4/5/27          |
+      | champions[12].KDA       | 6.2             |
+      | champions[12].CS        | 33              |
+      | champions[12].KP        | 75              |
+
+      | champions[13].queueType | RANKED SOLO/DUO |
+      | champions[13].role      | SUPPORT         |
+      | champions[13].winLost   | 2/5/5           |
+      | champions[13].KDA       | 1.4             |
+      | champions[13].CS        | 48              |
+      | champions[13].KP        | 50              |
+
+      | champions[14].queueType | RANKED SOLO/DUO |
+      | champions[14].role      | JUNGLE          |
+      | champions[14].winLost   | 4/8/10          |
+      | champions[14].KDA       | 1.75            |
+      | champions[14].CS        | 231             |
+      | champions[14].KP        | 46              |
+
+      | champions[15].queueType | RANKED SOLO/DUO |
+      | champions[15].role      | JUNGLE          |
+      | champions[15].winLost   | 5/2/6           |
+      | champions[15].KDA       | 5.5             |
+      | champions[15].CS        | 163             |
+      | champions[15].KP        | 42              |
+
+      | champions[16].queueType | RANKED FLEX     |
+      | champions[16].role      | JUNGLE          |
+      | champions[16].winLost   | 14/6/5          |
+      | champions[16].KDA       | 3.16            |
+      | champions[16].CS        | 267             |
+      | champions[16].KP        | 61              |
+
+      | champions[17].queueType | RANKED FLEX     |
+      | champions[17].role      | SUPPORT         |
+      | champions[17].winLost   | 8/1/19          |
+      | champions[17].KDA       | 27              |
+      | champions[17].CS        | 33              |
+      | champions[17].KP        | 77              |
+
+      | champions[18].queueType | RANKED FLEX     |
+      | champions[18].role      | JUNGLE          |
+      | champions[18].winLost   | 3/0/5           |
+      | champions[18].KDA       | PERFECT         |
+      | champions[18].CS        | 113             |
+      | champions[18].KP        | 61              |
+
+      | champions[19].queueType | RANKED FLEX     |
+      | champions[19].role      | ADC             |
+      | champions[19].winLost   | 11/1/9          |
+      | champions[19].KDA       | 20              |
+      | champions[19].CS        | 254             |
+      | champions[19].KP        | 50              |
+
+      | champions[20].queueType | RANKED SOLO/DUO |
+      | champions[20].role      | JUNGLE          |
+      | champions[20].winLost   | 2/9/14          |
+      | champions[20].KDA       | 1.77            |
+      | champions[20].CS        | 109             |
+      | champions[20].KP        | 72              |
+
+    When I open the "Stats Moba page"
+    When I input "${summoner.name}" in "Input Search"
+    When I click on "Button Go"
+    And wait 5 sec
+
     Then the following elements should be
       | NAME OF ELEMENTS               | VALUE                      |
+
       | champions table[1]             | displayed                  |
       | champions table[1] queue type  | ${champions[1].queueType}  |
       | champions table[1] role        | ${champions[1].role}       |
