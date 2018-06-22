@@ -21,6 +21,7 @@ public class StatsMobaPage extends AbstractPage {
             putAll(StatsMobaElements.MATCH_HISTORY);
             putAll(StatsMobaElements.GPI);
             putAll(StatsMobaElements.TIER);
+            putAll(StatsMobaElements.TOP_ROLES);
 
             put("Summoner Name", "//p[@class='profilestyles__SummonerNameStyled-s16k19pv-8 Ccbde']");
 

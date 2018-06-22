@@ -72,6 +72,18 @@ public class StatsMobaElements {
         {
             put("tier chart", "//*[contains(@class, 'game-types-overview')]//*[@id='chart']");
             put("tier rank progress banner", "//*[contains(@class, 'game-types-overviewstyles__LadderRankProgressBanner')]");
+
+            put("tier menu", "//*[contains(@class, 'game-types-overviewstyles__MenuStylesStyled')]");
+            put("tier menu ranked solo", "//*[contains(@class, 'game-typestyles__WrapperStyled') and contains(string(), 'Ranked Solo')]");
+            put("tier menu ranked flex", "//*[contains(@class, 'game-typestyles__WrapperStyled') and contains(string(), 'Ranked Flex')]");
+
+            put("tier selected tierRank", "//*[contains(@class, 'game-typestyles__RowStyled')]/p");
+            put("tier selected queue", "//*[contains(@class, 'game-typestyles__RowStyled')]/div");
+
+            put("tier selected lp", "//*[contains(@class, 'game-typestyles__Lwl')]/p[1]");
+            put("tier selected win", "//*[contains(@class, 'game-typestyles__Lwl')]/p[2]");
+            put("tier selected loss", "//*[contains(@class, 'game-typestyles__Lwl')]/p[3]");
+            put("tier selected winRate", "//*[contains(@class, 'game-typestyles__Lwl')]/p[4]");
         }
     };
 
@@ -109,6 +121,34 @@ public class StatsMobaElements {
             put("champions table KDA", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='kdastyles__ShortKdaValueStyled-cu2d9x-3 EaMnl'][index]");
             put("champions table CS", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__CreepScoreStyled-s8vmmnq-24 bUDwGK'][index]");
             put("champions table KP", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__KillParticipationStyled-s8vmmnq-25 cPUsui'][index]");
+        }
+    };
+
+    static Map<String, String> TOP_ROLES = new HashMap<String, String>() {
+        {
+            put("top roles main icon top", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[1]/div//*[name()='use' and @*='#role--top']");
+            put("top roles main icon jungle", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[1]/div//*[name()='use' and @*='#role--jungle']");
+            put("top roles main icon mid", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[1]/div//*[name()='use' and @*='#role--mid']");
+            put("top roles main icon adc", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[1]/div//*[name()='use' and @*='#role--adc']");
+            put("top roles main icon support", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[1]/div//*[name()='use' and @*='#role--support']");
+
+            put("top roles off icon top", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[2]/div//*[name()='use' and @*='#role--top']");
+            put("top roles off icon jungle", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[2]/div//*[name()='use' and @*='#role--jungle']");
+            put("top roles off icon mid", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[2]/div//*[name()='use' and @*='#role--mid']");
+            put("top roles off icon adc", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[2]/div//*[name()='use' and @*='#role--adc']");
+            put("top roles off icon support", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[2]/div//*[name()='use' and @*='#role--support']");
+
+            put("Role Main Wins", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[1]/div[2]/div[1]/span[1]");
+            put("Role Main Losses", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[1]/div[2]/div[1]/span[2]");
+            put("Role Main Win Rate", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[1]/div[2]/div[1]/div");
+            put("Role Main KDA", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[1]/div[2]/div[2]/div[1]");
+            put("Role Main KP", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[1]/div[2]/div[2]/div[3]");
+
+            put("Role Off Wins", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[2]/div[2]/div[1]/span[1]");
+            put("Role Off Losses", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[2]/div[2]/div[1]/span[2]");
+            put("Role Off Win Rate", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[2]/div[2]/div[1]/div");
+            put("Role Off KDA", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[2]/div[2]/div[2]/div[1]");
+            put("Role Off KP", "//div[contains(@class, 'top-rolesstyles__ContentStyled')]/div[2]/div[2]/div[2]/div[3]");
         }
     };
 

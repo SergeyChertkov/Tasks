@@ -5,8 +5,7 @@
 Feature: The user management
   Customer should be able to login, logout and manage my personal data
 
-  @smoke
-  @positive_scenario
+  @active
   Scenario Outline: As user I should be able to login in portal with correct cred (UM-SI-240)
     Given the "<browser for test>" browser is opened
     When I open the "Login page"
@@ -363,6 +362,43 @@ Feature: The user management
   #
   #-----------------------------------------------------------------------------------------------------
   #
+
+
+  @klym
+  @positive_scenario
+  Scenario Outline: User can open log in in one tab and I should be log in in another one that was opened before UM-SI-280
+
+    Given the "<browser for test>" browser is opened
+    When I open the "Login page"
+
+    #open second tab and open our Portal on it
+    When I open new tab
+    When I switch to tab "1"
+    When I open the "Login page"
+    Then wait 2 sec
+
+    #Open first tab and login in portal
+    When I switch to tab "0"
+    When login as "<name of user>"
+    Then wait 10 sec
+    Then the page should be "GPI page"
+
+    #Open second tab and validate that user is login as well
+    When I open new tab
+    When I switch to tab "1"
+    When I open the "GPI page"
+    Then wait 2 sec
+
+    Then close browser
+
+    Examples:
+      | browser for test | name of user |
+      | Chrome           | test_user_1  |
+
+  #
+  #-----------------------------------------------------------------------------------------------------
+  #
+
 
 
 

@@ -14,7 +14,7 @@ public class GPIPage extends AbstractPage {
         {
             putAll(LOLSite.ELEMENTS);
 
-            put("character name", "//*[@data-reactid='160']");
+            put("character name", "//*[contains(@class, 'gpi-summonerstyles__SummonerName')]");
             put("number of wins", "//*[@data-reactid='174']");
             put("Link Skip tutorial","//p[contains(.,'Skip tutorial')]");
             put("Close the popup","//*[@class='_3huRp']");
