@@ -380,9 +380,302 @@ Feature: Stats site
       | browser for test |
       | Chrome           |
 
+  @active
+  Scenario Outline: SS-PO-930
+
+    Given the "<browser for test>" browser is opened
+    Given generate variables with values
+      | NAME OF VARIABLES      | VALUE           |
+      | summoner.name          | 54B0MB99        |
+
+      | mostPlayed[1].name     | Prohibit        |
+      | mostPlayed[1].win      | 7               |
+      | mostPlayed[1].lost     | 11              |
+      | mostPlayed[1].winRate  | 38%             |
+
+      | mostPlayed[2].name     | BuNNy4u         |
+      | mostPlayed[2].win      | 13              |
+      | mostPlayed[2].lost     | 2               |
+      | mostPlayed[2].winRate  | 86%             |
+
+      | mostPlayed[3].name     | 54H0RNY99       |
+      | mostPlayed[3].win      | 7               |
+      | mostPlayed[3].lost     | 2               |
+      | mostPlayed[3].winRate  | 77%             |
+
+      | mostPlayed[4].name     | XsQ             |
+      | mostPlayed[4].win      | 6               |
+      | mostPlayed[4].lost     | 0               |
+      | mostPlayed[4].winRate  | 100%            |
+
+      | mostPlayed[5].name     | Little Potatoes |
+      | mostPlayed[5].win      | 3               |
+      | mostPlayed[5].lost     | 2               |
+      | mostPlayed[5].winRate  | 60%             |
+
+      | mostPlayed[6].name     | Detain          |
+      | mostPlayed[6].win      | 3               |
+      | mostPlayed[6].lost     | 2               |
+      | mostPlayed[6].winRate  | 60%             |
+
+      | mostPlayed[7].name     | Munnyfish       |
+      | mostPlayed[7].win      | 3               |
+      | mostPlayed[7].lost     | 1               |
+      | mostPlayed[7].winRate  | 75%             |
+
+      | mostPlayed[8].name     | Lockdown        |
+      | mostPlayed[8].win      | 1               |
+      | mostPlayed[8].lost     | 3               |
+      | mostPlayed[8].winRate  | 25%             |
+
+      | mostPlayed[9].name     | Pharmercy69     |
+      | mostPlayed[9].win      | 4               |
+      | mostPlayed[9].lost     | 0               |
+      | mostPlayed[9].winRate  | 100%            |
+
+      | mostPlayed[10].name    | AliceeInHell    |
+      | mostPlayed[10].win     | 3               |
+      | mostPlayed[10].lost    | 0               |
+      | mostPlayed[10].winRate | 100%            |
+
+    When I open the "Stats Moba page"
+    When I input "${summoner.name}" in "Input Search"
+    When I click on "Button Go"
+    And wait 5 sec
+
+    Then the following elements should be
+      | NAME OF ELEMENTS            | VALUE                                        |
+      | most played[1] name         | ${mostPlayed[1].name}                        |
+      | most played[1] win to lost  | ${mostPlayed[1].win}/${mostPlayed[1].lost}   |
+      | most played[1] win rate     | ${mostPlayed[1].winRate}                     |
+
+      | most played[2] name         | ${mostPlayed[2].name}                        |
+      | most played[2] win to lost  | ${mostPlayed[2].win}/${mostPlayed[2].lost}   |
+      | most played[2] win rate     | ${mostPlayed[2].winRate}                     |
+
+      | most played[3] name         | ${mostPlayed[3].name}                        |
+      | most played[3] win to lost  | ${mostPlayed[3].win}/${mostPlayed[3].lost}   |
+      | most played[3] win rate     | ${mostPlayed[3].winRate}                     |
+
+      | most played[4] name         | ${mostPlayed[4].name}                        |
+      | most played[4] win to lost  | ${mostPlayed[4].win}/${mostPlayed[4].lost}   |
+      | most played[4] win rate     | ${mostPlayed[4].winRate}                     |
+
+      | most played[5] name         | ${mostPlayed[5].name}                        |
+      | most played[5] win to lost  | ${mostPlayed[5].win}/${mostPlayed[5].lost}   |
+      | most played[5] win rate     | ${mostPlayed[5].winRate}                     |
+
+      | most played[6] name         | ${mostPlayed[6].name}                        |
+      | most played[6] win to lost  | ${mostPlayed[6].win}/${mostPlayed[6].lost}   |
+      | most played[6] win rate     | ${mostPlayed[6].winRate}                     |
+
+      | most played[7] name         | ${mostPlayed[7].name}                        |
+      | most played[7] win to lost  | ${mostPlayed[7].win}/${mostPlayed[7].lost}   |
+      | most played[7] win rate     | ${mostPlayed[7].winRate}                     |
+
+      | most played[8] name         | ${mostPlayed[8].name}                        |
+      | most played[8] win to lost  | ${mostPlayed[8].win}/${mostPlayed[8].lost}   |
+      | most played[8] win rate     | ${mostPlayed[8].winRate}                     |
+
+      | most played[9] name         | ${mostPlayed[9].name}                        |
+      | most played[9] win to lost  | ${mostPlayed[9].win}/${mostPlayed[9].lost}   |
+      | most played[9] win rate     | ${mostPlayed[9].winRate}                     |
+
+      | most played[10] name        | ${mostPlayed[10].name}                       |
+      | most played[10] win to lost | ${mostPlayed[10].win}/${mostPlayed[10].lost} |
+      | most played[10] win rate    | ${mostPlayed[10].winRate}                    |
+
+    Then close browser
+
+    Examples:
+      | browser for test |
+      | Chrome           |
+
+
+  @active
+  Scenario Outline: SS-PO-850
+
+    Given the "<browser for test>" browser is opened
+    Given generate variables with values
+      | NAME OF VARIABLES | VALUE              |
+      | summoner.name     | 54B0MB99           |
+
+      | recentRecords[1]  | Longest Win Streak |
+      | recentRecords[2]  | Most Assists       |
+      | recentRecords[3]  | Best KDA           |
+      | recentRecords[4]  | Best KDA           |
+      | recentRecords[5]  | Most Deaths        |
+
+    When I open the "Stats Moba page"
+    When I input "${summoner.name}" in "Input Search"
+    When I click on "Button Go"
+    And wait 5 sec
+
+    Then the following elements should be
+      | NAME OF ELEMENTS       | VALUE               |
+      | recent records[1] name | ${recentRecords[1]} |
+      | recent records[2] name | ${recentRecords[2]} |
+      | recent records[3] name | ${recentRecords[3]} |
+      | recent records[4] name | ${recentRecords[4]} |
+      | recent records[5] name | ${recentRecords[5]} |
+
+    Then close browser
+
+    Examples:
+      | browser for test |
+      | Chrome           |
+
+  @active
+  Scenario Outline: SS-PO-720, SS-PO-730
+
+    Given the "<browser for test>" browser is opened
+    Given generate variables with values
+      | NAME OF VARIABLES       | VALUE        |
+      | summoner.name           | 54B0MB99     |
+
+      | statChampion[1].name    | Evelynn      |
+      | statChampion[1].games   | 5            |
+      | statChampion[1].winRate | 40%          |
+      | statChampion[1].KDA     | 3.52         |
+
+      | statChampion[2].name    | Kayn         |
+      | statChampion[2].games   | 4            |
+      | statChampion[2].winRate | 50%          |
+      | statChampion[2].KDA     | 3.22         |
+
+      | statChampion[3].name    | Twisted Fate |
+      | statChampion[3].games   | 4            |
+      | statChampion[3].winRate | 50%          |
+      | statChampion[3].KDA     | 3.57         |
+
+      | statChampion[4].name    | Kassadin     |
+      | statChampion[4].games   | 4            |
+      | statChampion[4].winRate | 25%          |
+      | statChampion[4].KDA     | 2.63         |
+
+      | statChampion[5].name    | Vladimir     |
+      | statChampion[5].games   | 3            |
+      | statChampion[5].winRate | 66%          |
+      | statChampion[5].KDA     | 7.12         |
+
+    When I open the "Stats Moba page"
+    When I input "${summoner.name}" in "Input Search"
+    When I click on "Button Go"
+    And wait 5 sec
+
+    Then the following elements should be
+      | NAME OF ELEMENTS          | VALUE                      |
+      | champion stat[1] Name     | ${statChampion[1].name}    |
+      | champion stat[1] Games    | ${statChampion[1].games}   |
+      | champion stat[1] Win Rate | ${statChampion[1].winRate} |
+      | champion stat[1] KDA      | ${statChampion[1].KDA}     |
+
+      | champion stat[2] Name     | ${statChampion[2].name}    |
+      | champion stat[2] Games    | ${statChampion[2].games}   |
+      | champion stat[2] Win Rate | ${statChampion[2].winRate} |
+      | champion stat[2] KDA      | ${statChampion[2].KDA}     |
+
+      | champion stat[3] Name     | ${statChampion[3].name}    |
+      | champion stat[3] Games    | ${statChampion[3].games}   |
+      | champion stat[3] Win Rate | ${statChampion[3].winRate} |
+      | champion stat[3] KDA      | ${statChampion[3].KDA}     |
+
+      | champion stat[4] Name     | ${statChampion[4].name}    |
+      | champion stat[4] Games    | ${statChampion[4].games}   |
+      | champion stat[4] Win Rate | ${statChampion[4].winRate} |
+      | champion stat[4] KDA      | ${statChampion[4].KDA}     |
+
+      | champion stat[5] Name     | ${statChampion[5].name}    |
+      | champion stat[5] Games    | ${statChampion[5].games}   |
+      | champion stat[5] Win Rate | ${statChampion[5].winRate} |
+      | champion stat[5] KDA      | ${statChampion[5].KDA}     |
+
+    Then close browser
+
+    Examples:
+      | browser for test |
+      | Chrome           |
+
 
   #@active
-  Scenario Outline: I validate cases elements on the Summoner Profile Overview: SS-PO-1020, SS-PO-1040, SS-PO-1060, SS-PO-1070, SS-PO-1080, SS-PO-1110
+  Scenario Outline: SS-PO-1020
+
+    Given the "<browser for test>" browser is opened
+    Given generate variables with values
+      | NAME OF VARIABLES  | VALUE           |
+      | summoner.name      | 54B0MB99        |
+
+      | overall.wins       | 12              |
+      | overall.lost       | 8               |
+      | overall.winsToLost | 60              |
+      | overall.KDA        | 4               |
+      | overall.KDAKP      | 7.8 / 3.7 / 8.8 |
+
+    When I open the "Stats Moba page"
+    When I input "${summoner.name}" in "Input Search"
+    When I click on "Button Go"
+    And wait 5 sec
+
+    Then the following elements should be
+      | NAME OF ELEMENTS    | VALUE                    |
+      | overall wins        | ${overall.wins}W         |
+      | overall lost        | ${overall.lost}L         |
+      | overall win to lost | (${overall.winsToLost}%) |
+      | overall KDA         | ${overall.KDA} KDA       |
+      | overall KDA KP      | ${overall.KDAKP}         |
+
+    Then close browser
+
+    Examples:
+      | browser for test |
+      | Chrome           |
+
+  @active
+  Scenario Outline: SS-PO-1040, SS-PO-1050
+
+    Given the "<browser for test>" browser is opened
+    Given generate variables with values
+      | NAME OF VARIABLES        | VALUE    |
+      | summoner.name            | 54B0MB99 |
+
+      | firstCampion.wins        | 1        |
+      | firstCampion.lost        | 2        |
+      | firstCampion.winsToLost  | 33       |
+      | firstCampion.KDA         | 2.88     |
+      | firstCampion.KP          | 44%      |
+
+      | secondCampion.wins       | 1        |
+      | secondCampion.lost       | 1        |
+      | secondCampion.winsToLost | 50       |
+      | secondCampion.KDA        | 3.8      |
+      | secondCampion.KP         | 69%      |
+
+    When I open the "Stats Moba page"
+    When I input "${summoner.name}" in "Input Search"
+    When I click on "Button Go"
+    And wait 5 sec
+
+    Then the following elements should be
+      | NAME OF ELEMENTS               | VALUE                                             |
+      | recent top role[1] wins        | ${firstCampion.wins}W                             |
+      | recent top role[1] lost        | ${firstCampion.lost}L                             |
+      | recent top role[1] win to lost | (${firstCampion.winsToLost}%)                     |
+      | recent top role[1] KDA KP      | ${firstCampion.KDA} KDA / ${firstCampion.KP} KP   |
+
+      | recent top role[2] wins        | ${secondCampion.wins}W                            |
+      | recent top role[2] lost        | ${secondCampion.lost}L                            |
+      | recent top role[2] win to lost | (${secondCampion.winsToLost}%)                    |
+      | recent top role[2] KDA KP      | ${secondCampion.KDA} KDA / ${secondCampion.KP} KP |
+
+    Then close browser
+
+    Examples:
+      | browser for test |
+      | Chrome           |
+
+
+  @active
+  Scenario Outline: SS-PO-1070, SS-PO-1080
 
     Given the "<browser for test>" browser is opened
     Given generate variables with values
@@ -742,8 +1035,7 @@ Feature: Stats site
 
 
   #@active
-  Scenario Outline: I validate cases elements on the Top Roles:
-  SS-PO-620, SS-PO-650
+  Scenario Outline: I validate cases elements on the Top Roles: SS-PO-620, SS-PO-650
 
     Given the "<browser for test>" browser is opened
     When I open the "Stats Moba page"
@@ -778,7 +1070,7 @@ Feature: Stats site
     Examples:
       | browser for test | summoner     | roleMain | mainWins | mainLosses | mainWinRate | mainKda | mainKp | roleOff | offWins | offLosses | offWinRate | offKda | offKp |
       | Chrome           | 54B0MB99     | mid      | 14       | 8          | 63          | 4.46    | 60     | jungle  | 7       | 9         | 43         | 3.13   | 54    |
-      | Chrome           | Arbit0rPrime | jungle   | 16       | 17         | 48          | 2.13    | 43     | mid     | 3       | 3         | 50         | 1.85   | 43    |
+      | Chrome           | Arbit0rPrime | jungle   | 16       | 17         | 48          | 2.12    | 43     | mid     | 3       | 3         | 50         | 1.84   | 43    |
       | Chrome           | Ssenkcys     | adc      | 42       | 61         | 40          | 2.37    | 45     | support | 5       | 6         | 45         | 2.41   | 42    |
 
 
