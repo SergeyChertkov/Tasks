@@ -117,8 +117,8 @@ public class StatsMobaElements {
             put("recent top role KDA KP", "//div[@class='stats-linestyles__ChampionStatsWrapperStyled-s1xf1032-3 gdkWrX']//span[@class='stats-linestyles__KdaKpStyled-s1xf1032-19 kfOTTO'][index]");
 
             put("queue button", "//p[@class='games-overview-filtersstyles__ButtonTextStyled-s143pvsp-4 bniVzJ'][index]");
-            put("queue dropdown menu", "//div[@class='header-game-type-selectstyles__HeaderWrapper-ilbmgp-1 fyJpgp']");
-            put("queue button in dropdown menu", "//p[@class='option-game-type-selectstyles__OptionStyled-hu18j-0 bMxajh'][index]");
+            put("queue dropdown menu", "//div[@class='header-game-type-selectstyles__HeaderWrapper-ilbmgp-1 hLdZxt']");
+            put("queue button in dropdown menu", "//div[@class='s1bxr5fa-2 dLGfLz']//span[@class='header-game-type-selectstyles__Text-ilbmgp-0 EJWbH'][index]");
 
             put("champions table", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')][index]");
             put("champions table queue type", "//div[contains(@class,'gamestyles__GameWrapperStyled-s8vmmnq-0')]//p[@class='gamestyles__GameTypeStyled-s8vmmnq-3 gQDtwr'][index]");
